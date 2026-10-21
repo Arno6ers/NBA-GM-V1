@@ -6,10 +6,12 @@
     <title>Hoops Manager: Association Edition 2026-27</title>
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-dark: #1e293b;
+            --bg-dark: #090d16;
+            --card-dark: #151e2e;
+            --card-light: #1e293b;
             --card-border: rgba(255, 255, 255, 0.08);
             --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.25);
             --accent: #f59e0b;
             --success: #10b981;
             --danger: #ef4444;
@@ -17,59 +19,73 @@
             --text-muted: #94a3b8;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 85px; overflow-x: hidden; }
+        body { background-color: var(--bg-dark); color: var(--text-main); padding-bottom: 90px; overflow-x: hidden; }
         
         /* HEADER */
-        header { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: white; padding: 14px 16px; position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); }
+        header { background: rgba(21, 30, 46, 0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: white; padding: 14px 16px; position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); }
         .header-title { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
-        .header-sub { font-size: 0.75rem; color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.15); padding: 4px 8px; border-radius: 8px; }
+        .header-sub { font-size: 0.72rem; color: var(--accent); font-weight: 700; background: rgba(245, 158, 11, 0.15); padding: 4px 8px; border-radius: 8px; }
 
         /* CONTAINER & CARDS */
-        .container { padding: 12px; max-width: 600px; margin: 0 auto; }
-        .card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
-        h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+        .container { padding: 12px; max-width: 640px; margin: 0 auto; }
+        .card { background: var(--card-dark); border: 1px solid var(--card-border); border-radius: 16px; padding: 15px; margin-bottom: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
 
         /* HOME SCREEN */
-        #home-screen { position: fixed; inset: 0; background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 100%); z-index: 200; padding: 24px 16px; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; }
-        .hero-box { text-align: center; margin-top: 20px; margin-bottom: 24px; }
-        .hero-logo { font-size: 3rem; margin-bottom: 8px; }
-        .hero-title { font-size: 1.8rem; font-weight: 900; background: linear-gradient(90deg, #60a5fa, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+        #home-screen { position: fixed; inset: 0; background: radial-gradient(circle at top, #1e293b 0%, #090d16 100%); z-index: 200; padding: 24px 16px; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; }
+        .hero-box { text-align: center; margin-top: 15px; margin-bottom: 20px; }
+        .hero-logo { font-size: 3.2rem; margin-bottom: 6px; }
+        .hero-title { font-size: 1.75rem; font-weight: 900; background: linear-gradient(90deg, #60a5fa, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
 
         /* CONTROLS & INPUTS */
-        select, input { width: 100%; padding: 12px; background: #0f172a; border: 1px solid var(--card-border); color: white; border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
-        .mode-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 18px; }
+        select, input { width: 100%; padding: 11px 12px; background: #090d16; border: 1px solid var(--card-border); color: white; border-radius: 10px; font-size: 0.9rem; margin-bottom: 10px; outline: none; }
+        .mode-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
         .mode-card { background: rgba(255,255,255,0.03); border: 2px solid var(--card-border); border-radius: 12px; padding: 12px; cursor: pointer; transition: 0.2s; }
-        .mode-card.selected { border-color: var(--primary); background: rgba(59, 130, 246, 0.12); }
-        .mode-card h3 { font-size: 0.95rem; margin-bottom: 4px; color: white; }
-        .mode-card p { font-size: 0.78rem; color: var(--text-muted); }
+        .mode-card.selected { border-color: var(--primary); background: var(--primary-glow); }
+        .mode-card h3 { font-size: 0.92rem; margin-bottom: 3px; color: white; }
+        .mode-card p { font-size: 0.76rem; color: var(--text-muted); }
 
-        button { background: var(--primary); color: white; border: none; padding: 13px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; font-size: 0.95rem; transition: transform 0.1s, opacity 0.2s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        button { background: var(--primary); color: white; border: none; padding: 12px 15px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; font-size: 0.92rem; transition: transform 0.1s, opacity 0.2s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
         button:active { transform: scale(0.98); opacity: 0.9; }
-        button.btn-accent { background: var(--accent); color: #0f172a; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
-        button.btn-success { background: var(--success); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-        button.btn-outline { background: transparent; border: 1px solid var(--card-border); box-shadow: none; color: var(--text-main); margin-top: 8px; }
+        button.btn-accent { background: var(--accent); color: #090d16; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25); }
+        button.btn-success { background: var(--success); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); }
+        button.btn-outline { background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); box-shadow: none; color: var(--text-main); }
+        button.btn-sm { padding: 6px 10px; font-size: 0.76rem; border-radius: 8px; width: auto; }
         .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 
         /* STATS & GRIDS */
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
-        .stat-box { background: rgba(15, 23, 42, 0.6); padding: 10px 6px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border); }
-        .stat-box small { font-size: 0.7rem; color: var(--text-muted); display: block; }
-        .stat-box span { display: block; font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-top: 3px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0; }
+        .stat-box { background: rgba(9, 13, 22, 0.65); padding: 10px 4px; border-radius: 12px; text-align: center; border: 1px solid var(--card-border); }
+        .stat-box small { font-size: 0.65rem; color: var(--text-muted); display: block; text-transform: uppercase; }
+        .stat-box span { display: block; font-size: 1.05rem; font-weight: 800; color: var(--text-main); margin-top: 3px; }
 
         /* TABLES */
-        table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-        th, td { padding: 10px 6px; text-align: left; border-bottom: 1px solid var(--card-border); }
-        th { color: var(--text-muted); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; }
-        .ovr-pill { background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 3px 7px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; }
-        .pot-pill { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 3px 7px; border-radius: 6px; font-weight: 800; font-size: 0.8rem; }
-        .pos-badge { color: var(--text-muted); font-weight: 700; font-size: 0.75rem; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        th, td { padding: 9px 5px; text-align: left; border-bottom: 1px solid var(--card-border); }
+        th { color: var(--text-muted); font-weight: 700; font-size: 0.68rem; text-transform: uppercase; }
+        .ovr-pill { background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 3px 6px; border-radius: 6px; font-weight: 800; font-size: 0.76rem; }
+        .pot-pill { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 3px 6px; border-radius: 6px; font-weight: 800; font-size: 0.76rem; }
+        .role-pill { background: rgba(255,255,255,0.07); color: #cbd5e1; padding: 2px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 600; }
+        .role-starter { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .pos-badge { color: var(--text-muted); font-weight: 700; font-size: 0.74rem; }
+
+        /* TRADE CHECKLIST & OFFERS */
+        .asset-list { max-height: 165px; overflow-y: auto; background: #090d16; border: 1px solid var(--card-border); border-radius: 10px; padding: 6px; margin-bottom: 10px; }
+        .asset-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; cursor: pointer; border-radius: 6px; }
+        .asset-item:hover { background: rgba(255,255,255,0.03); }
+        .asset-item input[type="checkbox"] { width: 16px; height: 16px; margin: 0 8px 0 0; accent-color: var(--primary); }
+        .pick-badge { background: rgba(168, 85, 247, 0.2); color: #c084fc; padding: 2px 6px; border-radius: 5px; font-size: 0.7rem; font-weight: 700; }
+        .offer-card { background: var(--card-light); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; margin-top: 10px; }
+        .offer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 800; font-size: 0.85rem; color: var(--accent); }
+        .offer-body { font-size: 0.78rem; color: var(--text-main); line-height: 1.4; margin-bottom: 10px; }
 
         /* LOGS */
-        .log-box { background: #090d16; color: #38bdf8; padding: 12px; border-radius: 12px; font-family: "SF Mono", monospace; font-size: 0.75rem; height: 140px; overflow-y: auto; line-height: 1.5; border: 1px solid var(--card-border); }
+        .log-box { background: #06090f; color: #38bdf8; padding: 12px; border-radius: 12px; font-family: "SF Mono", monospace; font-size: 0.74rem; height: 150px; overflow-y: auto; line-height: 1.5; border: 1px solid var(--card-border); }
 
         /* NAVIGATION BAR */
-        .nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: flex; justify-content: space-around; border-top: 1px solid var(--card-border); padding: 8px 4px 18px 4px; z-index: 100; }
+        .nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(15, 23, 42, 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: flex; justify-content: space-around; border-top: 1px solid var(--card-border); padding: 8px 4px 18px 4px; z-index: 100; }
         .nav-item { text-align: center; font-size: 0.65rem; color: var(--text-muted); cursor: pointer; flex: 1; transition: 0.2s; font-weight: 600; }
         .nav-item.active { color: var(--primary); }
         .nav-item div { font-size: 1.25rem; margin-bottom: 2px; }
@@ -78,53 +94,51 @@
         .view.active { display: block; animation: fadeIn 0.2s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* TRADE SELECTION */
-        .trade-box { background: rgba(15, 23, 42, 0.5); padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--card-border); }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.85rem; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.82rem; }
         .tab-pills { display: flex; gap: 6px; margin-bottom: 12px; }
-        .tab-pill { flex: 1; text-align: center; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+        .tab-pill { flex: 1; text-align: center; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 0.78rem; font-weight: 700; cursor: pointer; }
         .tab-pill.active { background: var(--primary); color: white; }
     </style>
 </head>
 <body>
 
-    <!-- PAGE D'ACCUEIL : CONFIGURATION DE LA PARTIE -->
+    <!-- PAGE D'ACCUEIL -->
     <div id="home-screen">
         <div>
             <div class="hero-box">
                 <div class="hero-logo">🏀</div>
                 <div class="hero-title">HOOPS MANAGER 27</div>
-                <div class="hero-subtitle">Simulation CBA & Vraies Mock Drafts 2027-2029</div>
+                <div class="hero-subtitle">30 Franchises Complètes • Trade Finder IA • Mock Drafts 2027-29</div>
             </div>
 
             <div class="card">
                 <h2>1. Choisissez votre Franchise NBA</h2>
                 <select id="select-team"></select>
 
-                <h2>2. Mode de Jeu</h2>
+                <h2>2. Mode de Carrière</h2>
                 <div class="mode-grid">
                     <div class="mode-card selected" onclick="selectMode('Contender', this)">
                         <h3>🏆 Course au Titre (Contender)</h3>
-                        <p>Exigence élevée du propriétaire, priorité aux victoires immédiates.</p>
+                        <p>Règles CBA strictes, objectif bague immédiat avec l'effectif complet.</p>
                     </div>
                     <div class="mode-card" onclick="selectMode('Rebuild', this)">
-                        <h3>🌱 Reconstruction & Jeunes (Rebuild)</h3>
-                        <p>Développez vos rookies et accumulez les tours de Draft 2027-2029.</p>
+                        <h3>🌱 Reconstruction & Draft (Rebuild)</h3>
+                        <p>Accumulez les choix de Draft 2027-2029 et développez vos jeunes.</p>
                     </div>
                     <div class="mode-card" onclick="selectMode('Sandbox', this)">
-                        <h3>⚡ GM Libre (Sandbox)</h3>
-                        <p>Liberté totale sur les échanges et tolérance financière élargie.</p>
+                        <h3>⚡ GM Sans Limite (Sandbox)</h3>
+                        <p>Plafond salarial désactivé et acceptation facilitée des transferts.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="btn-accent" onclick="startGame()">Lancer la Carrière GM</button>
+        <button class="btn-accent" onclick="startGame()">Prendre les Commandes de la Franchise</button>
     </div>
 
-    <!-- EN-TÊTE DU JEU -->
+    <!-- EN-TÊTE -->
     <header>
         <div class="header-title">
-            <span id="ui-team-logo">🏀</span>
+            <span>🏀</span>
             <span id="ui-team-name">Boston Celtics</span>
         </div>
         <div class="header-sub" id="ui-season">Saison 2026-27</div>
@@ -140,97 +154,130 @@
                 <div class="stat-grid">
                     <div class="stat-box"><small>Bilan</small><span id="dash-record">0 - 0</span></div>
                     <div class="stat-box"><small>Note OVR</small><span id="dash-ovr">89</span></div>
-                    <div class="stat-box"><small>Masse Sal.</small><span id="dash-cap">$165M</span></div>
+                    <div class="stat-box"><small>Masse Sal.</small><span id="dash-cap">$175M</span></div>
+                    <div class="stat-box"><small>Picks Draft</small><span id="dash-picks">6</span></div>
                 </div>
                 <button onclick="simGames(1)">Simuler le Prochain Match</button>
                 <div class="btn-row">
                     <button class="btn-outline" onclick="simGames(10)">Simuler 10 Matchs</button>
-                    <button class="btn-accent" onclick="simToOffseason()">Finir la Saison / Draft</button>
+                    <button class="btn-accent" onclick="simToOffseason()">Finir Saison & Draft</button>
                 </div>
+            </div>
+
+            <div class="card">
+                <h2><span>Rotation Principale (5 Majeur & 6e Homme)</span></h2>
+                <div id="dash-starters" style="font-size:0.8rem; color:var(--text-muted); line-height:1.6;"></div>
             </div>
 
             <div class="card">
                 <h2>Journal de la Ligue (Play-by-Play)</h2>
-                <div id="activity-log" class="log-box">> Bienvenue General Manager ! Effectifs mis à jour (Octobre 2026).</div>
+                <div id="activity-log" class="log-box">> Bienvenue General Manager ! Les effectifs complets (Titulaires + Remplaçants) et les choix de Draft 2027-2029 sont chargés.</div>
             </div>
         </div>
 
-        <!-- 2. EFFECTIF & ROTATIONS -->
+        <!-- 2. EFFECTIF COMPLET & CHOIX DE DRAFT -->
         <div id="view-squad" class="view">
             <div class="card">
-                <h2><span>Effectif & Contrats</span> <span id="roster-count">8 joueurs</span></h2>
-                <table id="roster-table">
-                    <thead>
-                        <tr><th>Joueur</th><th>Pos</th><th>Âge</th><th>OVR</th><th>POT</th><th>Contrat</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <h2><span>Effectif Complet (Titulaires & Banc)</span> <span id="roster-count">12 joueurs</span></h2>
+                <div class="table-wrap">
+                    <table id="roster-table">
+                        <thead>
+                            <tr><th>Joueur</th><th>Pos</th><th>Rôle</th><th>Âge</th><th>OVR</th><th>POT</th><th>Salaire</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- 3. TRANSFERTS (TRADE MACHINE CBA) -->
-        <div id="view-trades" class="view">
             <div class="card">
-                <h2>Machine à Transferts (CBA Matching)</h2>
-                <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">
-                    La règle CBA exige que les salaires échangés soient compris dans une marge de 125% + 250K$.
-                </p>
-
-                <div class="trade-box">
-                    <div class="flex-between"><strong>Votre Joueur proposé :</strong></div>
-                    <select id="trade-my-player" onchange="updateTradePreview()"></select>
-                </div>
-
-                <div class="trade-box">
-                    <div class="flex-between"><strong>Franchise Adverse :</strong></div>
-                    <select id="trade-opp-team" onchange="populateOppPlayers()"></select>
-                    <div class="flex-between" style="margin-top:6px;"><strong>Joueur Ciblé :</strong></div>
-                    <select id="trade-opp-player" onchange="updateTradePreview()"></select>
-                </div>
-
-                <div id="trade-summary" class="trade-box" style="background:rgba(59,130,246,0.1);">
-                    Sélectionnez deux joueurs pour vérifier la légalité financière CBA.
-                </div>
-
-                <button class="btn-success" onclick="executeTrade()">Proposer le Transfert Officiel</button>
+                <h2>Portefeuille de Choix de Draft (Picks)</h2>
+                <div id="squad-picks-list" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
             </div>
         </div>
 
-        <!-- 4. CENTRE DE DRAFT & SCOUTING (2027 - 2029) -->
+        <!-- 3. CENTRE DES TRANSFERTS (MANUEL + IA TRADE FINDER) -->
+        <div id="view-trades" class="view">
+            <div class="tab-pills">
+                <div class="tab-pill active" onclick="switchTradeTab('manual', this)">🔄 Machine à Transferts</div>
+                <div class="tab-pill" onclick="switchTradeTab('finder', this)">🤖 Propositions IA (Trade Finder)</div>
+            </div>
+
+            <!-- ONGLET 1 : ÉCHANGE MANUEL AVEC PICKS -->
+            <div id="trade-tab-manual">
+                <div class="card">
+                    <h2>1. Vos Actifs Proposés (<span id="trade-my-team-label">Vous</span>)</h2>
+                    <div class="asset-list" id="my-assets-list"></div>
+
+                    <h2>2. Franchise Adverse & Actifs Ciblés</h2>
+                    <select id="trade-opp-team" onchange="renderTradeAssets()"></select>
+                    <div class="asset-list" id="opp-assets-list"></div>
+
+                    <div id="trade-summary" class="card" style="background:rgba(59,130,246,0.08); margin-bottom:10px; padding:12px;">
+                        Cochez des joueurs et/ou des tours de draft pour analyser l'échange.
+                    </div>
+
+                    <button class="btn-success" onclick="executeManualTrade()">Soumettre l'Offre de Transfert</button>
+                </div>
+            </div>
+
+            <!-- ONGLET 2 : RECHERCHE D'OFFRES IA (TRADE FINDER) -->
+            <div id="trade-tab-finder" style="display:none;">
+                <div class="card">
+                    <h2>Générateur de Transferts IA</h2>
+                    <p style="font-size:0.76rem; color:var(--text-muted); margin-bottom:10px;">
+                        Sélectionnez un joueur (de votre équipe pour le vendre, ou d'une autre équipe pour l'acquérir). L'IA vous proposera des packages réalistes incluant joueurs et tours de draft.
+                    </p>
+
+                    <label style="font-size:0.75rem; color:var(--text-muted);">Équipe du joueur :</label>
+                    <select id="finder-team" onchange="populateFinderPlayers()"></select>
+
+                    <label style="font-size:0.75rem; color:var(--text-muted);">Joueur sélectionné :</label>
+                    <select id="finder-player"></select>
+
+                    <button class="btn-accent" onclick="generateAITradeOffers()">🔍 Demander des Offres à l'IA</button>
+
+                    <div id="ai-offers-container" style="margin-top:12px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. CENTRE DE DRAFT & MOCK DRAFTS -->
         <div id="view-draft" class="view">
             <div class="card">
-                <h2><span>Vraies Mock Drafts</span> <span>Scouting</span></h2>
+                <h2><span>Vraies Mock Drafts</span> <span id="draft-status-badge" style="color:var(--accent)">Scouting</span></h2>
                 <div class="tab-pills">
                     <div class="tab-pill active" onclick="switchDraftClass(2027, this)">Classe 2027</div>
                     <div class="tab-pill" onclick="switchDraftClass(2028, this)">Classe 2028</div>
                     <div class="tab-pill" onclick="switchDraftClass(2029, this)">Classe 2029</div>
                 </div>
-                <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">
-                    Vrais prospects universitaires et internationaux répertoriés pour les prochaines saisons NBA. Cliquez sur "Drafter" lors de l'intersaison.
-                </p>
-                <table id="draft-table">
-                    <thead>
-                        <tr><th>#</th><th>Prospect</th><th>Pos</th><th>Origine</th><th>OVR</th><th>POT</th><th>Action</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <p id="draft-user-picks-info" style="font-size:0.76rem; color:var(--primary); font-weight:700; margin-bottom:10px;"></p>
+                <div class="table-wrap">
+                    <table id="draft-table">
+                        <thead>
+                            <tr><th>#</th><th>Prospect</th><th>Pos</th><th>Origine</th><th>OVR</th><th>POT</th><th>Action</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <!-- 5. CLASSEMENT & FINANCES -->
         <div id="view-standings" class="view">
             <div class="card">
-                <h2>Classement NBA (30 Franchises)</h2>
+                <h2>Classement NBA (Saison Régulière)</h2>
                 <div class="tab-pills">
                     <div class="tab-pill active" onclick="switchConf('East', this)">Conférence Est</div>
                     <div class="tab-pill" onclick="switchConf('West', this)">Conférence Ouest</div>
                 </div>
-                <table>
-                    <thead>
-                        <tr><th>#</th><th>Franchise</th><th>V</th><th>D</th><th>PCT</th></tr>
-                    </thead>
-                    <tbody id="standings-table"></tbody>
-                </table>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>Franchise</th><th>OVR</th><th>V</th><th>D</th><th>PCT</th></tr>
+                        </thead>
+                        <tbody id="standings-table"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="card">
@@ -239,14 +286,14 @@
                 <div class="flex-between"><span>Luxury Tax :</span> <strong>$171.0M</strong></div>
                 <div class="flex-between"><span>1er Apron / 2e Apron :</span> <strong>$178.0M / $189.0M</strong></div>
                 <div class="flex-between" style="margin-top:8px; padding-top:8px; border-top:1px solid var(--card-border);">
-                    <span>Statut de votre franchise :</span> <strong id="fin-status" style="color:var(--accent)">Au-dessus du Cap</strong>
+                    <span>Statut de votre franchise :</span> <strong id="fin-status" style="color:var(--accent)">En cours</strong>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- BARRE DE NAVIGATION MOBILE -->
+    <!-- BARRE DE NAVIGATION -->
     <div class="nav-bar">
         <div class="nav-item active" onclick="switchView('dashboard', 0)"><div>📊</div>Accueil</div>
         <div class="nav-item" onclick="switchView('squad', 1)"><div>👟</div>Effectif</div>
@@ -259,216 +306,233 @@
         // VRAIES MOCK DRAFTS (2027, 2028, 2029)
         const mockDrafts = {
             2027: [
-                { name: "Tyran Stokes", pos: "PF", school: "Oakland / USA", age: 19, ovr: 81, pot: 95, salary: 11.2 },
-                { name: "Jordan Smith Jr.", pos: "SG", school: "Paul VI / USA", age: 19, ovr: 80, pot: 93, salary: 10.1 },
-                { name: "Stefan Joksimovic", pos: "SF", school: "Baskonia (Serbie)", age: 19, ovr: 79, pot: 92, salary: 9.0 },
-                { name: "Hugo Yimga Moukouri", pos: "SF", school: "INSEP (France)", age: 19, ovr: 78, pot: 91, salary: 8.2 },
-                { name: "Bruce Branch", pos: "SG", school: "Arizona / USA", age: 19, ovr: 77, pot: 89, salary: 7.4 },
-                { name: "Cameron Williams", pos: "PF", school: "Duke", age: 19, ovr: 77, pot: 88, salary: 6.8 },
-                { name: "Caleb Holt", pos: "SG", school: "Prolific Prep", age: 19, ovr: 76, pot: 88, salary: 6.2 },
-                { name: "Malachi Moreno", pos: "C", school: "Kentucky", age: 20, ovr: 76, pot: 86, salary: 5.8 },
-                { name: "Cameron Houindo", pos: "PF", school: "France", age: 19, ovr: 75, pot: 87, salary: 5.4 },
-                { name: "Moustapha Thiam", pos: "C", school: "Michigan (Sénégal)", age: 20, ovr: 75, pot: 85, salary: 5.0 },
-                { name: "Dame Sarr", pos: "SG", school: "Duke (Italie)", age: 20, ovr: 74, pot: 86, salary: 4.7 },
-                { name: "Tounde Yessoufou", pos: "SF", school: "St. John's (Bénin)", age: 20, ovr: 74, pot: 85, salary: 4.5 }
+                { name: "Tyran Stokes", pos: "PF", school: "Oakland / USA", age: 19, ovr: 82, pot: 96, salary: 11.5 },
+                { name: "Jordan Smith Jr.", pos: "SG", school: "Paul VI / USA", age: 19, ovr: 81, pot: 94, salary: 10.3 },
+                { name: "Stefan Joksimovic", pos: "SF", school: "Baskonia (Serbie)", age: 19, ovr: 80, pot: 93, salary: 9.2 },
+                { name: "Hugo Yimga Moukouri", pos: "SF", school: "INSEP (France)", age: 19, ovr: 79, pot: 92, salary: 8.4 },
+                { name: "Bruce Branch", pos: "SG", school: "Arizona / USA", age: 19, ovr: 78, pot: 90, salary: 7.5 },
+                { name: "Cameron Williams", pos: "PF", school: "Duke", age: 19, ovr: 78, pot: 89, salary: 6.8 },
+                { name: "Caleb Holt", pos: "SG", school: "Prolific Prep", age: 19, ovr: 77, pot: 89, salary: 6.2 },
+                { name: "Malachi Moreno", pos: "C", school: "Kentucky", age: 20, ovr: 76, pot: 87, salary: 5.8 },
+                { name: "Cameron Houindo", pos: "PF", school: "France", age: 19, ovr: 76, pot: 88, salary: 5.4 },
+                { name: "Moustapha Thiam", pos: "C", school: "Michigan (Sénégal)", age: 20, ovr: 75, pot: 86, salary: 5.0 },
+                { name: "Dame Sarr", pos: "SG", school: "Duke (Italie)", age: 20, ovr: 75, pot: 86, salary: 4.7 },
+                { name: "Tounde Yessoufou", pos: "SF", school: "St. John's (Bénin)", age: 20, ovr: 74, pot: 85, salary: 4.5 },
+                { name: "Jaxon Richardson", pos: "SF", school: "Columbus / USA", age: 19, ovr: 74, pot: 86, salary: 4.2 },
+                { name: "Brandon McCoy Jr.", pos: "PG", school: "St. John Bosco", age: 19, ovr: 77, pot: 90, salary: 4.0 }
             ],
             2028: [
-                { name: "Joaquim Boumtje Boumtje", pos: "C", school: "Duke (Espagne)", age: 19, ovr: 82, pot: 96, salary: 11.5 },
-                { name: "Nikola Kusturica", pos: "SG", school: "UCLA (Serbie)", age: 19, ovr: 81, pot: 94, salary: 10.3 },
-                { name: "Marcus Spears Jr.", pos: "PF", school: "Texas / USA", age: 19, ovr: 80, pot: 93, salary: 9.2 },
-                { name: "CJ Rosser", pos: "PF", school: "North Carolina", age: 19, ovr: 79, pot: 91, salary: 8.4 },
-                { name: "Beckham Black", pos: "PG", school: "Duncanville", age: 19, ovr: 78, pot: 90, salary: 7.6 },
-                { name: "Nathan Soliman", pos: "SF", school: "INSEP (France)", age: 19, ovr: 78, pot: 92, salary: 7.0 },
-                { name: "AJ Williams", pos: "SF", school: "Georgia / USA", age: 19, ovr: 77, pot: 89, salary: 6.4 },
-                { name: "Adan Diggs", pos: "SG", school: "Arizona", age: 19, ovr: 76, pot: 88, salary: 5.9 },
+                { name: "Joaquim Boumtje Boumtje", pos: "C", school: "Duke (Espagne)", age: 19, ovr: 82, pot: 96, salary: 11.8 },
+                { name: "Nikola Kusturica", pos: "SG", school: "UCLA (Serbie)", age: 19, ovr: 81, pot: 94, salary: 10.5 },
+                { name: "Marcus Spears Jr.", pos: "PF", school: "Texas / USA", age: 19, ovr: 80, pot: 93, salary: 9.4 },
+                { name: "CJ Rosser", pos: "PF", school: "North Carolina", age: 19, ovr: 79, pot: 91, salary: 8.5 },
+                { name: "Beckham Black", pos: "PG", school: "Duncanville", age: 19, ovr: 78, pot: 90, salary: 7.7 },
+                { name: "Nathan Soliman", pos: "SF", school: "INSEP (France)", age: 19, ovr: 78, pot: 92, salary: 7.1 },
+                { name: "AJ Williams", pos: "SF", school: "Georgia / USA", age: 19, ovr: 77, pot: 89, salary: 6.5 },
+                { name: "Adan Diggs", pos: "SG", school: "Arizona", age: 19, ovr: 76, pot: 88, salary: 6.0 },
                 { name: "Demarcus Henry", pos: "SF", school: "Chandler AZ", age: 19, ovr: 76, pot: 87, salary: 5.5 },
                 { name: "Tajh Ariza", pos: "SF", school: "Oregon", age: 19, ovr: 75, pot: 86, salary: 5.1 },
-                { name: "Fabian Kayser", pos: "SF", school: "Allemagne", age: 19, ovr: 75, pot: 86, salary: 4.8 }
+                { name: "Fabian Kayser", pos: "SF", school: "Allemagne", age: 19, ovr: 75, pot: 86, salary: 4.8 },
+                { name: "Erick Dampier Jr.", pos: "C", school: "Mississippi", age: 19, ovr: 74, pot: 85, salary: 4.4 }
             ],
             2029: [
-                { name: "Yann Kamagate", pos: "C", school: "France / International", age: 19, ovr: 80, pot: 94, salary: 11.8 },
-                { name: "Josiah Rose", pos: "PG", school: "USA Basketball", age: 19, ovr: 80, pot: 93, salary: 10.5 },
-                { name: "Isaiah Hamilton", pos: "SF", school: "Montverde", age: 19, ovr: 79, pot: 91, salary: 9.4 },
-                { name: "Colton Hiller", pos: "SG", school: "Duke Commit", age: 19, ovr: 78, pot: 90, salary: 8.5 },
-                { name: "Benjamin Berrouet", pos: "PF", school: "France / USA", age: 19, ovr: 77, pot: 89, salary: 7.8 },
-                { name: "Mohamed Dabone", pos: "C", school: "FC Barcelone", age: 18, ovr: 78, pot: 95, salary: 7.2 }
+                { name: "Yann Kamagate", pos: "C", school: "France / International", age: 19, ovr: 81, pot: 94, salary: 12.0 },
+                { name: "Mohamed Dabone", pos: "C", school: "FC Barcelone", age: 18, ovr: 80, pot: 96, salary: 10.8 },
+                { name: "Josiah Rose", pos: "PG", school: "USA Basketball", age: 19, ovr: 80, pot: 93, salary: 9.6 },
+                { name: "Isaiah Hamilton", pos: "SF", school: "Montverde", age: 19, ovr: 79, pot: 91, salary: 8.6 },
+                { name: "Colton Hiller", pos: "SG", school: "Duke Commit", age: 19, ovr: 78, pot: 90, salary: 7.8 },
+                { name: "Benjamin Berrouet", pos: "PF", school: "France / USA", age: 19, ovr: 77, pot: 89, salary: 7.0 },
+                { name: "Kameron Mercer", pos: "SG", school: "Ohio / USA", age: 19, ovr: 76, pot: 88, salary: 6.2 },
+                { name: "Babatunde Oladotun", pos: "SF", school: "Maryland", age: 19, ovr: 76, pot: 88, salary: 5.8 }
             ]
         };
 
-        // LES 30 FRANCHISES NBA (AVEC ROOKIES 2026 INTEGRÉS)
-        const nbaTeams = [
+        // Helper pour créer un joueur rapidement
+        const P = (name, pos, age, ovr, pot, salary) => ({ name, pos, age, ovr, pot, salary });
+
+        // LES 30 FRANCHISES NBA AVEC EFFECTIFS COMPLETS (TITULAIRES + REMPLAÇANTS)
+        const rawTeams = [
             { id: "BOS", name: "Boston Celtics", conf: "East", players: [
-                { name: "Jayson Tatum", pos: "SF", age: 28, ovr: 95, pot: 96, salary: 54.1 },
-                { name: "Jaylen Brown", pos: "SG", age: 29, ovr: 92, pot: 92, salary: 49.2 },
-                { name: "Kristaps Porzingis", pos: "C", age: 31, ovr: 87, pot: 87, salary: 30.7 },
-                { name: "Derrick White", pos: "SG", age: 32, ovr: 86, pot: 86, salary: 28.1 },
-                { name: "Jrue Holiday", pos: "PG", age: 36, ovr: 83, pot: 83, salary: 32.4 },
-                { name: "Payton Pritchard", pos: "PG", age: 28, ovr: 80, pot: 82, salary: 7.2 },
-                { name: "Chris Cenac Jr.", pos: "PF", age: 19, ovr: 76, pot: 86, salary: 3.1 }
+                P("Jayson Tatum", "SF", 28, 95, 96, 54.1), P("Jaylen Brown", "SG", 29, 92, 92, 49.2), P("Kristaps Porzingis", "C", 31, 87, 87, 30.7),
+                P("Derrick White", "SG", 32, 86, 86, 28.1), P("Jrue Holiday", "PG", 36, 83, 83, 32.4), P("Payton Pritchard", "PG", 28, 80, 82, 7.2),
+                P("Sam Hauser", "SF", 28, 78, 79, 10.0), P("Al Horford", "C", 40, 77, 77, 5.0), P("Luke Kornet", "C", 31, 75, 75, 3.2),
+                P("Xavier Tillman", "PF", 27, 75, 77, 2.5), P("Chris Cenac Jr.", "PF", 19, 76, 86, 3.1), P("Baylor Scheierman", "SG", 25, 74, 78, 2.6),
+                P("Jordan Walsh", "SF", 22, 73, 79, 2.1)
             ]},
             { id: "OKC", name: "Oklahoma City Thunder", conf: "West", players: [
-                { name: "Shai Gilgeous-Alexander", pos: "PG", age: 28, ovr: 96, pot: 97, salary: 40.8 },
-                { name: "Chet Holmgren", pos: "C", age: 24, ovr: 90, pot: 94, salary: 35.0 },
-                { name: "Jalen Williams", pos: "SF", age: 25, ovr: 89, pot: 92, salary: 35.0 },
-                { name: "Isaiah Hartenstein", pos: "C", age: 28, ovr: 82, pot: 83, salary: 28.5 },
-                { name: "Luguentz Dort", pos: "SG", age: 27, ovr: 81, pot: 82, salary: 17.7 },
-                { name: "Aday Mara", pos: "C", age: 21, ovr: 77, pot: 87, salary: 4.5 }
+                P("Shai Gilgeous-Alexander", "PG", 28, 96, 97, 40.8), P("Chet Holmgren", "C", 24, 90, 94, 35.0), P("Jalen Williams", "SF", 25, 89, 92, 35.0),
+                P("Isaiah Hartenstein", "C", 28, 82, 83, 28.5), P("Alex Caruso", "SG", 32, 82, 82, 19.5), P("Luguentz Dort", "SG", 27, 81, 82, 17.7),
+                P("Cason Wallace", "PG", 22, 80, 86, 5.8), P("Aaron Wiggins", "SF", 27, 78, 79, 9.2), P("Isaiah Joe", "SG", 27, 78, 79, 11.5),
+                P("Nikola Topic", "PG", 21, 78, 87, 5.1), P("Aday Mara", "C", 21, 77, 87, 4.5), P("Jaylin Williams", "C", 24, 75, 78, 3.0),
+                P("Kenrich Williams", "PF", 31, 74, 74, 6.6)
             ]},
             { id: "SAS", name: "San Antonio Spurs", conf: "West", players: [
-                { name: "Victor Wembanyama", pos: "C", age: 22, ovr: 96, pot: 99, salary: 14.5 },
-                { name: "De'Aaron Fox", pos: "PG", age: 28, ovr: 89, pot: 90, salary: 39.1 },
-                { name: "Stephon Castle", pos: "SG", age: 21, ovr: 84, pot: 90, salary: 10.1 },
-                { name: "Devin Vassell", pos: "SG", age: 26, ovr: 83, pot: 85, salary: 27.0 },
-                { name: "Jeremy Sochan", pos: "PF", age: 23, ovr: 81, pot: 85, salary: 14.0 },
-                { name: "Jayden Quaintance", pos: "C", age: 19, ovr: 77, pot: 89, salary: 3.8 }
+                P("Victor Wembanyama", "C", 22, 96, 99, 14.5), P("De'Aaron Fox", "PG", 28, 89, 90, 39.1), P("Stephon Castle", "SG", 21, 84, 90, 10.1),
+                P("Devin Vassell", "SG", 26, 83, 85, 27.0), P("Jeremy Sochan", "PF", 23, 81, 85, 14.0), P("Keldon Johnson", "SF", 27, 79, 81, 17.5),
+                P("Harrison Barnes", "PF", 34, 77, 77, 18.0), P("Jayden Quaintance", "C", 19, 77, 89, 3.8), P("Julian Champagnie", "SF", 25, 75, 77, 3.0),
+                P("Chris Paul", "PG", 41, 75, 75, 4.0), P("Malaki Branham", "SG", 23, 74, 78, 4.2), P("Blake Wesley", "PG", 23, 73, 77, 3.5)
             ]},
             { id: "WAS", name: "Washington Wizards", conf: "East", players: [
-                { name: "AJ Dybantsa", pos: "SF", age: 19, ovr: 84, pot: 97, salary: 12.5 },
-                { name: "Alex Sarr", pos: "C", age: 21, ovr: 83, pot: 89, salary: 11.8 },
-                { name: "Bilal Coulibaly", pos: "SF", age: 22, ovr: 82, pot: 88, salary: 9.2 },
-                { name: "Jordan Poole", pos: "SG", age: 27, ovr: 80, pot: 81, salary: 31.8 },
-                { name: "Kyshawn George", pos: "SG", age: 22, ovr: 78, pot: 84, salary: 4.2 }
+                P("AJ Dybantsa", "SF", 19, 84, 97, 12.5), P("Alex Sarr", "C", 21, 83, 89, 11.8), P("Bilal Coulibaly", "SF", 22, 82, 88, 9.2),
+                P("Jordan Poole", "SG", 27, 80, 81, 31.8), P("Carlton Carrington", "PG", 21, 79, 86, 4.9), P("Kyshawn George", "SG", 22, 78, 84, 4.2),
+                P("Corey Kispert", "SF", 27, 77, 78, 13.9), P("Jonas Valanciunas", "C", 34, 77, 77, 9.9), P("Malcolm Brogdon", "PG", 33, 76, 76, 12.0),
+                P("Saddiq Bey", "PF", 27, 75, 77, 6.5), P("Marvin Bagley III", "C", 27, 74, 75, 5.0), P("Richaun Holmes", "C", 33, 73, 73, 3.2)
             ]},
             { id: "UTA", name: "Utah Jazz", conf: "West", players: [
-                { name: "Lauri Markkanen", pos: "PF", age: 29, ovr: 87, pot: 88, salary: 42.1 },
-                { name: "Darryn Peterson", pos: "PG", age: 19, ovr: 83, pot: 95, salary: 11.2 },
-                { name: "Keyonte George", pos: "PG", age: 22, ovr: 82, pot: 87, salary: 6.5 },
-                { name: "Walker Kessler", pos: "C", age: 25, ovr: 82, pot: 85, salary: 12.0 },
-                { name: "Cody Williams", pos: "SF", age: 21, ovr: 78, pot: 85, salary: 6.2 }
+                P("Lauri Markkanen", "PF", 29, 87, 88, 42.1), P("Darryn Peterson", "PG", 19, 83, 95, 11.2), P("Keyonte George", "PG", 22, 82, 87, 6.5),
+                P("Walker Kessler", "C", 25, 82, 85, 12.0), P("Collin Sexton", "SG", 27, 81, 82, 19.2), P("John Collins", "PF", 29, 79, 79, 26.5),
+                P("Taylor Hendricks", "PF", 22, 79, 85, 6.1), P("Cody Williams", "SF", 21, 78, 85, 6.2), P("Isaiah Collier", "PG", 21, 77, 84, 3.5),
+                P("Kyle Filipowski", "C", 22, 76, 82, 3.0), P("Jordan Clarkson", "SG", 34, 76, 76, 14.2), P("Brice Sensabaugh", "SF", 22, 75, 80, 3.2)
             ]},
             { id: "MEM", name: "Memphis Grizzlies", conf: "West", players: [
-                { name: "Ja Morant", pos: "PG", age: 27, ovr: 92, pot: 93, salary: 39.4 },
-                { name: "Jaren Jackson Jr.", pos: "PF", age: 27, ovr: 88, pot: 89, salary: 28.9 },
-                { name: "Cameron Boozer", pos: "PF", age: 19, ovr: 83, pot: 94, salary: 10.2 },
-                { name: "Desmond Bane", pos: "SG", age: 28, ovr: 85, pot: 86, salary: 36.7 },
-                { name: "Zach Edey", pos: "C", age: 24, ovr: 81, pot: 85, salary: 6.5 }
+                P("Ja Morant", "PG", 27, 92, 93, 39.4), P("Jaren Jackson Jr.", "PF", 27, 88, 89, 28.9), P("Desmond Bane", "SG", 28, 85, 86, 36.7),
+                P("Cameron Boozer", "PF", 19, 83, 94, 10.2), P("Zach Edey", "C", 24, 81, 85, 6.5), P("GG Jackson", "SF", 21, 80, 86, 2.5),
+                P("Vince Williams Jr.", "SG", 26, 78, 80, 2.8), P("Santi Aldama", "PF", 25, 78, 81, 10.0), P("Scotty Pippen Jr.", "PG", 25, 77, 80, 4.0),
+                P("Brandon Clarke", "PF", 30, 77, 77, 12.5), P("Jaylen Wells", "SF", 23, 76, 81, 2.2), P("Luke Kennard", "SG", 30, 75, 75, 9.2)
             ]},
             { id: "LAL", name: "Los Angeles Lakers", conf: "West", players: [
-                { name: "Luka Doncic", pos: "PG", age: 27, ovr: 97, pot: 98, salary: 46.0 },
-                { name: "LeBron James", pos: "SF", age: 41, ovr: 89, pot: 89, salary: 48.5 },
-                { name: "Austin Reaves", pos: "SG", age: 28, ovr: 84, pot: 85, salary: 14.8 },
-                { name: "Rui Hachimura", pos: "PF", age: 28, ovr: 80, pot: 81, salary: 18.2 },
-                { name: "Cameron Carr", pos: "SG", age: 20, ovr: 76, pot: 84, salary: 3.4 }
+                P("Luka Doncic", "PG", 27, 97, 98, 46.0), P("LeBron James", "SF", 41, 88, 88, 48.5), P("Austin Reaves", "SG", 28, 84, 85, 14.8),
+                P("Rui Hachimura", "PF", 28, 80, 81, 18.2), P("Dalton Knecht", "SG", 25, 79, 83, 4.2), P("Jarred Vanderbilt", "PF", 27, 78, 79, 11.5),
+                P("Gabe Vincent", "PG", 30, 76, 76, 11.5), P("Cameron Carr", "SG", 20, 76, 84, 3.4), P("Jaxson Hayes", "C", 26, 75, 76, 3.0),
+                P("Maxi Kleber", "PF", 34, 74, 74, 11.0), P("Christian Koloko", "C", 26, 74, 77, 2.5), P("Bronny James", "PG", 22, 71, 77, 1.9)
             ]},
             { id: "NYK", name: "New York Knicks", conf: "East", players: [
-                { name: "Jalen Brunson", pos: "PG", age: 30, ovr: 93, pot: 93, salary: 34.9 },
-                { name: "Karl-Anthony Towns", pos: "C", age: 30, ovr: 90, pot: 90, salary: 53.1 },
-                { name: "OG Anunoby", pos: "SF", age: 29, ovr: 86, pot: 86, salary: 39.5 },
-                { name: "Mikal Bridges", pos: "SG", age: 30, ovr: 85, pot: 85, salary: 24.9 },
-                { name: "Josh Hart", pos: "SF", age: 31, ovr: 82, pot: 82, salary: 19.4 }
+                P("Jalen Brunson", "PG", 30, 93, 93, 34.9), P("Karl-Anthony Towns", "C", 30, 90, 90, 53.1), P("OG Anunoby", "SF", 29, 86, 86, 39.5),
+                P("Mikal Bridges", "SG", 30, 85, 85, 24.9), P("Josh Hart", "SF", 31, 82, 82, 19.4), P("Mitchell Robinson", "C", 28, 80, 81, 14.3),
+                P("Miles McBride", "PG", 26, 79, 82, 4.7), P("Precious Achiuwa", "PF", 27, 76, 78, 6.0), P("Pacome Dadiet", "SF", 21, 75, 83, 2.8),
+                P("Tyler Kolek", "PG", 25, 75, 79, 2.5), P("Cameron Payne", "PG", 32, 74, 74, 3.1), P("Jericho Sims", "C", 28, 73, 74, 2.2)
             ]},
             { id: "DEN", name: "Denver Nuggets", conf: "West", players: [
-                { name: "Nikola Jokic", pos: "C", age: 31, ovr: 97, pot: 97, salary: 55.2 },
-                { name: "Jamal Murray", pos: "PG", age: 29, ovr: 87, pot: 87, salary: 46.4 },
-                { name: "Aaron Gordon", pos: "PF", age: 31, ovr: 84, pot: 84, salary: 23.8 },
-                { name: "Michael Porter Jr.", pos: "SF", age: 28, ovr: 83, pot: 84, salary: 38.3 }
+                P("Nikola Jokic", "C", 31, 97, 97, 55.2), P("Jamal Murray", "PG", 29, 87, 87, 46.4), P("Aaron Gordon", "PF", 31, 84, 84, 23.8),
+                P("Michael Porter Jr.", "SF", 28, 83, 84, 38.3), P("Christian Braun", "SG", 25, 81, 84, 4.9), P("Peyton Watson", "SF", 24, 79, 84, 4.5),
+                P("Julian Strawther", "SG", 24, 77, 81, 3.2), P("DaRon Holmes II", "C", 24, 76, 82, 3.5), P("Russell Westbrook", "PG", 37, 75, 75, 3.3),
+                P("Zeke Nnaji", "PF", 25, 73, 75, 8.8), P("Dario Saric", "PF", 32, 73, 73, 5.2), P("Jalen Pickett", "PG", 27, 72, 74, 2.2)
             ]},
             { id: "MIN", name: "Minnesota Timberwolves", conf: "West", players: [
-                { name: "Anthony Edwards", pos: "SG", age: 25, ovr: 95, pot: 97, salary: 45.5 },
-                { name: "Rudy Gobert", pos: "C", age: 34, ovr: 85, pot: 85, salary: 36.5 },
-                { name: "Julius Randle", pos: "PF", age: 31, ovr: 85, pot: 85, salary: 31.2 },
-                { name: "Jaden McDaniels", pos: "SF", age: 26, ovr: 83, pot: 86, salary: 24.8 }
+                P("Anthony Edwards", "SG", 25, 95, 97, 45.5), P("Rudy Gobert", "C", 34, 85, 85, 36.5), P("Julius Randle", "PF", 31, 85, 85, 31.2),
+                P("Jaden McDaniels", "SF", 26, 83, 86, 24.8), P("Naz Reid", "C", 27, 83, 85, 15.0), P("Donte DiVincenzo", "SG", 29, 81, 81, 12.0),
+                P("Rob Dillingham", "PG", 21, 80, 87, 6.8), P("Nickeil Alexander-Walker", "SG", 28, 78, 79, 8.5), P("Mike Conley", "PG", 39, 76, 76, 10.7),
+                P("Terrence Shannon Jr.", "SF", 26, 76, 80, 3.0), P("Leonard Miller", "PF", 22, 74, 80, 2.4), P("Luka Garza", "C", 27, 73, 74, 2.3)
             ]},
             { id: "DAL", name: "Dallas Mavericks", conf: "West", players: [
-                { name: "Anthony Davis", pos: "C", age: 33, ovr: 93, pot: 93, salary: 54.1 },
-                { name: "Kyrie Irving", pos: "PG", age: 34, ovr: 90, pot: 90, salary: 42.9 },
-                { name: "Dereck Lively II", pos: "C", age: 22, ovr: 84, pot: 89, salary: 6.2 },
-                { name: "Morez Johnson Jr.", pos: "PF", age: 20, ovr: 78, pot: 86, salary: 5.5 }
+                P("Anthony Davis", "C", 33, 93, 93, 54.1), P("Kyrie Irving", "PG", 34, 90, 90, 42.9), P("Dereck Lively II", "C", 22, 84, 89, 6.2),
+                P("P.J. Washington", "PF", 28, 81, 82, 14.1), P("Daniel Gafford", "C", 28, 81, 82, 14.3), P("Klay Thompson", "SG", 36, 78, 78, 16.6),
+                P("Max Christie", "SG", 23, 78, 83, 8.0), P("Naji Marshall", "SF", 28, 78, 79, 9.0), P("Morez Johnson Jr.", "PF", 20, 78, 86, 5.5),
+                P("Quentin Grimes", "SG", 26, 77, 79, 6.5), P("Jaden Hardy", "SG", 24, 76, 80, 6.0), P("Spencer Dinwiddie", "PG", 33, 74, 74, 3.0)
             ]},
             { id: "ORL", name: "Orlando Magic", conf: "East", players: [
-                { name: "Paolo Banchero", pos: "PF", age: 23, ovr: 92, pot: 95, salary: 35.0 },
-                { name: "Franz Wagner", pos: "SF", age: 25, ovr: 89, pot: 92, salary: 38.6 },
-                { name: "Jalen Suggs", pos: "PG", age: 25, ovr: 84, pot: 87, salary: 28.5 }
+                P("Paolo Banchero", "PF", 23, 92, 95, 35.0), P("Franz Wagner", "SF", 25, 89, 92, 38.6), P("Jalen Suggs", "PG", 25, 84, 87, 28.5),
+                P("Kentavious Caldwell-Pope", "SG", 33, 78, 78, 21.6), P("Wendell Carter Jr.", "C", 27, 80, 82, 18.0), P("Anthony Black", "PG", 22, 80, 86, 8.2),
+                P("Jonathan Isaac", "PF", 29, 79, 80, 15.0), P("Moritz Wagner", "C", 29, 78, 78, 11.0), P("Cole Anthony", "PG", 26, 77, 79, 13.1),
+                P("Goga Bitadze", "C", 27, 76, 78, 8.3), P("Tristan da Silva", "SF", 25, 76, 80, 4.0), P("Jett Howard", "SG", 23, 75, 81, 5.5)
             ]},
             { id: "CLE", name: "Cleveland Cavaliers", conf: "East", players: [
-                { name: "Donovan Mitchell", pos: "SG", age: 30, ovr: 93, pot: 93, salary: 46.3 },
-                { name: "Evan Mobley", pos: "PF", age: 25, ovr: 89, pot: 92, salary: 38.6 },
-                { name: "Darius Garland", pos: "PG", age: 26, ovr: 87, pot: 89, salary: 39.4 }
+                P("Donovan Mitchell", "SG", 30, 93, 93, 46.3), P("Evan Mobley", "PF", 25, 89, 92, 38.6), P("Darius Garland", "PG", 26, 87, 89, 39.4),
+                P("Jarrett Allen", "C", 28, 85, 86, 28.0), P("Max Strus", "SF", 30, 78, 78, 15.9), P("Caris LeVert", "SG", 32, 78, 78, 14.0),
+                P("Isaac Okoro", "SF", 25, 77, 80, 11.0), P("Ty Jerome", "PG", 29, 77, 77, 4.5), P("Jaylon Tyson", "SF", 23, 76, 81, 3.8),
+                P("Dean Wade", "PF", 29, 75, 75, 6.6), P("Sam Merrill", "SG", 30, 74, 74, 3.0), P("Craig Porter Jr.", "PG", 26, 74, 77, 2.5)
             ]},
             { id: "DET", name: "Detroit Pistons", conf: "East", players: [
-                { name: "Cade Cunningham", pos: "PG", age: 25, ovr: 91, pot: 94, salary: 38.6 },
-                { name: "Jalen Duren", pos: "C", age: 22, ovr: 85, pot: 89, salary: 18.5 },
-                { name: "Ausar Thompson", pos: "SF", age: 23, ovr: 83, pot: 88, salary: 9.8 }
+                P("Cade Cunningham", "PG", 25, 91, 94, 38.6), P("Jalen Duren", "C", 22, 85, 89, 18.5), P("Jaden Ivey", "SG", 24, 83, 87, 16.0),
+                P("Ausar Thompson", "SF", 23, 83, 88, 9.8), P("Ronald Holland II", "SF", 21, 80, 87, 8.6), P("Tobias Harris", "PF", 34, 78, 78, 26.0),
+                P("Isaiah Stewart", "C", 25, 78, 81, 15.0), P("Malik Beasley", "SG", 29, 77, 77, 6.0), P("Simone Fontecchio", "SF", 30, 76, 76, 8.0),
+                P("Marcus Sasser", "PG", 26, 75, 78, 3.2), P("Paul Reed", "C", 27, 74, 75, 5.0), P("Bobi Klintman", "PF", 23, 73, 78, 2.2)
             ]},
             { id: "HOU", name: "Houston Rockets", conf: "West", players: [
-                { name: "Alperen Sengun", pos: "C", age: 24, ovr: 90, pot: 93, salary: 35.5 },
-                { name: "Amen Thompson", pos: "PG", age: 23, ovr: 87, pot: 93, salary: 10.5 },
-                { name: "Jalen Green", pos: "SG", age: 24, ovr: 85, pot: 88, salary: 33.3 }
+                P("Alperen Sengun", "C", 24, 90, 93, 35.5), P("Amen Thompson", "PG", 23, 87, 93, 10.5), P("Jalen Green", "SG", 24, 85, 88, 33.3),
+                P("Jabari Smith Jr.", "PF", 23, 84, 88, 12.5), P("Tari Eason", "SF", 25, 82, 85, 14.0), P("Fred VanVleet", "PG", 32, 81, 81, 32.0),
+                P("Cam Whitmore", "SF", 22, 81, 87, 4.2), P("Reed Sheppard", "PG", 22, 80, 87, 10.6), P("Dillon Brooks", "SF", 30, 78, 78, 21.1),
+                P("Steven Adams", "C", 33, 76, 76, 6.0), P("Jock Landale", "C", 31, 74, 74, 8.0), P("Aaron Holiday", "PG", 30, 73, 73, 4.9)
             ]},
             { id: "PHI", name: "Philadelphia 76ers", conf: "East", players: [
-                { name: "Tyrese Maxey", pos: "PG", age: 25, ovr: 90, pot: 92, salary: 37.9 },
-                { name: "Joel Embiid", pos: "C", age: 32, ovr: 94, pot: 94, salary: 55.2 },
-                { name: "Jared McCain", pos: "SG", age: 22, ovr: 83, pot: 88, salary: 4.8 }
+                P("Joel Embiid", "C", 32, 94, 94, 55.2), P("Tyrese Maxey", "PG", 25, 90, 92, 37.9), P("Paul George", "SF", 36, 84, 84, 51.6),
+                P("Jared McCain", "SG", 22, 83, 88, 4.8), P("Kelly Oubre Jr.", "SF", 30, 79, 79, 8.3), P("Guerschon Yabusele", "PF", 30, 78, 79, 6.5),
+                P("Caleb Martin", "SF", 31, 77, 77, 8.5), P("Andre Drummond", "C", 33, 75, 75, 5.0), P("Ricky Council IV", "SG", 25, 75, 79, 2.5),
+                P("Adem Bona", "C", 23, 74, 80, 2.2), P("KJ Martin", "PF", 25, 74, 76, 8.0), P("Eric Gordon", "SG", 37, 72, 72, 3.3)
             ]},
             { id: "MIL", name: "Milwaukee Bucks", conf: "East", players: [
-                { name: "Giannis Antetokounmpo", pos: "PF", age: 31, ovr: 97, pot: 97, salary: 54.1 },
-                { name: "Damian Lillard", pos: "PG", age: 36, ovr: 87, pot: 87, salary: 54.1 },
-                { name: "Brayden Burries", pos: "SG", age: 19, ovr: 78, pot: 88, salary: 5.2 }
+                P("Giannis Antetokounmpo", "PF", 31, 97, 97, 54.1), P("Damian Lillard", "PG", 36, 87, 87, 54.1), P("Bobby Portis", "PF", 31, 80, 80, 13.4),
+                P("Brayden Burries", "SG", 19, 78, 88, 5.2), P("Gary Trent Jr.", "SG", 27, 78, 79, 8.0), P("Khris Middleton", "SF", 35, 78, 78, 22.0),
+                P("Brook Lopez", "C", 38, 77, 77, 10.0), P("AJ Green", "SG", 27, 76, 78, 4.0), P("Andre Jackson Jr.", "SF", 24, 75, 79, 2.5),
+                P("Taurean Prince", "PF", 32, 74, 74, 3.0), P("AJ Johnson", "PG", 21, 74, 83, 3.2), P("Tyler Smith", "PF", 21, 73, 80, 2.4)
             ]},
             { id: "MIA", name: "Miami Heat", conf: "East", players: [
-                { name: "Bam Adebayo", pos: "C", age: 29, ovr: 89, pot: 90, salary: 37.1 },
-                { name: "Tyler Herro", pos: "SG", age: 26, ovr: 86, pot: 87, salary: 31.0 },
-                { name: "Kel'el Ware", pos: "C", age: 22, ovr: 81, pot: 86, salary: 5.1 }
+                P("Bam Adebayo", "C", 29, 89, 90, 37.1), P("Tyler Herro", "SG", 26, 86, 87, 31.0), P("Jaime Jaquez Jr.", "SF", 25, 81, 84, 4.2),
+                P("Nikola Jovic", "PF", 23, 81, 86, 5.5), P("Kel'el Ware", "C", 22, 81, 86, 5.1), P("Terry Rozier", "PG", 32, 78, 78, 24.9),
+                P("Duncan Robinson", "SG", 32, 76, 76, 19.8), P("Haywood Highsmith", "PF", 29, 75, 75, 5.4), P("Pelle Larsson", "SG", 25, 75, 78, 2.2),
+                P("Alec Burks", "SG", 35, 73, 73, 3.0), P("Josh Richardson", "SG", 33, 73, 73, 3.0), P("Kevin Love", "PF", 38, 72, 72, 4.0)
             ]},
             { id: "GSW", name: "Golden State Warriors", conf: "West", players: [
-                { name: "Stephen Curry", pos: "PG", age: 38, ovr: 92, pot: 92, salary: 59.6 },
-                { name: "Jonathan Kuminga", pos: "PF", age: 24, ovr: 85, pot: 89, salary: 26.5 },
-                { name: "Brandin Podziemski", pos: "SG", age: 23, ovr: 82, pot: 86, salary: 4.5 }
+                P("Stephen Curry", "PG", 38, 92, 92, 59.6), P("Jonathan Kuminga", "PF", 24, 85, 89, 26.5), P("Brandin Podziemski", "SG", 23, 82, 86, 4.5),
+                P("Andrew Wiggins", "SF", 31, 80, 80, 28.2), P("Draymond Green", "PF", 36, 79, 79, 25.8), P("Trayce Jackson-Davis", "C", 26, 79, 82, 2.8),
+                P("Moses Moody", "SG", 24, 78, 82, 11.6), P("Buddy Hield", "SG", 33, 77, 77, 9.2), P("De'Anthony Melton", "PG", 28, 77, 78, 8.0),
+                P("Kyle Anderson", "PF", 33, 75, 75, 9.2), P("Kevon Looney", "C", 30, 74, 74, 5.0), P("Gui Santos", "SF", 24, 73, 77, 2.2)
             ]},
             { id: "PHX", name: "Phoenix Suns", conf: "West", players: [
-                { name: "Devin Booker", pos: "SG", age: 29, ovr: 93, pot: 93, salary: 53.1 },
-                { name: "Kevin Durant", pos: "PF", age: 38, ovr: 91, pot: 91, salary: 54.7 },
-                { name: "Koa Peat", pos: "PF", age: 19, ovr: 76, pot: 86, salary: 3.0 }
+                P("Devin Booker", "SG", 29, 93, 93, 53.1), P("Kevin Durant", "PF", 38, 91, 91, 54.7), P("Bradley Beal", "SG", 33, 82, 82, 53.6),
+                P("Ryan Dunn", "SF", 23, 79, 84, 3.0), P("Grayson Allen", "SG", 31, 78, 78, 16.8), P("Jusuf Nurkic", "C", 32, 77, 77, 18.1),
+                P("Royce O'Neale", "SF", 33, 76, 76, 10.5), P("Koa Peat", "PF", 19, 76, 86, 3.0), P("Oso Ighodaro", "C", 24, 75, 79, 2.2),
+                P("Tyus Jones", "PG", 30, 77, 77, 6.0), P("Monte Morris", "PG", 31, 73, 73, 3.0), P("Mason Plumlee", "C", 36, 72, 72, 3.0)
             ]},
             { id: "ATL", name: "Atlanta Hawks", conf: "East", players: [
-                { name: "Trae Young", pos: "PG", age: 28, ovr: 90, pot: 91, salary: 46.0 },
-                { name: "Jalen Johnson", pos: "PF", age: 24, ovr: 88, pot: 91, salary: 30.0 },
-                { name: "Zaccharie Risacher", pos: "SF", age: 21, ovr: 83, pot: 89, salary: 13.2 }
+                P("Trae Young", "PG", 28, 90, 91, 46.0), P("Jalen Johnson", "PF", 24, 88, 91, 30.0), P("Zaccharie Risacher", "SF", 21, 83, 89, 13.2),
+                P("Dyson Daniels", "SG", 23, 83, 87, 8.5), P("Onyeka Okongwu", "C", 25, 81, 84, 15.0), P("De'Andre Hunter", "SF", 28, 79, 80, 23.3),
+                P("Bogdan Bogdanovic", "SG", 34, 78, 78, 16.0), P("Kobe Bufkin", "PG", 23, 76, 82, 5.4), P("Clint Capela", "C", 32, 76, 76, 10.0),
+                P("Larry Nance Jr.", "C", 33, 74, 74, 5.0), P("Vit Krejci", "PG", 26, 73, 75, 2.5), P("Mouhamed Gueye", "PF", 23, 72, 78, 2.1)
             ]},
             { id: "CHA", name: "Charlotte Hornets", conf: "East", players: [
-                { name: "LaMelo Ball", pos: "PG", age: 25, ovr: 90, pot: 92, salary: 37.9 },
-                { name: "Brandon Miller", pos: "SF", age: 23, ovr: 87, pot: 91, salary: 11.9 },
-                { name: "Hannes Steinbach", pos: "C", age: 19, ovr: 77, pot: 87, salary: 4.3 }
+                P("LaMelo Ball", "PG", 25, 90, 92, 37.9), P("Brandon Miller", "SF", 23, 87, 91, 11.9), P("Mark Williams", "C", 24, 82, 86, 6.2),
+                P("Miles Bridges", "PF", 28, 81, 81, 25.0), P("Tidjane Salaun", "PF", 21, 78, 86, 7.8), P("Hannes Steinbach", "C", 19, 77, 87, 4.3),
+                P("Tre Mann", "PG", 25, 78, 81, 7.5), P("Josh Green", "SG", 25, 76, 78, 13.6), P("Grant Williams", "PF", 27, 76, 77, 13.6),
+                P("Nick Smith Jr.", "SG", 22, 75, 81, 3.0), P("Cody Martin", "SF", 31, 74, 74, 8.6), P("Vasilije Micic", "PG", 32, 74, 74, 7.7)
             ]},
             { id: "CHI", name: "Chicago Bulls", conf: "East", players: [
-                { name: "Caleb Wilson", pos: "PF", age: 19, ovr: 82, pot: 92, salary: 9.5 },
-                { name: "Matas Buzelis", pos: "SF", age: 22, ovr: 82, pot: 88, salary: 6.1 },
-                { name: "Josh Giddey", pos: "PG", age: 24, ovr: 83, pot: 86, salary: 22.0 }
+                P("Coby White", "PG", 26, 84, 86, 12.8), P("Josh Giddey", "PG", 24, 83, 86, 22.0), P("Caleb Wilson", "PF", 19, 82, 92, 9.5),
+                P("Matas Buzelis", "SF", 22, 82, 88, 6.1), P("Ayo Dosunmu", "SG", 26, 79, 81, 7.0), P("Patrick Williams", "PF", 25, 78, 82, 18.0),
+                P("Nikola Vucevic", "C", 36, 78, 78, 20.0), P("Lonzo Ball", "PG", 29, 76, 77, 10.0), P("Jalen Smith", "C", 26, 76, 78, 9.0),
+                P("Julian Phillips", "SF", 22, 74, 80, 2.4), P("Dalen Terry", "SG", 24, 73, 77, 4.0), P("Talen Horton-Tucker", "SG", 25, 73, 75, 2.5)
             ]},
             { id: "BKN", name: "Brooklyn Nets", conf: "East", players: [
-                { name: "Cam Thomas", pos: "SG", age: 25, ovr: 85, pot: 87, salary: 24.5 },
-                { name: "Mikel Brown Jr.", pos: "PG", age: 19, ovr: 80, pot: 90, salary: 7.8 },
-                { name: "Nic Claxton", pos: "C", age: 27, ovr: 82, pot: 84, salary: 25.4 }
+                P("Cam Thomas", "SG", 25, 85, 87, 24.5), P("Nic Claxton", "C", 27, 82, 84, 25.4), P("Cameron Johnson", "SF", 30, 81, 81, 22.5),
+                P("Mikel Brown Jr.", "PG", 19, 80, 90, 7.8), P("Noah Clowney", "PF", 22, 79, 85, 4.0), P("Day'Ron Sharpe", "C", 24, 77, 81, 6.5),
+                P("Ziaire Williams", "SF", 25, 76, 80, 6.0), P("Dariq Whitehead", "SG", 22, 75, 82, 3.5), P("Jalen Wilson", "SF", 25, 75, 77, 2.2),
+                P("Keon Johnson", "SG", 24, 74, 78, 2.5), P("Ben Simmons", "PG", 30, 74, 74, 4.0), P("Trendon Watford", "PF", 25, 74, 76, 3.0)
             ]},
             { id: "IND", name: "Indiana Pacers", conf: "East", players: [
-                { name: "Tyrese Haliburton", pos: "PG", age: 26, ovr: 91, pot: 93, salary: 42.1 },
-                { name: "Pascal Siakam", pos: "PF", age: 32, ovr: 86, pot: 86, salary: 45.1 },
-                { name: "Bennedict Mathurin", pos: "SG", age: 24, ovr: 83, pot: 87, salary: 18.0 }
+                P("Tyrese Haliburton", "PG", 26, 91, 93, 42.1), P("Pascal Siakam", "PF", 32, 86, 86, 45.1), P("Bennedict Mathurin", "SG", 24, 83, 87, 18.0),
+                P("Myles Turner", "C", 30, 83, 83, 25.0), P("Andrew Nembhard", "PG", 26, 81, 84, 19.5), P("Aaron Nesmith", "SF", 27, 79, 80, 11.0),
+                P("Obi Toppin", "PF", 28, 78, 79, 14.0), P("Jarace Walker", "PF", 23, 78, 84, 6.5), P("T.J. McConnell", "PG", 34, 77, 77, 10.2),
+                P("Ben Sheppard", "SG", 25, 75, 78, 3.0), P("Johnny Furphy", "SF", 21, 74, 81, 2.4), P("Isaiah Jackson", "C", 24, 74, 78, 4.5)
             ]},
             { id: "TOR", name: "Toronto Raptors", conf: "East", players: [
-                { name: "Scottie Barnes", pos: "PF", age: 25, ovr: 90, pot: 93, salary: 38.6 },
-                { name: "RJ Barrett", pos: "SG", age: 26, ovr: 85, pot: 87, salary: 27.7 },
-                { name: "Immanuel Quickley", pos: "PG", age: 27, ovr: 84, pot: 86, salary: 32.5 }
+                P("Scottie Barnes", "PF", 25, 90, 93, 38.6), P("RJ Barrett", "SG", 26, 85, 87, 27.7), P("Immanuel Quickley", "PG", 27, 84, 86, 32.5),
+                P("Gradey Dick", "SG", 22, 81, 86, 5.2), P("Jakob Poeltl", "C", 31, 81, 81, 19.5), P("Ja'Kobe Walter", "SG", 22, 78, 84, 4.0),
+                P("Ochai Agbaji", "SF", 26, 77, 79, 6.5), P("Jonathan Mogbo", "PF", 24, 76, 80, 2.4), P("Jamal Shead", "PG", 24, 75, 79, 2.2),
+                P("Kelly Olynyk", "C", 35, 75, 75, 13.4), P("Davion Mitchell", "PG", 28, 74, 76, 5.0), P("Chris Boucher", "PF", 33, 73, 73, 5.0)
             ]},
             { id: "SAC", name: "Sacramento Kings", conf: "West", players: [
-                { name: "Domantas Sabonis", pos: "C", age: 30, ovr: 89, pot: 89, salary: 43.6 },
-                { name: "Keegan Murray", pos: "SF", age: 26, ovr: 84, pot: 87, salary: 24.0 },
-                { name: "Darius Acuff Jr.", pos: "PG", age: 19, ovr: 80, pot: 90, salary: 7.1 }
+                P("Domantas Sabonis", "C", 30, 89, 89, 43.6), P("Malik Monk", "SG", 28, 84, 84, 18.8), P("Keegan Murray", "SF", 26, 84, 87, 24.0),
+                P("DeMar DeRozan", "SF", 37, 83, 83, 24.5), P("Keon Ellis", "SG", 26, 79, 81, 5.0), P("Devin Carter", "PG", 24, 79, 84, 4.9),
+                P("Darius Acuff Jr.", "PG", 19, 80, 90, 7.1), P("Kevin Huerter", "SG", 28, 76, 77, 16.8), P("Trey Lyles", "PF", 30, 75, 75, 8.0),
+                P("Isaac Jones", "C", 26, 74, 77, 2.2), P("Colby Jones", "SG", 24, 73, 77, 2.4), P("Alex Len", "C", 33, 72, 72, 3.0)
             ]},
             { id: "NOP", name: "New Orleans Pelicans", conf: "West", players: [
-                { name: "Zion Williamson", pos: "PF", age: 26, ovr: 90, pot: 92, salary: 39.4 },
-                { name: "Trey Murphy III", pos: "SF", age: 26, ovr: 86, pot: 88, salary: 25.0 },
-                { name: "Yves Missi", pos: "C", age: 22, ovr: 81, pot: 86, salary: 4.2 }
+                P("Zion Williamson", "PF", 26, 90, 92, 39.4), P("Trey Murphy III", "SF", 26, 86, 88, 25.0), P("Dejounte Murray", "PG", 30, 85, 85, 30.8),
+                P("Herbert Jones", "SF", 28, 83, 84, 13.9), P("Yves Missi", "C", 22, 81, 86, 4.2), P("CJ McCollum", "SG", 35, 79, 79, 30.6),
+                P("Jordan Hawkins", "SG", 24, 78, 82, 4.7), P("Jose Alvarado", "PG", 28, 77, 77, 4.5), P("Javonte Green", "SF", 33, 74, 74, 2.5),
+                P("Daniel Theis", "C", 34, 73, 73, 3.0), P("Karlo Matkovic", "C", 25, 73, 77, 2.2), P("Jeremiah Robinson-Earl", "PF", 25, 72, 75, 2.2)
             ]},
             { id: "POR", name: "Portland Trail Blazers", conf: "West", players: [
-                { name: "Scoot Henderson", pos: "PG", age: 22, ovr: 84, pot: 89, salary: 11.5 },
-                { name: "Shaedon Sharpe", pos: "SG", age: 23, ovr: 85, pot: 90, salary: 20.0 },
-                { name: "Donovan Clingan", pos: "C", age: 22, ovr: 82, pot: 87, salary: 8.2 }
+                P("Shaedon Sharpe", "SG", 23, 85, 90, 20.0), P("Scoot Henderson", "PG", 22, 84, 89, 11.5), P("Anfernee Simons", "SG", 27, 83, 85, 27.6),
+                P("Deni Avdija", "SF", 25, 83, 86, 13.1), P("Donovan Clingan", "C", 22, 82, 87, 8.2), P("Toumani Camara", "PF", 26, 80, 83, 2.8),
+                P("Deandre Ayton", "C", 28, 80, 81, 35.5), P("Jerami Grant", "PF", 32, 79, 79, 32.0), P("Robert Williams III", "C", 29, 78, 79, 13.2),
+                P("Kris Murray", "SF", 26, 75, 78, 3.1), P("Rayan Rupert", "SG", 22, 74, 81, 2.4), P("Dalano Banton", "PG", 26, 73, 75, 2.5)
             ]},
             { id: "LAC", name: "Los Angeles Clippers", conf: "West", players: [
-                { name: "Kawhi Leonard", pos: "SF", age: 35, ovr: 89, pot: 89, salary: 50.0 },
-                { name: "Ivica Zubac", pos: "C", age: 29, ovr: 84, pot: 84, salary: 19.5 },
-                { name: "Keaton Wagler", pos: "SG", age: 19, ovr: 80, pot: 90, salary: 8.5 }
+                P("Kawhi Leonard", "SF", 35, 89, 89, 50.0), P("James Harden", "PG", 37, 84, 84, 35.0), P("Ivica Zubac", "C", 29, 84, 84, 19.5),
+                P("Norman Powell", "SG", 33, 82, 82, 20.4), P("Keaton Wagler", "SG", 19, 80, 90, 8.5), P("Derrick Jones Jr.", "SF", 29, 78, 78, 10.0),
+                P("Terance Mann", "SG", 30, 77, 77, 15.5), P("Kris Dunn", "PG", 32, 76, 76, 5.4), P("Amir Coffey", "SF", 29, 75, 75, 4.0),
+                P("Nicolas Batum", "PF", 37, 74, 74, 4.9), P("Kobe Brown", "PF", 26, 73, 76, 2.6), P("Mo Bamba", "C", 28, 72, 74, 2.5)
             ]}
         ];
 
@@ -480,14 +544,15 @@
             activeDraftYear: 2027,
             activeConf: "East",
             canDraft: false,
-            teams: []
+            teams: [],
+            aiOffers: []
         };
 
-        // INITIALISATION DE L'ÉCRAN D'ACCUEIL
+        // INITIALISATION PAGE D'ACCUEIL
         window.onload = () => {
             const select = document.getElementById('select-team');
-            nbaTeams.forEach(t => {
-                select.innerHTML += `<option value="${t.id}">${t.name} (${t.conf})</option>`;
+            rawTeams.forEach(t => {
+                select.innerHTML += `<option value="${t.id}">${t.name} (${t.conf} - ${t.players.length} joueurs)</option>`;
             });
         };
 
@@ -499,30 +564,46 @@
 
         function startGame() {
             state.userTeamId = document.getElementById('select-team').value;
-            state.teams = JSON.parse(JSON.stringify(nbaTeams)).map(t => ({
-                ...t, w: 0, l: 0
-            }));
+            
+            // Initialisation des 30 équipes et de leurs tours de draft (2027, 2028, 2029 - Tours 1 & 2)
+            state.teams = JSON.parse(JSON.stringify(rawTeams)).map(t => {
+                const picks = [];
+                [2027, 2028, 2029].forEach(yr => {
+                    picks.push({ id: `${yr}-R1-${t.id}`, year: yr, round: 1, origTeam: t.id, label: `${yr} 1er Tour (${t.id})`, val: 18 });
+                    picks.push({ id: `${yr}-R2-${t.id}`, year: yr, round: 2, origTeam: t.id, label: `${yr} 2e Tour (${t.id})`, val: 6 });
+                });
+                return { ...t, w: 0, l: 0, picks };
+            });
 
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('ui-mode-badge').innerText = state.mode;
+            initTradeUI();
             updateAllUI();
-            initTradeSelectors();
-            log(`Carrière lancée avec les ${getUserTeam().name} en mode ${state.mode} !`);
+            log(`Carrière lancée avec les ${getUserTeam().name} (${getUserTeam().players.length} joueurs + 6 choix de Draft).`);
         }
 
         function getUserTeam() {
             return state.teams.find(t => t.id === state.userTeamId);
         }
 
+        // Calcul OVR pondéré (5 Majeur + Banc)
         function calcTeamOVR(team) {
-            if (!team.players.length) return 75;
-            const top5 = [...team.players].sort((a,b) => b.ovr - a.ovr).slice(0, 5);
-            const sum = top5.reduce((acc, p) => acc + p.ovr, 0);
-            return Math.round(sum / top5.length);
+            if (!team.players.length) return 72;
+            const sorted = [...team.players].sort((a,b) => b.ovr - a.ovr);
+            const starters = sorted.slice(0, 5);
+            const bench = sorted.slice(5, 10);
+            const sAvg = starters.reduce((a, p) => a + p.ovr, 0) / starters.length;
+            const bAvg = bench.length ? bench.reduce((a, p) => a + p.ovr, 0) / bench.length : 72;
+            return Math.round(sAvg * 0.78 + bAvg * 0.22);
         }
 
         function calcPayroll(team) {
             return team.players.reduce((acc, p) => acc + p.salary, 0);
+        }
+
+        function calcPlayerTradeValue(p) {
+            const ageBonus = p.age <= 24 ? (25 - p.age) * 2.5 : (p.age >= 32 ? -4 : 0);
+            return Math.round((p.ovr - 68) * 1.6 + (p.pot - 72) * 0.9 + ageBonus);
         }
 
         function updateAllUI() {
@@ -535,12 +616,18 @@
             document.getElementById('dash-record').innerText = `${myTeam.w} - ${myTeam.l}`;
             document.getElementById('dash-ovr').innerText = ovr;
             document.getElementById('dash-cap').innerText = `$${payroll.toFixed(1)}M`;
+            document.getElementById('dash-picks').innerText = myTeam.picks.length;
+
+            // Affichage 5 Majeur & 6e Homme sur le Dashboard
+            const sorted = [...myTeam.players].sort((a,b) => b.ovr - a.ovr);
+            const top6 = sorted.slice(0, 6).map((p, i) => `${i < 5 ? '⭐' : '⚡6e'} <strong>${p.name}</strong> (${p.pos} - ${p.ovr})`).join(' • ');
+            document.getElementById('dash-starters').innerHTML = top6;
 
             // Statut Financier CBA
             const finEl = document.getElementById('fin-status');
-            if (payroll > 189) { finEl.innerText = "2e Apron Dépassé (Bloqué)"; finEl.style.color = "var(--danger)"; }
-            else if (payroll > 171) { finEl.innerText = "Luxury Tax Payer"; finEl.style.color = "var(--accent)"; }
-            else { finEl.innerText = "Conforme (Sous la Taxe)"; finEl.style.color = "var(--success)"; }
+            if (payroll > 189) { finEl.innerText = "2e Apron Dépassé ($" + payroll.toFixed(1) + "M)"; finEl.style.color = "var(--danger)"; }
+            else if (payroll > 171) { finEl.innerText = "Luxury Tax ($" + payroll.toFixed(1) + "M)"; finEl.style.color = "var(--accent)"; }
+            else { finEl.innerText = "Sous la Luxury Tax ($" + payroll.toFixed(1) + "M)"; finEl.style.color = "var(--success)"; }
 
             renderRoster();
             renderStandings();
@@ -553,7 +640,10 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById('view-' + viewName).classList.add('active');
             document.querySelectorAll('.nav-item')[idx].classList.add('active');
-            if(viewName === 'trades') initTradeSelectors();
+            if (viewName === 'trades') {
+                renderTradeAssets();
+                populateFinderPlayers();
+            }
         }
 
         // SIMULATION DE MATCHS
@@ -561,7 +651,7 @@
             const myTeam = getUserTeam();
             for (let i = 0; i < count; i++) {
                 if (myTeam.w + myTeam.l >= 82) {
-                    log("Les 82 matchs sont terminés ! Cliquez sur 'Finir la Saison / Draft'.");
+                    log("Les 82 matchs sont terminés ! Cliquez sur 'Finir Saison & Draft'.");
                     break;
                 }
                 state.teams.forEach(t => {
@@ -570,8 +660,8 @@
                         if (opp.id !== t.id && (opp.w + opp.l) < 82) {
                             const tOvr = calcTeamOVR(t);
                             const oOvr = calcTeamOVR(opp);
-                            const tScore = Math.floor(92 + (tOvr - 75) * 1.1 + Math.random() * 22);
-                            const oScore = Math.floor(92 + (oOvr - 75) * 1.1 + Math.random() * 22);
+                            const tScore = Math.floor(94 + (tOvr - 75) * 1.15 + Math.random() * 22);
+                            const oScore = Math.floor(94 + (oOvr - 75) * 1.15 + Math.random() * 22);
                             if (tScore >= oScore) { t.w++; opp.l++; } else { t.l++; opp.w++; }
 
                             if (t.id === myTeam.id || opp.id === myTeam.id) {
@@ -579,152 +669,414 @@
                                 const foeName = t.id === myTeam.id ? opp.name : t.name;
                                 const sc = `${Math.max(tScore, oScore)}-${Math.min(tScore, oScore)}`;
                                 if (count === 1) {
-                                    log(userWon ? `✅ Victoire contre ${foeName} (${sc})` : `❌ Défaite contre ${foeName} (${sc})`);
+                                    const mvp = [...myTeam.players].sort((a,b) => b.ovr - a.ovr)[0];
+                                    const pts = Math.floor(22 + Math.random() * 18);
+                                    log(userWon ? `✅ Victoire vs ${foeName} (${sc}) | ${mvp.name}: ${pts} pts` : `❌ Défaite vs ${foeName} (${sc}) | ${mvp.name}: ${pts} pts`);
                                 }
                             }
                         }
                     }
                 });
             }
-            if (count > 1) log(`⚡ ${count} journées simulées. Bilan actuel : ${myTeam.w}V - ${myTeam.l}D.`);
+            if (count > 1) log(`⚡ ${count} matchs simulés. Nouveau bilan : ${myTeam.w}V - ${myTeam.l}D.`);
             updateAllUI();
         }
 
-        // FIN DE SAISON, PLAYOFFS & OUVERTURE DRAFT
+        // FIN DE SAISON & OUVERTURE DRAFT
         function simToOffseason() {
             const myTeam = getUserTeam();
             const remaining = 82 - (myTeam.w + myTeam.l);
             if (remaining > 0) simGames(remaining);
 
-            // Déterminer le champion
             const sorted = [...state.teams].sort((a,b) => b.w - a.w);
             const champ = sorted[0];
             log(`🏆 FIN DE SAISON ${state.seasonYear}-${state.seasonYear+1} ! Champion NBA : ${champ.name} (${champ.w}-${champ.l}).`);
 
-            // Progression des jeunes joueurs
-            myTeam.players.forEach(p => {
-                p.age++;
-                if (p.age <= 24 && p.ovr < p.pot) {
-                    const gain = Math.floor(Math.random() * 3) + 1;
-                    p.ovr = Math.min(p.pot, p.ovr + gain);
-                } else if (p.age >= 34) {
-                    p.ovr = Math.max(70, p.ovr - 1);
-                }
+            // Progression / Régression de tous les joueurs NBA
+            state.teams.forEach(t => {
+                t.players.forEach(p => {
+                    p.age++;
+                    if (p.age <= 24 && p.ovr < p.pot) {
+                        p.ovr = Math.min(p.pot, p.ovr + Math.floor(Math.random() * 3) + 1);
+                    } else if (p.age >= 34) {
+                        p.ovr = Math.max(70, p.ovr - 1);
+                    }
+                });
+                t.w = 0; t.l = 0;
             });
 
             state.seasonYear++;
             state.canDraft = true;
             state.activeDraftYear = mockDrafts[state.seasonYear] ? state.seasonYear : 2029;
-            state.teams.forEach(t => { t.w = 0; t.l = 0; });
 
-            log(`🎓 La Draft NBA ${state.seasonYear} est OUVERTE ! Allez dans l'onglet Draft pour choisir votre rookie.`);
+            log(`🎓 La Draft NBA ${state.seasonYear} est OUVERTE ! Utilisez vos choix du ${state.seasonYear} dans l'onglet Draft.`);
             updateAllUI();
             switchView('draft', 3);
         }
 
-        // AFFICHAGE EFFECTIF
+        // AFFICHAGE EFFECTIF COMPLET + PICKS
         function renderRoster() {
             const myTeam = getUserTeam();
             document.getElementById('roster-count').innerText = `${myTeam.players.length} joueurs`;
             const tbody = document.querySelector('#roster-table tbody');
             tbody.innerHTML = '';
-            myTeam.players.sort((a,b) => b.ovr - a.ovr).forEach(p => {
+
+            myTeam.players.sort((a,b) => b.ovr - a.ovr).forEach((p, idx) => {
+                let role = "Rotation";
+                let roleClass = "role-pill";
+                if (idx < 5) { role = "5 Majeur"; roleClass = "role-pill role-starter"; }
+                else if (idx === 5) { role = "6e Homme"; roleClass = "role-pill"; }
+                else if (idx >= 10) { role = "Banc"; roleClass = "role-pill"; }
+
                 tbody.innerHTML += `
                     <tr>
                         <td><strong>${p.name}</strong></td>
                         <td><span class="pos-badge">${p.pos}</span></td>
+                        <td><span class="${roleClass}">${role}</span></td>
                         <td>${p.age}</td>
                         <td><span class="ovr-pill">${p.ovr}</span></td>
                         <td><span class="pot-pill">${p.pot}</span></td>
                         <td>$${p.salary.toFixed(1)}M</td>
                     </tr>`;
             });
+
+            const picksDiv = document.getElementById('squad-picks-list');
+            picksDiv.innerHTML = myTeam.picks.length
+                ? myTeam.picks.map(pk => `<span class="pick-badge">🎟️ ${pk.label}</span>`).join('')
+                : `<span style="font-size:0.78rem; color:var(--text-muted);">Aucun tour de draft disponible.</span>`;
         }
 
-        // SYSTEME DE TRANSFERTS (TRADE MACHINE CBA)
-        function initTradeSelectors() {
+        // ==========================================
+        // SYSTÈME DE TRANSFERTS (MANUEL + PICKS + IA)
+        // ==========================================
+        function switchTradeTab(tab, el) {
+            document.querySelectorAll('#view-trades .tab-pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('trade-tab-manual').style.display = tab === 'manual' ? 'block' : 'none';
+            document.getElementById('trade-tab-finder').style.display = tab === 'finder' ? 'block' : 'none';
+        }
+
+        function initTradeUI() {
             const myTeam = getUserTeam();
-            const mySelect = document.getElementById('trade-my-player');
-            mySelect.innerHTML = '';
-            myTeam.players.forEach((p, idx) => {
-                mySelect.innerHTML += `<option value="${idx}">${p.name} (${p.ovr} OVR - $${p.salary.toFixed(1)}M)</option>`;
-            });
+            document.getElementById('trade-my-team-label').innerText = myTeam.name;
 
-            const oppTeamSelect = document.getElementById('trade-opp-team');
-            oppTeamSelect.innerHTML = '';
+            const oppSelect = document.getElementById('trade-opp-team');
+            oppSelect.innerHTML = '';
             state.teams.filter(t => t.id !== myTeam.id).forEach(t => {
-                oppTeamSelect.innerHTML += `<option value="${t.id}">${t.name}</option>`;
+                oppSelect.innerHTML += `<option value="${t.id}">${t.name} (OVR: ${calcTeamOVR(t)})</option>`;
             });
 
-            populateOppPlayers();
+            const finderTeamSelect = document.getElementById('finder-team');
+            finderTeamSelect.innerHTML = `<option value="${myTeam.id}">⭐ ${myTeam.name} (Mon Équipe - Vendre un joueur)</option>`;
+            state.teams.filter(t => t.id !== myTeam.id).forEach(t => {
+                finderTeamSelect.innerHTML += `<option value="${t.id}">🎯 ${t.name} (Cibler un joueur adverse)</option>`;
+            });
+
+            renderTradeAssets();
+            populateFinderPlayers();
         }
 
-        function populateOppPlayers() {
+        function renderTradeAssets() {
+            const myTeam = getUserTeam();
             const oppId = document.getElementById('trade-opp-team').value;
             const oppTeam = state.teams.find(t => t.id === oppId);
-            const oppSelect = document.getElementById('trade-opp-player');
-            oppSelect.innerHTML = '';
-            oppTeam.players.forEach((p, idx) => {
-                oppSelect.innerHTML += `<option value="${idx}">${p.name} (${p.ovr} OVR - $${p.salary.toFixed(1)}M)</option>`;
+            if (!oppTeam) return;
+
+            // Liste de nos joueurs + nos picks
+            const myDiv = document.getElementById('my-assets-list');
+            myDiv.innerHTML = '';
+            myTeam.players.forEach((p, idx) => {
+                myDiv.innerHTML += `
+                    <label class="asset-item">
+                        <span><input type="checkbox" class="my-p-cb" value="${idx}" onchange="evaluateManualTrade()"> <strong>${p.name}</strong> (${p.pos} • ${p.ovr} OVR)</span>
+                        <span>$${p.salary.toFixed(1)}M</span>
+                    </label>`;
             });
-            updateTradePreview();
+            myTeam.picks.forEach((pk, idx) => {
+                myDiv.innerHTML += `
+                    <label class="asset-item">
+                        <span><input type="checkbox" class="my-pk-cb" value="${idx}" onchange="evaluateManualTrade()"> <span class="pick-badge">🎟️ ${pk.label}</span></span>
+                        <span>Val: ${pk.val}</span>
+                    </label>`;
+            });
+
+            // Liste des joueurs + picks adverses
+            const oppDiv = document.getElementById('opp-assets-list');
+            oppDiv.innerHTML = '';
+            oppTeam.players.forEach((p, idx) => {
+                oppDiv.innerHTML += `
+                    <label class="asset-item">
+                        <span><input type="checkbox" class="opp-p-cb" value="${idx}" onchange="evaluateManualTrade()"> <strong>${p.name}</strong> (${p.pos} • ${p.ovr} OVR)</span>
+                        <span>$${p.salary.toFixed(1)}M</span>
+                    </label>`;
+            });
+            oppTeam.picks.forEach((pk, idx) => {
+                oppDiv.innerHTML += `
+                    <label class="asset-item">
+                        <span><input type="checkbox" class="opp-pk-cb" value="${idx}" onchange="evaluateManualTrade()"> <span class="pick-badge">🎟️ ${pk.label}</span></span>
+                        <span>Val: ${pk.val}</span>
+                    </label>`;
+            });
+
+            evaluateManualTrade();
         }
 
-        function updateTradePreview() {
+        function getSelectedManualAssets() {
             const myTeam = getUserTeam();
-            const myP = myTeam.players[document.getElementById('trade-my-player').value];
             const oppTeam = state.teams.find(t => t.id === document.getElementById('trade-opp-team').value);
-            const oppP = oppTeam.players[document.getElementById('trade-opp-player').value];
+
+            const myPIdx = [...document.querySelectorAll('.my-p-cb:checked')].map(cb => parseInt(cb.value));
+            const myPkIdx = [...document.querySelectorAll('.my-pk-cb:checked')].map(cb => parseInt(cb.value));
+            const oppPIdx = [...document.querySelectorAll('.opp-p-cb:checked')].map(cb => parseInt(cb.value));
+            const oppPkIdx = [...document.querySelectorAll('.opp-pk-cb:checked')].map(cb => parseInt(cb.value));
+
+            return {
+                myTeam, oppTeam, myPIdx, myPkIdx, oppPIdx, oppPkIdx,
+                myPlayers: myPIdx.map(i => myTeam.players[i]),
+                myPicks: myPkIdx.map(i => myTeam.picks[i]),
+                oppPlayers: oppPIdx.map(i => oppTeam.players[i]),
+                oppPicks: oppPkIdx.map(i => oppTeam.picks[i])
+            };
+        }
+
+        function evaluateManualTrade() {
+            const sel = getSelectedManualAssets();
             const box = document.getElementById('trade-summary');
 
-            if (!myP || !oppP) return;
+            if (!sel.myPlayers.length && !sel.myPicks.length && !sel.oppPlayers.length && !sel.oppPicks.length) {
+                box.innerHTML = "Cochez des joueurs et/ou des tours de draft pour analyser l'échange.";
+                return;
+            }
 
-            const maxAllowed = myP.salary * 1.25 + 2.5;
-            const minAllowed = oppP.salary / 1.25 - 2.5;
-            const salaryValid = (oppP.salary <= maxAllowed && myP.salary >= minAllowed) || state.mode === 'Sandbox';
-            const valueDiff = myP.ovr + (myP.pot * 0.3) - (oppP.ovr + (oppP.pot * 0.3));
+            const mySal = sel.myPlayers.reduce((s, p) => s + p.salary, 0);
+            const oppSal = sel.oppPlayers.reduce((s, p) => s + p.salary, 0);
+
+            const myVal = sel.myPlayers.reduce((s, p) => s + calcPlayerTradeValue(p), 0) + sel.myPicks.reduce((s, pk) => s + pk.val, 0);
+            const oppVal = sel.oppPlayers.reduce((s, p) => s + calcPlayerTradeValue(p), 0) + sel.oppPicks.reduce((s, pk) => s + pk.val, 0);
+
+            // Règle CBA : Si des joueurs sont échangés, les salaires doivent se correspondre (125% + 2.5M$)
+            let cbaValid = true;
+            if (mySal > 0 || oppSal > 0) {
+                const maxIn = mySal * 1.25 + 2.5;
+                const maxOut = oppSal * 1.25 + 2.5;
+                cbaValid = (oppSal <= maxIn && mySal <= maxOut) || state.mode === 'Sandbox';
+            }
+
+            const aiAccepts = (myVal >= oppVal - 3) || state.mode === 'Sandbox';
 
             box.innerHTML = `
-                <div class="flex-between"><span>Salaire Sortant : <strong>$${myP.salary.toFixed(1)}M</strong></span><span>Entrant : <strong>$${oppP.salary.toFixed(1)}M</strong></span></div>
-                <div class="flex-between"><span>Règle CBA (125%) :</span> <strong style="color:${salaryValid ? 'var(--success)' : 'var(--danger)'}">${salaryValid ? '✅ Légal' : '❌ Écart salarial trop grand'}</strong></div>
-                <div class="flex-between"><span>Intérêt IA (${oppTeam.name}) :</span> <strong>${valueDiff >= -3 || state.mode === 'Sandbox' ? '🟢 Intéressé' : '🔴 Offre insuffisante'}</strong></div>
+                <div class="flex-between"><span>Salaire Sortant : <strong>$${mySal.toFixed(1)}M</strong></span><span>Entrant : <strong>$${oppSal.toFixed(1)}M</strong></span></div>
+                <div class="flex-between"><span>Valeur Offerte : <strong>${myVal} pts</strong></span><span>Valeur Demandée : <strong>${oppVal} pts</strong></span></div>
+                <div class="flex-between"><span>Conformité CBA :</span> <strong style="color:${cbaValid ? 'var(--success)' : 'var(--danger)'}">${cbaValid ? '✅ Légal' : '❌ Écart salarial > 125%'}</strong></div>
+                <div class="flex-between"><span>Avis IA (${sel.oppTeam.name}) :</span> <strong style="color:${aiAccepts ? 'var(--success)' : 'var(--danger)'}">${aiAccepts ? '🟢 Accord trouvé' : '🔴 Offre insuffisante (Ajoutez un Pick/Joueur)'}</strong></div>
             `;
         }
 
-        function executeTrade() {
-            const myTeam = getUserTeam();
-            const myIdx = document.getElementById('trade-my-player').value;
-            const oppId = document.getElementById('trade-opp-team').value;
-            const oppIdx = document.getElementById('trade-opp-player').value;
-
-            const oppTeam = state.teams.find(t => t.id === oppId);
-            const myP = myTeam.players[myIdx];
-            const oppP = oppTeam.players[oppIdx];
-
-            const maxAllowed = myP.salary * 1.25 + 2.5;
-            const salaryValid = (oppP.salary <= maxAllowed && myP.salary * 1.25 + 2.5 >= oppP.salary) || state.mode === 'Sandbox';
-            const valueDiff = (myP.ovr + myP.pot * 0.3) - (oppP.ovr + oppP.pot * 0.3);
-
-            if (!salaryValid) {
-                alert("Transaction refusée par la NBA : Les salaires ne respectent pas la règle des 125% du CBA.");
-                return;
-            }
-            if (valueDiff < -3 && state.mode !== 'Sandbox') {
-                alert(`Les ${oppTeam.name} refusent l'échange : ${oppP.name} a une valeur marchande supérieure.`);
+        function executeManualTrade() {
+            const sel = getSelectedManualAssets();
+            if ((!sel.myPlayers.length && !sel.myPicks.length) || (!sel.oppPlayers.length && !sel.oppPicks.length)) {
+                alert("Chaque équipe doit inclure au moins un joueur ou un choix de draft dans l'échange.");
                 return;
             }
 
-            // Échange officiel
-            myTeam.players.splice(myIdx, 1, oppP);
-            oppTeam.players.splice(oppIdx, 1, myP);
+            const mySal = sel.myPlayers.reduce((s, p) => s + p.salary, 0);
+            const oppSal = sel.oppPlayers.reduce((s, p) => s + p.salary, 0);
+            const myVal = sel.myPlayers.reduce((s, p) => s + calcPlayerTradeValue(p), 0) + sel.myPicks.reduce((s, pk) => s + pk.val, 0);
+            const oppVal = sel.oppPlayers.reduce((s, p) => s + calcPlayerTradeValue(p), 0) + sel.oppPicks.reduce((s, pk) => s + pk.val, 0);
 
-            log(`🔄 TRANSFERT OFFICIEL : ${oppP.name} rejoint ${myTeam.name} en échange de ${myP.name} !`);
-            alert(`Transfert validé ! ${oppP.name} rejoint votre effectif.`);
-            initTradeSelectors();
+            const cbaValid = ((oppSal <= mySal * 1.25 + 2.5) && (mySal <= oppSal * 1.25 + 2.5)) || state.mode === 'Sandbox';
+            if (!cbaValid) {
+                alert("Transaction refusée par la NBA : Les salaires échangés ne respectent pas la règle des 125% du CBA.");
+                return;
+            }
+            if (myVal < oppVal - 3 && state.mode !== 'Sandbox') {
+                alert(`Les ${sel.oppTeam.name} refusent l'offre : la valeur proposée (${myVal} pts) est inférieure à la valeur demandée (${oppVal} pts). Ajoutez un tour de draft ou un joueur !`);
+                return;
+            }
+
+            // Retirer les actifs échangés (en partant de la fin pour préserver les index)
+            [...sel.myPIdx].sort((a,b) => b - a).forEach(i => sel.myTeam.players.splice(i, 1));
+            [...sel.myPkIdx].sort((a,b) => b - a).forEach(i => sel.myTeam.picks.splice(i, 1));
+            [...sel.oppPIdx].sort((a,b) => b - a).forEach(i => sel.oppTeam.players.splice(i, 1));
+            [...sel.oppPkIdx].sort((a,b) => b - a).forEach(i => sel.oppTeam.picks.splice(i, 1));
+
+            // Ajouter les nouveaux actifs
+            sel.myTeam.players.push(...sel.oppPlayers);
+            sel.myTeam.picks.push(...sel.oppPicks);
+            sel.oppTeam.players.push(...sel.myPlayers);
+            sel.oppTeam.picks.push(...sel.myPicks);
+
+            const inNames = [...sel.oppPlayers.map(p => p.name), ...sel.oppPicks.map(pk => pk.label)].join(', ');
+            const outNames = [...sel.myPlayers.map(p => p.name), ...sel.myPicks.map(pk => pk.label)].join(', ');
+
+            log(`🔄 TRANSFERT OFFICIEL : ${sel.myTeam.name} reçoit [${inNames}] de ${sel.oppTeam.name} contre [${outNames}].`);
+            alert(`Transfert validé ! Vous recevez : ${inNames}`);
+            renderTradeAssets();
             updateAllUI();
         }
 
-        // DRAFT & SCOUTING
+        // ==========================================
+        // GÉNÉRATEUR D'OFFRES IA (TRADE FINDER)
+        // ==========================================
+        function populateFinderPlayers() {
+            const teamId = document.getElementById('finder-team').value;
+            const team = state.teams.find(t => t.id === teamId);
+            const pSelect = document.getElementById('finder-player');
+            pSelect.innerHTML = '';
+            team.players.sort((a,b) => b.ovr - a.ovr).forEach((p, idx) => {
+                pSelect.innerHTML += `<option value="${idx}">${p.name} (${p.pos} • ${p.ovr} OVR / ${p.pot} POT • $${p.salary.toFixed(1)}M)</option>`;
+            });
+            document.getElementById('ai-offers-container').innerHTML = '';
+        }
+
+        function generateAITradeOffers() {
+            const myTeam = getUserTeam();
+            const targetTeamId = document.getElementById('finder-team').value;
+            const targetTeam = state.teams.find(t => t.id === targetTeamId);
+            const pIdx = parseInt(document.getElementById('finder-player').value);
+            const selectedPlayer = targetTeam.players[pIdx];
+            const targetVal = calcPlayerTradeValue(selectedPlayer);
+
+            const container = document.getElementById('ai-offers-container');
+            container.innerHTML = '';
+            state.aiOffers = [];
+
+            if (targetTeamId === myTeam.id) {
+                // CAS 1 : Le joueur veut VENDRE un de ses joueurs -> Les 29 autres équipes proposent des packages
+                const otherTeams = state.teams.filter(t => t.id !== myTeam.id).sort(() => Math.random() - 0.5);
+
+                for (let opp of otherTeams) {
+                    if (state.aiOffers.length >= 4) break;
+                    // Chercher un joueur adverse au salaire compatible
+                    const matchPlayers = opp.players.filter(p => Math.abs(p.salary - selectedPlayer.salary) <= selectedPlayer.salary * 0.35 + 4.0);
+                    if (!matchPlayers.length) continue;
+
+                    const oppP = matchPlayers[Math.floor(Math.random() * matchPlayers.length)];
+                    const oppVal = calcPlayerTradeValue(oppP);
+                    const oppPicksOffered = [];
+                    const myPicksRequested = [];
+
+                    const diff = targetVal - oppVal;
+                    if (diff > 10 && opp.picks.length > 0) {
+                        const r1 = opp.picks.find(pk => pk.round === 1) || opp.picks[0];
+                        oppPicksOffered.push(r1);
+                    } else if (diff > 4 && opp.picks.length > 0) {
+                        const r2 = opp.picks.find(pk => pk.round === 2) || opp.picks[0];
+                        oppPicksOffered.push(r2);
+                    } else if (diff < -8 && myTeam.picks.length > 0) {
+                        const myPk = myTeam.picks.find(pk => pk.round === 2) || myTeam.picks[0];
+                        myPicksRequested.push(myPk);
+                    }
+
+                    state.aiOffers.push({
+                        oppTeamId: opp.id,
+                        oppTeamName: opp.name,
+                        givePlayers: [selectedPlayer],
+                        givePicks: myPicksRequested,
+                        getPlayers: [oppP],
+                        getPicks: oppPicksOffered
+                    });
+                }
+            } else {
+                // CAS 2 : Le joueur CIBLE un joueur d'une autre équipe -> L'IA génère 3 demandes différentes
+                const sortedMyPlayers = [...myTeam.players].sort((a,b) => Math.abs(a.salary - selectedPlayer.salary) - Math.abs(b.salary - selectedPlayer.salary));
+
+                for (let cand of sortedMyPlayers.slice(0, 4)) {
+                    if (state.aiOffers.length >= 3) break;
+                    const candVal = calcPlayerTradeValue(cand);
+                    const diff = targetVal - candVal;
+                    const myPicksNeeded = [];
+                    const oppPicksGiven = [];
+
+                    if (diff > 14 && myTeam.picks.length >= 2) {
+                        myPicksNeeded.push(myTeam.picks[0], myTeam.picks[1]);
+                    } else if (diff > 5 && myTeam.picks.length >= 1) {
+                        const pk = myTeam.picks.find(k => k.round === 1) || myTeam.picks[0];
+                        myPicksNeeded.push(pk);
+                    } else if (diff < -6 && targetTeam.picks.length >= 1) {
+                        const pk = targetTeam.picks.find(k => k.round === 2) || targetTeam.picks[0];
+                        oppPicksGiven.push(pk);
+                    }
+
+                    state.aiOffers.push({
+                        oppTeamId: targetTeam.id,
+                        oppTeamName: targetTeam.name,
+                        givePlayers: [cand],
+                        givePicks: myPicksNeeded,
+                        getPlayers: [selectedPlayer],
+                        getPicks: oppPicksGiven
+                    });
+                }
+            }
+
+            if (!state.aiOffers.length) {
+                container.innerHTML = `<div class="offer-card">Aucune offre compatible CBA trouvée immédiatement. Utilisez la Machine à Transferts manuelle.</div>`;
+                return;
+            }
+
+            state.aiOffers.forEach((off, idx) => {
+                const giveStr = [...off.givePlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR, $${p.salary.toFixed(1)}M)`), ...off.givePicks.map(pk => `<span class="pick-badge">🎟️ ${pk.label}</span>`)].join(' + ');
+                const getStr = [...off.getPlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR, $${p.salary.toFixed(1)}M)`), ...off.getPicks.map(pk => `<span class="pick-badge">🎟️ ${pk.label}</span>`)].join(' + ');
+
+                container.innerHTML += `
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <span>Proposition de : ${off.oppTeamName}</span>
+                            <span style="color:var(--success); font-size:0.74rem;">✅ CBA Valide</span>
+                        </div>
+                        <div class="offer-body">
+                            <div>📤 <strong>Vous cédez :</strong> ${giveStr}</div>
+                            <div style="margin-top:4px;">📥 <strong>Vous recevez :</strong> ${getStr}</div>
+                        </div>
+                        <button class="btn-success btn-sm" style="width:100%;" onclick="acceptAIOffer(${idx})">Accepter cette Offre Immédiatement</button>
+                    </div>`;
+            });
+        }
+
+        function acceptAIOffer(idx) {
+            const off = state.aiOffers[idx];
+            const myTeam = getUserTeam();
+            const oppTeam = state.teams.find(t => t.id === off.oppTeamId);
+
+            // Retirer les joueurs et picks cédés
+            off.givePlayers.forEach(gp => {
+                const i = myTeam.players.findIndex(p => p.name === gp.name);
+                if (i > -1) myTeam.players.splice(i, 1);
+            });
+            off.givePicks.forEach(gpk => {
+                const i = myTeam.picks.findIndex(pk => pk.id === gpk.id);
+                if (i > -1) myTeam.picks.splice(i, 1);
+            });
+
+            // Retirer chez l'adversaire
+            off.getPlayers.forEach(rp => {
+                const i = oppTeam.players.findIndex(p => p.name === rp.name);
+                if (i > -1) oppTeam.players.splice(i, 1);
+            });
+            off.getPicks.forEach(rpk => {
+                const i = oppTeam.picks.findIndex(pk => pk.id === rpk.id);
+                if (i > -1) oppTeam.picks.splice(i, 1);
+            });
+
+            // Ajouter dans les nouvelles équipes
+            myTeam.players.push(...off.getPlayers);
+            myTeam.picks.push(...off.getPicks);
+            oppTeam.players.push(...off.givePlayers);
+            oppTeam.picks.push(...off.givePicks);
+
+            const recNames = [...off.getPlayers.map(p => p.name), ...off.getPicks.map(pk => pk.label)].join(', ');
+            const sentNames = [...off.givePlayers.map(p => p.name), ...off.givePicks.map(pk => pk.label)].join(', ');
+
+            log(`🤖 TRANSFERT IA VALIDÉ : ${myTeam.name} acquiert [${recNames}] de ${oppTeam.name} contre [${sentNames}].`);
+            alert(`Offre acceptée ! ${recNames} rejoint votre franchise.`);
+            populateFinderPlayers();
+            renderTradeAssets();
+            updateAllUI();
+        }
+
+        // ==========================================
+        // CENTRE DE DRAFT (AVEC GESTION DES PICKS)
+        // ==========================================
         function switchDraftClass(year, el) {
             state.activeDraftYear = year;
             document.querySelectorAll('#view-draft .tab-pill').forEach(p => p.classList.remove('active'));
@@ -733,13 +1085,21 @@
         }
 
         function renderDraft() {
+            const myTeam = getUserTeam();
             const list = mockDrafts[state.activeDraftYear] || [];
+            const myYearPicks = myTeam.picks.filter(pk => pk.year === state.activeDraftYear);
+
+            document.getElementById('draft-user-picks-info').innerText = myYearPicks.length
+                ? `🎟️ Vos choix disponibles en ${state.activeDraftYear} (${myYearPicks.length}) : ${myYearPicks.map(p => p.label).join(', ')}`
+                : `⚠️ Vous ne possédez aucun tour de Draft pour la cuvée ${state.activeDraftYear} (échangez-en dans Transferts).`;
+
             const tbody = document.querySelector('#draft-table tbody');
             tbody.innerHTML = '';
             list.forEach((p, idx) => {
-                const btnHtml = state.canDraft
-                    ? `<button style="padding:5px 8px; font-size:0.75rem; width:auto;" onclick="draftPlayer(${state.activeDraftYear}, ${idx})">Drafter</button>`
-                    : `<span style="color:var(--text-muted); font-size:0.72rem;">Fin de saison</span>`;
+                const canPickNow = state.canDraft && state.activeDraftYear === state.seasonYear && myYearPicks.length > 0;
+                const btnHtml = canPickNow
+                    ? `<button class="btn-sm btn-accent" onclick="draftPlayer(${state.activeDraftYear}, ${idx})">Drafter</button>`
+                    : `<span style="color:var(--text-muted); font-size:0.7rem;">${state.canDraft ? 'Pas de Pick' : 'Intersaison'}</span>`;
 
                 tbody.innerHTML += `
                     <tr>
@@ -755,16 +1115,24 @@
         }
 
         function draftPlayer(year, idx) {
-            const prospect = mockDrafts[year][idx];
             const myTeam = getUserTeam();
-            myTeam.players.push({ ...prospect });
-            mockDrafts[year].splice(idx, 1);
-            state.canDraft = false;
+            const pickIndex = myTeam.picks.findIndex(pk => pk.year === year);
+            if (pickIndex === -1) {
+                alert("Vous n'avez plus de choix de draft pour cette année !");
+                return;
+            }
 
-            log(`🎓 DRAFT NBA : Avec leur choix du 1er tour, les ${myTeam.name} sélectionnent ${prospect.name} (${prospect.school}) !`);
-            alert(`Félicitations ! Vous avez drafté ${prospect.name} (${prospect.ovr} OVR / ${prospect.pot} POT).`);
+            const usedPick = myTeam.picks.splice(pickIndex, 1)[0];
+            const prospect = mockDrafts[year].splice(idx, 1)[0];
+            myTeam.players.push({ ...prospect });
+
+            // Vérifier s'il reste d'autres choix pour cette même draft
+            const remainingPicks = myTeam.picks.filter(pk => pk.year === year);
+            if (remainingPicks.length === 0) state.canDraft = false;
+
+            log(`🎓 DRAFT NBA (${usedPick.label}) : ${myTeam.name} sélectionne ${prospect.name} (${prospect.ovr} OVR / ${prospect.pot} POT) !`);
+            alert(`Bienvenue en NBA ! Vous avez sélectionné ${prospect.name} avec le choix [${usedPick.label}].`);
             updateAllUI();
-            switchView('squad', 1);
         }
 
         // CLASSEMENTS PAR CONFÉRENCE
@@ -787,6 +1155,7 @@
                     <tr ${isUser}>
                         <td>${i+1}</td>
                         <td>${t.name}</td>
+                        <td><span class="ovr-pill">${calcTeamOVR(t)}</span></td>
                         <td>${t.w}</td>
                         <td>${t.l}</td>
                         <td>${pct}</td>
