@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>NBA GM 27 : Broadcast Edition</title>
+    <title>NBA GM 27 : Basketball-Reference Edition</title>
     <style>
         :root {
             --bg-deep: #060911;
@@ -17,7 +17,6 @@
             --accent: #f59e0b;
             --success: #10b981;
             --danger: #ef4444;
-            --purple: #8b5cf6;
             --text-main: #f8fafc;
             --text-secondary: #94a3b8;
             --text-dim: #64748b;
@@ -28,7 +27,7 @@
         /* HEADER BROADCAST */
         header { background: rgba(15, 22, 38, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 12px 16px; position: sticky; top: 0; z-index: 60; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; }
         .brand-wrap { display: flex; align-items: center; gap: 10px; }
-        .nba-pill { background: linear-gradient(135deg, var(--nba-blue) 50%, var(--nba-red) 50%); width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.75rem; letter-spacing: -0.5px; box-shadow: 0 2px 8px rgba(200, 16, 46, 0.4); }
+        .nba-pill { background: linear-gradient(135deg, var(--nba-blue) 50%, var(--nba-red) 50%); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.75rem; letter-spacing: -0.5px; box-shadow: 0 2px 8px rgba(200, 16, 46, 0.4); }
         .header-team { font-size: 1rem; font-weight: 800; letter-spacing: -0.3px; }
         .header-meta { display: flex; align-items: center; gap: 6px; }
         .phase-badge { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; background: rgba(245, 158, 11, 0.15); color: var(--accent); border: 1px solid rgba(245, 158, 11, 0.3); }
@@ -36,14 +35,14 @@
         /* CONTAINER & CARDS */
         .container { padding: 12px; max-width: 650px; margin: 0 auto; }
         .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 15px; margin-bottom: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); position: relative; overflow: hidden; }
-        .card-header { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-secondary); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
+        .card-header { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-secondary); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
 
         /* HOME SCREEN */
         #home-screen { position: fixed; inset: 0; background: radial-gradient(circle at top, #1d428a 0%, #060911 70%); z-index: 200; padding: 24px 16px; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; }
-        .hero-banner { text-align: center; margin: 15px 0 20px; }
-        .hero-badge { display: inline-block; background: linear-gradient(90deg, var(--nba-blue), var(--nba-red)); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-        .hero-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.8px; color: #ffffff; text-shadow: 0 4px 16px rgba(0,0,0,0.5); }
-        .hero-sub { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        .hero-banner { text-align: center; margin: 12px 0 18px; }
+        .hero-badge { display: inline-block; background: linear-gradient(90deg, var(--nba-blue), var(--nba-red)); padding: 4px 12px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .hero-title { font-size: 1.95rem; font-weight: 900; letter-spacing: -0.8px; color: #ffffff; text-shadow: 0 4px 16px rgba(0,0,0,0.5); }
+        .hero-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 4px; }
 
         /* INPUTS & BUTTONS */
         select, input { width: 100%; padding: 12px; background: var(--bg-deep); border: 1px solid var(--border-bright); color: white; border-radius: 10px; font-size: 0.9rem; margin-bottom: 10px; outline: none; font-weight: 600; }
@@ -55,7 +54,6 @@
 
         button { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border: none; padding: 12px 16px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; font-size: 0.9rem; transition: transform 0.1s, opacity 0.2s; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
         button:active { transform: scale(0.97); }
-        button.btn-red { background: linear-gradient(135deg, #e11d48, #be123c); box-shadow: 0 4px 14px rgba(225, 29, 72, 0.3); }
         button.btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #060911; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); font-weight: 800; }
         button.btn-green { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); }
         button.btn-ghost { background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); box-shadow: none; color: var(--text-main); }
@@ -67,7 +65,7 @@
         .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
         .kpi-box { background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 4px; text-align: center; }
         .kpi-box small { font-size: 0.62rem; text-transform: uppercase; color: var(--text-secondary); display: block; font-weight: 700; }
-        .kpi-box strong { font-size: 1.05rem; font-weight: 900; color: white; display: block; margin-top: 3px; }
+        .kpi-box strong { font-size: 1.02rem; font-weight: 900; color: white; display: block; margin-top: 3px; }
 
         .scoreboard { background: linear-gradient(135deg, #111a2e 0%, #1e293b 100%); border: 1px solid var(--border-bright); border-radius: 14px; padding: 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
         .sb-team { text-align: center; flex: 1; }
@@ -77,29 +75,29 @@
 
         /* TABLES & PILLS */
         .table-wrap { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
         th, td { padding: 9px 5px; text-align: left; border-bottom: 1px solid var(--border-subtle); }
         th { color: var(--text-secondary); font-weight: 700; font-size: 0.66rem; text-transform: uppercase; }
-        .ovr-badge { background: rgba(37, 99, 235, 0.22); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); padding: 2px 6px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; }
-        .pot-badge { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 6px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; }
-        .role-tag { background: rgba(255,255,255,0.06); color: #cbd5e1; padding: 2px 6px; border-radius: 5px; font-size: 0.66rem; font-weight: 700; }
+        .ovr-badge { background: rgba(37, 99, 235, 0.22); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); padding: 2px 6px; border-radius: 6px; font-weight: 800; font-size: 0.74rem; }
+        .pot-badge { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 6px; border-radius: 6px; font-weight: 800; font-size: 0.74rem; }
+        .role-tag { background: rgba(255,255,255,0.06); color: #cbd5e1; padding: 2px 6px; border-radius: 5px; font-size: 0.65rem; font-weight: 700; }
         .role-starter { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
         .pick-tag { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.35); padding: 3px 7px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; display: inline-block; }
 
         /* TABS */
         .sub-tabs { display: flex; gap: 6px; margin-bottom: 12px; background: var(--bg-deep); padding: 4px; border-radius: 11px; border: 1px solid var(--border-subtle); }
-        .sub-tab { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; color: var(--text-secondary); cursor: pointer; transition: 0.15s; }
+        .sub-tab { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 0.73rem; font-weight: 800; color: var(--text-secondary); cursor: pointer; transition: 0.15s; }
         .sub-tab.active { background: var(--primary); color: white; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4); }
 
         /* PLAYOFF BRACKET */
         .series-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-        .series-card { background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 9px; font-size: 0.76rem; }
+        .series-card { background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 9px; font-size: 0.75rem; }
         .series-card.user-series { border-color: var(--accent); background: rgba(245, 158, 11, 0.07); }
         .series-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; }
         .series-row.winner { color: var(--success); font-weight: 800; }
 
         /* TRADE & OFFERS */
-        .asset-box { max-height: 160px; overflow-y: auto; background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 6px; margin-bottom: 10px; }
+        .asset-box { max-height: 165px; overflow-y: auto; background: var(--bg-deep); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 6px; margin-bottom: 10px; }
         .asset-row { display: flex; justify-content: space-between; align-items: center; padding: 7px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.78rem; cursor: pointer; }
         .asset-row input { width: 16px; height: 16px; margin: 0 8px 0 0; accent-color: var(--primary); }
         .offer-item { background: var(--bg-elevated); border: 1px solid var(--border-bright); border-radius: 12px; padding: 12px; margin-top: 10px; }
@@ -128,9 +126,9 @@
     <div id="home-screen">
         <div>
             <div class="hero-banner">
-                <div class="hero-badge">Official 2026-2027 Rosters</div>
+                <div class="hero-badge">Basketball-Reference 2026-27 Data</div>
                 <div class="hero-title">NBA GM 27</div>
-                <div class="hero-sub">Vrais Effectifs 26-27 • Loterie & Draft Live • Playoffs Best-of-7</div>
+                <div class="hero-sub">Vrais Contrats & Effectifs 26-27 • Loterie & Draft Live • Playoffs</div>
             </div>
 
             <div class="card">
@@ -140,8 +138,8 @@
                 <div class="card-header" style="margin-top:8px;"><span>2. Philosophie du Front Office</span></div>
                 <div class="mode-grid">
                     <div class="mode-card selected" onclick="selectMode('Contender', this)">
-                        <h3>🏆 Course au Titre (CBA Réaliste)</h3>
-                        <p>Règles financières strictes (Salary Cap, Luxury Tax, 125% Trade Rule).</p>
+                        <h3>🏆 Course au Titre (CBA Officiel $164.9M)</h3>
+                        <p>Règles financières Basketball-Reference ($164.9M Cap, $209M 1er Apron, $221.6M 2e Apron).</p>
                     </div>
                     <div class="mode-card" onclick="selectMode('Rebuild', this)">
                         <h3>🎯 Dynasty & Loterie (Rebuild)</h3>
@@ -155,7 +153,7 @@
             </div>
         </div>
         <div>
-            <button class="btn-gold" onclick="startGame(false)">🚀 Démarrer une Nouvelle Carrière</button>
+            <button class="btn-gold" onclick="startGame(false)">🚀 Démarrer une Nouvelle Carrière (Effectifs 26-27)</button>
             <button id="btn-continue-save" class="btn-ghost" style="margin-top:8px; display:none;" onclick="startGame(true)">💾 Reprendre la Sauvegarde</button>
         </div>
     </div>
@@ -166,11 +164,11 @@
             <div class="nba-pill">27</div>
             <div>
                 <div class="header-team" id="ui-team-name">Boston Celtics</div>
-                <div style="font-size:0.68rem; color:var(--text-secondary);" id="ui-coach-style">Tactique : Pace & Space</div>
+                <div style="font-size:0.66rem; color:var(--text-secondary);" id="ui-coach-style">Données Basketball-Reference Oct. 2026</div>
             </div>
         </div>
         <div class="header-meta">
-            <span class="phase-badge" id="ui-phase-badge">Saison 2026-27</span>
+            <span class="phase-badge" id="ui-phase-badge">2026-27 • REGULAR</span>
         </div>
     </header>
 
@@ -203,7 +201,7 @@
                     <div class="kpi-box"><small>Bilan</small><strong id="dash-record">0 - 0</strong></div>
                     <div class="kpi-box"><small>Rang Conf</small><strong id="dash-seed">#1</strong></div>
                     <div class="kpi-box"><small>Note OVR</small><strong id="dash-ovr">90</strong></div>
-                    <div class="kpi-box"><small>Payroll</small><strong id="dash-cap">$185M</strong></div>
+                    <div class="kpi-box"><small>Payroll</small><strong id="dash-cap">$198M</strong></div>
                 </div>
 
                 <button onclick="simRegularGames(1)">🏀 Jouer le Prochain Match</button>
@@ -215,7 +213,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header"><span>Cinq Majeur & 6e Homme</span><span id="dash-chem" style="color:var(--success)">Alchimie 94%</span></div>
+                <div class="card-header"><span>Cinq Majeur & 6e Homme</span><span style="color:var(--success)">B-Ref 26-27</span></div>
                 <div id="dash-rotation" style="font-size:0.78rem; color:var(--text-secondary); line-height:1.6;"></div>
             </div>
 
@@ -224,25 +222,25 @@
                     <span>NBA Insider Wire</span>
                     <button class="btn-sm btn-ghost" onclick="resetCareer()">Réinitialiser</button>
                 </div>
-                <div id="activity-log" class="ticker-log">> Bienvenue dans la saison NBA 2026-27 ! Effectifs vérifiés et mis à jour.</div>
+                <div id="activity-log" class="ticker-log">> Bienvenue dans la saison NBA 2026-27 ! Contrats et effectifs officiels Basketball-Reference chargés (Champion en titre : NY Knicks).</div>
             </div>
         </div>
 
         <!-- VUE 2 : EFFECTIF, TACTIQUES & FREE AGENCY -->
         <div id="view-squad" class="view">
             <div class="sub-tabs">
-                <div class="sub-tab active" onclick="switchSquadTab('roster', this)">Effectif (26-27)</div>
-                <div class="sub-tab" onclick="switchSquadTab('tactics', this)">Tactiques & Cap</div>
+                <div class="sub-tab active" onclick="switchSquadTab('roster', this)">Effectif & Salaires</div>
+                <div class="sub-tab" onclick="switchSquadTab('tactics', this)">Tactiques & CBA</div>
                 <div class="sub-tab" onclick="switchSquadTab('fa', this)">Free Agency</div>
             </div>
 
             <div id="squad-tab-roster">
                 <div class="card">
-                    <div class="card-header"><span>Roster Actif & Contrats</span><span id="roster-count">13 joueurs</span></div>
+                    <div class="card-header"><span>Roster 2026-27 & Contrats</span><span id="roster-count">13 joueurs</span></div>
                     <div class="table-wrap">
                         <table id="roster-table">
                             <thead>
-                                <tr><th>Joueur</th><th>Pos</th><th>Rôle</th><th>Âge</th><th>OVR</th><th>POT</th><th>Stats/M</th><th>Contrat</th></tr>
+                                <tr><th>Joueur</th><th>Pos</th><th>Rôle</th><th>Âge</th><th>OVR</th><th>POT</th><th>Stats/M</th><th>2026-27</th></tr>
                             </thead>
                             <tbody></tbody>
                         </table>
@@ -256,7 +254,7 @@
 
             <div id="squad-tab-tactics" style="display:none;">
                 <div class="card">
-                    <div class="card-header"><span>Système de Coaching & Rotation</span></div>
+                    <div class="card-header"><span>Système de Coaching & Plafonds CBA 2026-27</span></div>
                     <label style="font-size:0.75rem; color:var(--text-secondary);">Philosophie Offensive :</label>
                     <select id="tactic-select" onchange="changeTactic()">
                         <option value="Pace & Space">Pace & Space (+Tir à 3pts & Rythme rapide)</option>
@@ -264,9 +262,9 @@
                         <option value="Motion Offense">Motion Offense (+Passes & Alchimie collective)</option>
                         <option value="Iso Heavy">Star Centric Iso (+Stats Superstars du 5 Majeur)</option>
                     </select>
-                    <div class="flex-between" style="margin-top:8px;"><span>Salary Cap 2026-27 :</span><strong>$154.6M</strong></div>
-                    <div class="flex-between"><span>Seuil Luxury Tax :</span><strong>$187.9M</strong></div>
-                    <div class="flex-between"><span>1er Apron / 2e Apron :</span><strong>$195.9M / $207.8M</strong></div>
+                    <div class="flex-between" style="margin-top:8px;"><span>Salary Cap 2026-27 :</span><strong>$164.96M</strong></div>
+                    <div class="flex-between"><span>Salaire Minimum Équipe :</span><strong>$148.46M</strong></div>
+                    <div class="flex-between"><span>1er Apron / 2e Apron :</span><strong>$209.01M / $221.68M</strong></div>
                     <div class="flex-between" style="padding-top:8px; border-top:1px solid var(--border-subtle);">
                         <span>Situation CBA :</span><strong id="fin-status-text" style="color:var(--accent)">En cours</strong>
                     </div>
@@ -276,11 +274,11 @@
             <div id="squad-tab-fa" style="display:none;">
                 <div class="card">
                     <div class="card-header"><span>Marché des Agents Libres (Free Agents)</span></div>
-                    <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:10px;">Signez des joueurs libres pour renforcer votre banc ou compléter votre effectif (Max 15 joueurs).</p>
+                    <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:10px;">Signez des agents libres pour renforcer votre banc (Max 15 joueurs sous contrat).</p>
                     <div class="table-wrap">
                         <table id="fa-table">
                             <thead>
-                                <tr><th>Joueur</th><th>Pos</th><th>Âge</th><th>OVR</th><th>POT</th><th>Demande</th><th>Action</th></tr>
+                                <tr><th>Joueur</th><th>Pos</th><th>Âge</th><th>OVR</th><th>POT</th><th>Contrat</th><th>Action</th></tr>
                             </thead>
                             <tbody></tbody>
                         </table>
@@ -334,7 +332,6 @@
                 <div class="sub-tab" onclick="switchDraftSubTab('lottery', this)">🎰 Loterie NBA (14 équipes)</div>
             </div>
 
-            <!-- SOUS-ONGLET 1 : DRAFT BOARD & LIVE DRAFT -->
             <div id="draft-sub-board">
                 <div class="card" id="live-draft-console" style="display:none; border-color:var(--accent);">
                     <div class="card-header">
@@ -367,7 +364,6 @@
                 </div>
             </div>
 
-            <!-- SOUS-ONGLET 2 : LOTERIE NBA -->
             <div id="draft-sub-lottery" style="display:none;">
                 <div class="card">
                     <div class="card-header"><span>Loterie Officielle de la Draft NBA</span><span>14 Équipes</span></div>
@@ -396,7 +392,6 @@
                 <div class="sub-tab" onclick="switchLeagueTab('awards', this)">Trophées</div>
             </div>
 
-            <!-- CLASSEMENT -->
             <div id="league-tab-standings">
                 <div class="card">
                     <div class="card-header"><span>Classements des Conférences (Top 6 = Playoffs, 7-10 = Play-In)</span></div>
@@ -415,7 +410,6 @@
                 </div>
             </div>
 
-            <!-- PLAY-IN & PLAYOFFS -->
             <div id="league-tab-playoffs" style="display:none;">
                 <div class="card">
                     <div class="card-header">
@@ -429,14 +423,13 @@
                 </div>
             </div>
 
-            <!-- TROPHÉES & PALMARÈS -->
             <div id="league-tab-awards" style="display:none;">
                 <div class="card">
                     <div class="card-header"><span>NBA Awards & Leaders de la Saison</span></div>
                     <div id="awards-container" style="font-size:0.8rem; line-height:1.7;"></div>
                 </div>
                 <div class="card">
-                    <div class="card-header"><span>Historique des Champions NBA</span></div>
+                    <div class="card-header"><span>Historique Officiel des Champions NBA</span></div>
                     <div id="champions-history" style="font-size:0.78rem; color:var(--text-secondary);"></div>
                 </div>
             </div>
@@ -476,275 +469,274 @@
         // Helper Joueur
         const P = (name, pos, age, ovr, pot, salary) => ({ name, pos, age, ovr, pot, salary });
 
-        // VRAIES MOCK DRAFTS (2027, 2028, 2029) - 30 PROSPECTS PAR CUVÉE
+        // MOCK DRAFTS OFFICIELLES (2027, 2028, 2029)
         const defaultMockDrafts = {
             2027: [
-                { name: "Tyran Stokes", pos: "PF", school: "Oakland / USA", age: 19, ovr: 82, pot: 96, salary: 12.2 },
-                { name: "Jordan Smith Jr.", pos: "SG", school: "Paul VI / USA", age: 19, ovr: 81, pot: 94, salary: 10.9 },
-                { name: "Brandon McCoy Jr.", pos: "PG", school: "St. John Bosco", age: 19, ovr: 81, pot: 94, salary: 9.8 },
-                { name: "Stefan Joksimovic", pos: "SF", school: "Baskonia (Serbie)", age: 19, ovr: 80, pot: 93, salary: 8.9 },
-                { name: "Hugo Yimga Moukouri", pos: "SF", school: "INSEP (France)", age: 19, ovr: 79, pot: 92, salary: 8.1 },
-                { name: "Caleb Holt", pos: "SG", school: "Prolific Prep", age: 19, ovr: 78, pot: 90, salary: 7.4 },
-                { name: "Bruce Branch", pos: "SG", school: "Arizona / USA", age: 19, ovr: 78, pot: 90, salary: 6.8 },
-                { name: "Cameron Williams", pos: "PF", school: "Duke", age: 19, ovr: 77, pot: 89, salary: 6.2 },
-                { name: "Obinna Ekezie Jr.", pos: "C", school: "Prolific Prep", age: 19, ovr: 77, pot: 89, salary: 5.8 },
-                { name: "Cameron Houindo", pos: "PF", school: "France", age: 19, ovr: 76, pot: 88, salary: 5.4 },
-                { name: "Malachi Moreno", pos: "C", school: "Kentucky", age: 20, ovr: 76, pot: 87, salary: 5.1 },
-                { name: "Moustapha Thiam", pos: "C", school: "Michigan (Sénégal)", age: 20, ovr: 76, pot: 86, salary: 4.8 },
-                { name: "Dame Sarr", pos: "SG", school: "Duke (Italie)", age: 20, ovr: 75, pot: 86, salary: 4.6 },
-                { name: "Tounde Yessoufou", pos: "SF", school: "Baylor (Bénin)", age: 20, ovr: 75, pot: 86, salary: 4.4 },
-                { name: "Jaxon Richardson", pos: "SF", school: "Columbus / USA", age: 19, ovr: 75, pot: 86, salary: 4.2 },
-                { name: "CJ Rosser", pos: "PF", school: "Northern Nash", age: 19, ovr: 74, pot: 86, salary: 4.0 },
-                { name: "Nasir Anderson", pos: "PG", school: "Norcross / USA", age: 19, ovr: 74, pot: 85, salary: 3.8 },
-                { name: "Paul Osaruyi", pos: "C", school: "CIA Bella Vista", age: 19, ovr: 74, pot: 85, salary: 3.6 },
-                { name: "Zioniggigens", pos: "SF", school: "IMG Academy", age: 19, ovr: 73, pot: 84, salary: 3.5 },
-                { name: "Gabe Nesmith", pos: "SG", school: "Montverde", age: 19, ovr: 73, pot: 84, salary: 3.4 },
-                { name: "Luka Mirkovic", pos: "C", school: "Mega MIS (Serbie)", age: 19, ovr: 73, pot: 84, salary: 3.3 },
-                { name: "Aaron Womack", pos: "SF", school: "Syracuse", age: 20, ovr: 73, pot: 83, salary: 3.2 },
-                { name: "Kiyan Anthony", pos: "SG", school: "Syracuse", age: 20, ovr: 73, pot: 83, salary: 3.1 },
-                { name: "Bryce James", pos: "SG", school: "Arizona", age: 20, ovr: 72, pot: 82, salary: 3.0 },
-                { name: "Mathis Courbon", pos: "SG", school: "ASVEL (France)", age: 19, ovr: 72, pot: 83, salary: 2.9 },
-                { name: "Sidi Gueye", pos: "PF", school: "Real Madrid", age: 19, ovr: 72, pot: 83, salary: 2.8 },
-                { name: "Declan Duru", pos: "SF", school: "Allemagne", age: 20, ovr: 72, pot: 82, salary: 2.7 },
-                { name: "Diego Garavaglia", pos: "SF", school: "Olimpia Milan", age: 19, ovr: 71, pot: 82, salary: 2.6 },
-                { name: "Daye Kaba", pos: "SG", school: "Nanterre (France)", age: 19, ovr: 71, pot: 81, salary: 2.5 },
-                { name: "Jaden Toombs", pos: "C", school: "SMU", age: 20, ovr: 71, pot: 80, salary: 2.4 }
+                { name: "Tyran Stokes", pos: "PF", school: "Oakland / USA", age: 19, ovr: 82, pot: 96, salary: 13.5 },
+                { name: "Jordan Smith Jr.", pos: "SG", school: "Paul VI / USA", age: 19, ovr: 81, pot: 94, salary: 12.1 },
+                { name: "Brandon McCoy Jr.", pos: "PG", school: "St. John Bosco", age: 19, ovr: 81, pot: 94, salary: 10.9 },
+                { name: "Stefan Joksimovic", pos: "SF", school: "Baskonia (Serbie)", age: 19, ovr: 80, pot: 93, salary: 9.8 },
+                { name: "Hugo Yimga Moukouri", pos: "SF", school: "INSEP (France)", age: 19, ovr: 79, pot: 92, salary: 8.9 },
+                { name: "Caleb Holt", pos: "SG", school: "Prolific Prep", age: 19, ovr: 78, pot: 90, salary: 8.1 },
+                { name: "Bruce Branch", pos: "SG", school: "Arizona / USA", age: 19, ovr: 78, pot: 90, salary: 7.4 },
+                { name: "Cameron Williams", pos: "PF", school: "Duke", age: 19, ovr: 77, pot: 89, salary: 6.8 },
+                { name: "Obinna Ekezie Jr.", pos: "C", school: "Prolific Prep", age: 19, ovr: 77, pot: 89, salary: 6.3 },
+                { name: "Cameron Houindo", pos: "PF", school: "France", age: 19, ovr: 76, pot: 88, salary: 5.9 },
+                { name: "Malachi Moreno", pos: "C", school: "Kentucky", age: 20, ovr: 76, pot: 87, salary: 5.5 },
+                { name: "Moustapha Thiam", pos: "C", school: "Michigan (Sénégal)", age: 20, ovr: 76, pot: 86, salary: 5.2 },
+                { name: "Dame Sarr", pos: "SG", school: "Duke (Italie)", age: 20, ovr: 75, pot: 86, salary: 4.9 },
+                { name: "Tounde Yessoufou", pos: "SF", school: "Baylor (Bénin)", age: 20, ovr: 75, pot: 86, salary: 4.7 },
+                { name: "Jaxon Richardson", pos: "SF", school: "Columbus / USA", age: 19, ovr: 75, pot: 86, salary: 4.5 },
+                { name: "CJ Rosser", pos: "PF", school: "Northern Nash", age: 19, ovr: 74, pot: 86, salary: 4.3 },
+                { name: "Nasir Anderson", pos: "PG", school: "Norcross / USA", age: 19, ovr: 74, pot: 85, salary: 4.1 },
+                { name: "Paul Osaruyi", pos: "C", school: "CIA Bella Vista", age: 19, ovr: 74, pot: 85, salary: 3.9 },
+                { name: "Gabe Nesmith", pos: "SG", school: "Montverde", age: 19, ovr: 73, pot: 84, salary: 3.7 },
+                { name: "Luka Mirkovic", pos: "C", school: "Mega MIS (Serbie)", age: 19, ovr: 73, pot: 84, salary: 3.6 },
+                { name: "Aaron Womack", pos: "SF", school: "Syracuse", age: 20, ovr: 73, pot: 83, salary: 3.5 },
+                { name: "Kiyan Anthony", pos: "SG", school: "Syracuse", age: 20, ovr: 73, pot: 83, salary: 3.4 },
+                { name: "Bryce James", pos: "SG", school: "Arizona", age: 20, ovr: 72, pot: 82, salary: 3.2 },
+                { name: "Mathis Courbon", pos: "SG", school: "ASVEL (France)", age: 19, ovr: 72, pot: 83, salary: 3.1 },
+                { name: "Sidi Gueye", pos: "PF", school: "Real Madrid", age: 19, ovr: 72, pot: 83, salary: 3.0 },
+                { name: "Declan Duru", pos: "SF", school: "Allemagne", age: 20, ovr: 72, pot: 82, salary: 2.9 },
+                { name: "Diego Garavaglia", pos: "SF", school: "Olimpia Milan", age: 19, ovr: 71, pot: 82, salary: 2.8 },
+                { name: "Daye Kaba", pos: "SG", school: "Nanterre (France)", age: 19, ovr: 71, pot: 81, salary: 2.7 },
+                { name: "Jaden Toombs", pos: "C", school: "SMU", age: 20, ovr: 71, pot: 80, salary: 2.6 },
+                { name: "Ikenna Alozie", pos: "PG", school: "Dream City", age: 19, ovr: 71, pot: 81, salary: 2.5 }
             ],
             2028: [
-                { name: "Joaquim Boumtje Boumtje", pos: "C", school: "Duke (Espagne)", age: 19, ovr: 82, pot: 96, salary: 12.5 },
-                { name: "Nikola Kusturica", pos: "SG", school: "UCLA (Serbie)", age: 19, ovr: 81, pot: 94, salary: 11.2 },
-                { name: "Marcus Spears Jr.", pos: "PF", school: "Texas / USA", age: 19, ovr: 80, pot: 93, salary: 10.0 },
-                { name: "Nathan Soliman", pos: "SF", school: "INSEP (France)", age: 19, ovr: 80, pot: 93, salary: 9.1 },
-                { name: "Beckham Black", pos: "PG", school: "Duncanville", age: 19, ovr: 78, pot: 90, salary: 8.2 },
-                { name: "AJ Williams", pos: "SF", school: "Georgia / USA", age: 19, ovr: 78, pot: 90, salary: 7.5 },
-                { name: "Adan Diggs", pos: "SG", school: "Arizona", age: 19, ovr: 77, pot: 89, salary: 6.8 },
-                { name: "Babatunde Oladotun", pos: "SF", school: "Maryland", age: 19, ovr: 77, pot: 89, salary: 6.2 },
-                { name: "Demarcus Henry", pos: "SF", school: "Chandler AZ", age: 19, ovr: 76, pot: 87, salary: 5.8 },
-                { name: "Tajh Ariza", pos: "SF", school: "Oregon", age: 19, ovr: 76, pot: 87, salary: 5.4 },
-                { name: "Fabian Kayser", pos: "SF", school: "Allemagne", age: 19, ovr: 75, pot: 86, salary: 5.0 },
-                { name: "Erick Dampier Jr.", pos: "C", school: "Mississippi", age: 19, ovr: 75, pot: 86, salary: 4.7 },
-                { name: "Kameron Mercer", pos: "SG", school: "Ohio / USA", age: 19, ovr: 74, pot: 85, salary: 4.4 },
-                { name: "Mamadou Issa", pos: "C", school: "France", age: 19, ovr: 74, pot: 85, salary: 4.1 },
-                { name: "Dylan Mingo", pos: "PG", school: "Long Island", age: 19, ovr: 74, pot: 84, salary: 3.9 }
+                { name: "Joaquim Boumtje Boumtje", pos: "C", school: "Duke (Espagne)", age: 19, ovr: 82, pot: 96, salary: 13.8 },
+                { name: "Nikola Kusturica", pos: "SG", school: "UCLA (Serbie)", age: 19, ovr: 81, pot: 94, salary: 12.2 },
+                { name: "Marcus Spears Jr.", pos: "PF", school: "Texas / USA", age: 19, ovr: 80, pot: 93, salary: 11.0 },
+                { name: "Nathan Soliman", pos: "SF", school: "INSEP (France)", age: 19, ovr: 80, pot: 93, salary: 9.8 },
+                { name: "Beckham Black", pos: "PG", school: "Duncanville", age: 19, ovr: 78, pot: 90, salary: 8.8 },
+                { name: "AJ Williams", pos: "SF", school: "Georgia / USA", age: 19, ovr: 78, pot: 90, salary: 7.9 },
+                { name: "Adan Diggs", pos: "SG", school: "Arizona", age: 19, ovr: 77, pot: 89, salary: 7.2 },
+                { name: "Babatunde Oladotun", pos: "SF", school: "Maryland", age: 19, ovr: 77, pot: 89, salary: 6.6 },
+                { name: "Demarcus Henry", pos: "SF", school: "Chandler AZ", age: 19, ovr: 76, pot: 87, salary: 6.0 },
+                { name: "Tajh Ariza", pos: "SF", school: "Oregon", age: 19, ovr: 76, pot: 87, salary: 5.5 },
+                { name: "Fabian Kayser", pos: "SF", school: "Allemagne", age: 19, ovr: 75, pot: 86, salary: 5.1 },
+                { name: "Erick Dampier Jr.", pos: "C", school: "Mississippi", age: 19, ovr: 75, pot: 86, salary: 4.8 },
+                { name: "Kameron Mercer", pos: "SG", school: "Ohio / USA", age: 19, ovr: 74, pot: 85, salary: 4.5 },
+                { name: "Mamadou Issa", pos: "C", school: "France", age: 19, ovr: 74, pot: 85, salary: 4.2 },
+                { name: "Dylan Mingo", pos: "PG", school: "Long Island", age: 19, ovr: 74, pot: 84, salary: 4.0 }
             ],
             2029: [
-                { name: "Mohamed Dabone", pos: "C", school: "FC Barcelone", age: 18, ovr: 83, pot: 97, salary: 12.8 },
-                { name: "Yann Kamagate", pos: "C", school: "France / INSEP", age: 19, ovr: 81, pot: 94, salary: 11.4 },
-                { name: "Josiah Rose", pos: "PG", school: "USA Basketball", age: 19, ovr: 80, pot: 93, salary: 10.2 },
-                { name: "Isaiah Hamilton", pos: "SF", school: "Montverde", age: 19, ovr: 79, pot: 91, salary: 9.2 },
-                { name: "Colton Hiller", pos: "SG", school: "Duke Commit", age: 19, ovr: 78, pot: 90, salary: 8.4 },
-                { name: "Benjamin Berrouet", pos: "PF", school: "France / USA", age: 19, ovr: 78, pot: 89, salary: 7.6 },
-                { name: "PJ Washington III", pos: "PF", school: "Oak Hill", age: 19, ovr: 76, pot: 88, salary: 6.8 },
-                { name: "Mateo Blanca", pos: "PG", school: "Real Madrid", age: 19, ovr: 76, pot: 88, salary: 6.2 },
-                { name: "Zoran Vuckovic", pos: "C", school: "Partizan Belgrade", age: 19, ovr: 75, pot: 87, salary: 5.6 },
-                { name: "Jayden Wilkins", pos: "SG", school: "Kentucky", age: 19, ovr: 75, pot: 86, salary: 5.1 }
+                { name: "Mohamed Dabone", pos: "C", school: "FC Barcelone", age: 18, ovr: 83, pot: 97, salary: 14.1 },
+                { name: "Yann Kamagate", pos: "C", school: "France / INSEP", age: 19, ovr: 81, pot: 94, salary: 12.5 },
+                { name: "Josiah Rose", pos: "PG", school: "USA Basketball", age: 19, ovr: 80, pot: 93, salary: 11.2 },
+                { name: "Isaiah Hamilton", pos: "SF", school: "Montverde", age: 19, ovr: 79, pot: 91, salary: 10.0 },
+                { name: "Colton Hiller", pos: "SG", school: "Duke Commit", age: 19, ovr: 78, pot: 90, salary: 8.9 },
+                { name: "Benjamin Berrouet", pos: "PF", school: "France / USA", age: 19, ovr: 78, pot: 89, salary: 8.0 },
+                { name: "PJ Washington III", pos: "PF", school: "Oak Hill", age: 19, ovr: 76, pot: 88, salary: 7.2 },
+                { name: "Mateo Blanca", pos: "PG", school: "Real Madrid", age: 19, ovr: 76, pot: 88, salary: 6.5 },
+                { name: "Zoran Vuckovic", pos: "C", school: "Partizan Belgrade", age: 19, ovr: 75, pot: 87, salary: 5.9 },
+                { name: "Jayden Wilkins", pos: "SG", school: "Kentucky", age: 19, ovr: 75, pot: 86, salary: 5.4 }
             ]
         };
 
-        // EFFECTIFS NBA 2026-2027 VÉRIFIÉS ET CORRIGÉS (30 FRANCHISES)
+        // EFFECTIFS ET CONTRATS OFFICIELS BASKETBALL-REFERENCE 2026-2027 (30 FRANCHISES)
         const rawTeams = [
             { id: "BOS", name: "Boston Celtics", conf: "East", players: [
-                P("Jayson Tatum", "SF", 28, 96, 97, 54.1), P("Jaylen Brown", "SG", 29, 92, 92, 49.2), P("Kristaps Porzingis", "C", 31, 87, 87, 30.7),
-                P("Derrick White", "SG", 32, 86, 86, 28.1), P("Jrue Holiday", "PG", 36, 82, 82, 32.4), P("Payton Pritchard", "PG", 28, 81, 82, 7.7),
-                P("Sam Hauser", "SF", 28, 78, 79, 10.0), P("Al Horford", "C", 40, 76, 76, 5.0), P("Neemias Queta", "C", 27, 76, 78, 2.5),
-                P("Luke Kornet", "C", 31, 75, 75, 3.2), P("Baylor Scheierman", "SG", 26, 75, 78, 2.7), P("Jordan Walsh", "SF", 22, 74, 79, 2.2)
-            ]},
-            { id: "OKC", name: "Oklahoma City Thunder", conf: "West", players: [
-                P("Shai Gilgeous-Alexander", "PG", 28, 97, 97, 40.8), P("Chet Holmgren", "C", 24, 91, 95, 35.0), P("Jalen Williams", "SF", 25, 90, 93, 35.0),
-                P("Isaiah Hartenstein", "C", 28, 83, 84, 28.5), P("Alex Caruso", "SG", 32, 82, 82, 20.2), P("Luguentz Dort", "SG", 27, 81, 82, 17.7),
-                P("Cason Wallace", "PG", 22, 81, 86, 5.8), P("Nikola Topic", "PG", 21, 79, 87, 5.4), P("Aaron Wiggins", "SF", 27, 79, 80, 9.2),
-                P("Isaiah Joe", "SG", 27, 78, 79, 11.3), P("Aday Mara", "C", 21, 77, 87, 4.5), P("Jaylin Williams", "C", 24, 75, 77, 3.0)
-            ]},
-            { id: "SAS", name: "San Antonio Spurs", conf: "West", players: [
-                P("Victor Wembanyama", "C", 22, 97, 99, 14.5), P("De'Aaron Fox", "PG", 28, 90, 90, 39.1), P("Stephon Castle", "SG", 21, 85, 91, 10.1),
-                P("Devin Vassell", "SG", 26, 83, 85, 27.0), P("Jeremy Sochan", "PF", 23, 82, 86, 14.0), P("Keldon Johnson", "SF", 27, 79, 80, 17.5),
-                P("Harrison Barnes", "PF", 34, 77, 77, 18.0), P("Noa Essengue", "PF", 19, 77, 87, 4.8), P("Julian Champagnie", "SF", 25, 76, 77, 3.0),
-                P("Malaki Branham", "SG", 23, 74, 78, 4.2), P("Blake Wesley", "PG", 23, 74, 77, 3.5), P("Charles Bassey", "C", 25, 73, 75, 2.5)
-            ]},
-            { id: "LAL", name: "Los Angeles Lakers", conf: "West", players: [
-                P("Luka Doncic", "PG", 27, 97, 98, 46.0), P("LeBron James", "SF", 41, 88, 88, 48.5), P("Austin Reaves", "SG", 28, 85, 86, 14.8),
-                P("Rui Hachimura", "PF", 28, 80, 81, 18.2), P("Dalton Knecht", "SG", 25, 80, 83, 4.2), P("Jarred Vanderbilt", "PF", 27, 78, 79, 11.5),
-                P("Dorian Finney-Smith", "PF", 33, 77, 77, 14.9), P("Gabe Vincent", "PG", 30, 76, 76, 11.5), P("Jaxson Hayes", "C", 26, 75, 76, 3.0),
-                P("Christian Koloko", "C", 26, 74, 77, 2.5), P("Shake Milton", "PG", 30, 73, 73, 2.8), P("Bronny James", "PG", 22, 72, 77, 2.0)
-            ]},
-            { id: "GSW", name: "Golden State Warriors", conf: "West", players: [
-                P("Stephen Curry", "PG", 38, 92, 92, 59.6), P("Jimmy Butler", "SF", 37, 88, 88, 54.1), P("Jonathan Kuminga", "PF", 24, 85, 89, 26.5),
-                P("Brandin Podziemski", "SG", 23, 82, 86, 4.5), P("Draymond Green", "PF", 36, 80, 80, 25.8), P("Moses Moody", "SG", 24, 79, 82, 11.6),
-                P("Trayce Jackson-Davis", "C", 26, 79, 82, 2.8), P("Buddy Hield", "SG", 33, 77, 77, 9.2), P("Quinten Post", "C", 26, 75, 78, 2.4),
-                P("Kevon Looney", "C", 30, 74, 74, 5.0), P("Gary Payton II", "SG", 33, 74, 74, 4.0), P("Gui Santos", "SF", 24, 74, 77, 2.2)
-            ]},
-            { id: "DAL", name: "Dallas Mavericks", conf: "West", players: [
-                P("Anthony Davis", "C", 33, 93, 93, 54.1), P("Kyrie Irving", "PG", 34, 90, 90, 42.9), P("Dereck Lively II", "C", 22, 85, 90, 6.2),
-                P("P.J. Washington", "PF", 28, 82, 83, 14.1), P("Daniel Gafford", "C", 28, 81, 82, 14.3), P("Max Christie", "SG", 23, 80, 85, 8.0),
-                P("Klay Thompson", "SG", 36, 78, 78, 16.6), P("Naji Marshall", "SF", 28, 78, 79, 9.0), P("Calebaleb", "SF", 31, 77, 77, 8.5),
-                P("Jaden Hardy", "SG", 24, 76, 80, 6.0), P("Spencer Dinwiddie", "PG", 33, 74, 74, 3.0), P("Olivier-Maxence Prosper", "PF", 24, 74, 78, 3.0)
-            ]},
-            { id: "WAS", name: "Washington Wizards", conf: "East", players: [
-                P("Cooper Flagg", "PF", 19, 86, 97, 13.8), P("AJ Dybantsa", "SF", 19, 84, 97, 12.5), P("Alex Sarr", "C", 21, 84, 90, 11.8),
-                P("Bilal Coulibaly", "SF", 22, 83, 89, 9.2), P("Jordan Poole", "SG", 27, 81, 82, 31.8), P("Carlton Carrington", "PG", 21, 80, 86, 4.9),
-                P("Kyshawn George", "SG", 22, 79, 85, 4.2), P("Khris Middleton", "SF", 35, 78, 78, 22.0), P("Marcus Smart", "PG", 32, 77, 77, 18.0),
-                P("Corey Kispert", "SF", 27, 77, 78, 13.9), P("AJ Johnson", "PG", 21, 75, 83, 3.2), P("Richaun Holmes", "C", 33, 73, 73, 3.2)
-            ]},
-            { id: "UTA", name: "Utah Jazz", conf: "West", players: [
-                P("Lauri Markkanen", "PF", 29, 87, 88, 42.1), P("Ace Bailey", "SF", 20, 84, 94, 11.5), P("Darryn Peterson", "PG", 19, 83, 95, 11.2),
-                P("Keyonte George", "PG", 22, 82, 87, 6.5), P("Walker Kessler", "C", 25, 82, 85, 12.0), P("Collin Sexton", "SG", 27, 81, 82, 19.2),
-                P("Taylor Hendricks", "PF", 22, 79, 85, 6.1), P("Cody Williams", "SF", 21, 78, 85, 6.2), P("Isaiah Collier", "PG", 21, 78, 84, 3.5),
-                P("John Collins", "PF", 29, 78, 78, 26.5), P("Kyle Filipowski", "C", 22, 77, 82, 3.0), P("Brice Sensabaugh", "SF", 22, 76, 80, 3.2)
-            ]},
-            { id: "BKN", name: "Brooklyn Nets", conf: "East", players: [
-                P("Dylan Harper", "PG", 20, 84, 94, 12.0), P("Cam Thomas", "SG", 25, 85, 87, 24.5), P("Nic Claxton", "C", 27, 82, 84, 25.4),
-                P("Cameron Johnson", "SF", 30, 81, 81, 22.5), P("D'Angelo Russell", "PG", 30, 80, 80, 18.0), P("Mikel Brown Jr.", "PG", 19, 80, 90, 7.8),
-                P("Noah Clowney", "PF", 22, 79, 85, 4.0), P("Nolan Traoré", "PG", 20, 78, 88, 4.5), P("Day'Ron Sharpe", "C", 24, 77, 81, 6.5),
-                P("Ziaire Williams", "SF", 25, 76, 80, 6.0), P("Jalen Wilson", "SF", 25, 75, 77, 2.2), P("Dariq Whitehead", "SG", 22, 75, 81, 3.5)
-            ]},
-            { id: "CHA", name: "Charlotte Hornets", conf: "East", players: [
-                P("LaMelo Ball", "PG", 25, 90, 92, 37.9), P("Brandon Miller", "SF", 23, 88, 92, 11.9), P("VJ Edgecombe", "SG", 21, 83, 92, 9.8),
-                P("Miles Bridges", "PF", 28, 82, 82, 25.0), P("Mark Williams", "C", 24, 81, 85, 6.2), P("Tidjane Salaun", "PF", 21, 79, 86, 7.8),
-                P("Tre Mann", "PG", 25, 78, 81, 7.5), P("Jusuf Nurkic", "C", 32, 77, 77, 18.1), P("Josh Green", "SG", 25, 76, 78, 13.6),
-                P("Grant Williams", "PF", 27, 76, 77, 13.6), P("Nick Smith Jr.", "SG", 22, 75, 80, 3.0), P("Moussa Diabate", "C", 24, 75, 79, 2.5)
-            ]},
-            { id: "MEM", name: "Memphis Grizzlies", conf: "West", players: [
-                P("Ja Morant", "PG", 27, 92, 93, 39.4), P("Jaren Jackson Jr.", "PF", 27, 89, 90, 28.9), P("Desmond Bane", "SG", 28, 85, 86, 36.7),
-                P("Cameron Boozer", "PF", 19, 83, 94, 10.2), P("Zach Edey", "C", 24, 82, 86, 6.5), P("Jaylen Wells", "SF", 23, 80, 84, 2.5),
-                P("GG Jackson", "SF", 21, 80, 86, 2.5), P("Santi Aldama", "PF", 25, 79, 82, 10.0), P("Vince Williams Jr.", "SG", 26, 78, 80, 2.8),
-                P("Scotty Pippen Jr.", "PG", 25, 78, 80, 4.0), P("Brandon Clarke", "PF", 30, 77, 77, 12.5), P("Luke Kennard", "SG", 30, 75, 75, 9.2)
+                P("Jayson Tatum", "SF", 28, 96, 97, 58.46), P("Paul George", "SF", 36, 85, 85, 54.13), P("Derrick White", "SG", 32, 86, 86, 30.38),
+                P("Nikola Vučević", "C", 36, 81, 81, 21.48), P("Sam Hauser", "SF", 28, 78, 79, 10.80), P("Payton Pritchard", "PG", 28, 81, 82, 7.77),
+                P("Chris Cenac Jr.", "PF", 19, 77, 87, 3.80), P("Hugo Gonzalez", "SG", 20, 76, 85, 3.20), P("Dillon Mitchell", "PF", 22, 75, 81, 2.20),
+                P("Neemias Queta", "C", 27, 76, 78, 2.66), P("Baylor Scheierman", "SG", 26, 75, 78, 2.74), P("Jordan Walsh", "SF", 22, 74, 79, 2.40)
             ]},
             { id: "NYK", name: "New York Knicks", conf: "East", players: [
-                P("Jalen Brunson", "PG", 30, 94, 94, 34.9), P("Karl-Anthony Towns", "C", 30, 91, 91, 53.1), P("OG Anunoby", "SF", 29, 86, 86, 39.5),
-                P("Mikal Bridges", "SG", 30, 85, 85, 24.9), P("Josh Hart", "SF", 31, 83, 83, 19.4), P("Mitchell Robinson", "C", 28, 80, 81, 14.3),
-                P("Miles McBride", "PG", 26, 79, 82, 4.7), P("Precious Achiuwa", "PF", 27, 77, 78, 6.0), P("Pacome Dadiet", "SF", 21, 76, 83, 2.8),
-                P("Tyler Kolek", "PG", 25, 75, 79, 2.5), P("Cameron Payne", "PG", 32, 74, 74, 3.1), P("Ariel Hukporti", "C", 24, 73, 77, 2.0)
-            ]},
-            { id: "DEN", name: "Denver Nuggets", conf: "West", players: [
-                P("Nikola Jokic", "C", 31, 98, 98, 55.2), P("Jamal Murray", "PG", 29, 87, 87, 46.4), P("Aaron Gordon", "PF", 31, 84, 84, 23.8),
-                P("Michael Porter Jr.", "SF", 28, 83, 84, 38.3), P("Christian Braun", "SG", 25, 82, 85, 4.9), P("Peyton Watson", "SF", 24, 80, 84, 4.5),
-                P("Julian Strawther", "SG", 24, 78, 82, 3.2), P("DaRon Holmes II", "C", 24, 77, 82, 3.5), P("Russell Westbrook", "PG", 37, 76, 76, 3.3),
-                P("Zeke Nnaji", "PF", 25, 73, 75, 8.8), P("Dario Saric", "PF", 32, 73, 73, 5.2), P("Jalen Pickett", "PG", 27, 73, 75, 2.2)
-            ]},
-            { id: "MIN", name: "Minnesota Timberwolves", conf: "West", players: [
-                P("Anthony Edwards", "SG", 25, 95, 97, 45.5), P("Julius Randle", "PF", 31, 85, 85, 31.2), P("Rudy Gobert", "C", 34, 85, 85, 36.5),
-                P("Naz Reid", "C", 27, 84, 86, 15.0), P("Jaden McDaniels", "SF", 26, 83, 86, 24.8), P("Donte DiVincenzo", "SG", 29, 81, 81, 12.0),
-                P("Rob Dillingham", "PG", 21, 80, 87, 6.8), P("Nickeil Alexander-Walker", "SG", 28, 79, 80, 8.5), P("Terrence Shannon Jr.", "SF", 26, 77, 80, 3.0),
-                P("Mike Conley", "PG", 39, 75, 75, 10.7), P("Joan Beringer", "C", 20, 75, 85, 3.2), P("Leonard Miller", "PF", 22, 74, 80, 2.4)
-            ]},
-            { id: "CLE", name: "Cleveland Cavaliers", conf: "East", players: [
-                P("Donovan Mitchell", "SG", 30, 94, 94, 46.3), P("Evan Mobley", "PF", 25, 90, 93, 38.6), P("Darius Garland", "PG", 26, 88, 89, 39.4),
-                P("Jarrett Allen", "C", 28, 86, 86, 28.0), P("De'Andre Hunter", "SF", 28, 81, 82, 23.3), P("Max Strus", "SF", 30, 79, 79, 15.9),
-                P("Ty Jerome", "PG", 29, 79, 79, 8.5), P("Isaac Okoro", "SF", 25, 77, 80, 11.0), P("Jaylon Tyson", "SF", 23, 76, 81, 3.8),
-                P("Dean Wade", "PF", 29, 76, 76, 6.6), P("Sam Merrill", "SG", 30, 75, 75, 3.0), P("Craig Porter Jr.", "PG", 26, 74, 77, 2.5)
-            ]},
-            { id: "ORL", name: "Orlando Magic", conf: "East", players: [
-                P("Paolo Banchero", "PF", 23, 92, 95, 35.0), P("Franz Wagner", "SF", 25, 90, 93, 38.6), P("Jalen Suggs", "PG", 25, 85, 88, 28.5),
-                P("Anthony Black", "PG", 22, 81, 86, 8.2), P("Wendell Carter Jr.", "C", 27, 80, 82, 18.0), P("Jonathan Isaac", "PF", 29, 79, 80, 15.0),
-                P("Kentavious Caldwell-Pope", "SG", 33, 78, 78, 21.6), P("Moritz Wagner", "C", 29, 78, 78, 11.0), P("Tristan da Silva", "SF", 25, 77, 80, 4.0),
-                P("Goga Bitadze", "C", 27, 77, 78, 8.3), P("Cole Anthony", "PG", 26, 77, 79, 13.1), P("Jett Howard", "SG", 23, 75, 81, 5.5)
-            ]},
-            { id: "HOU", name: "Houston Rockets", conf: "West", players: [
-                P("Alperen Sengun", "C", 24, 90, 93, 35.5), P("Amen Thompson", "PG", 23, 88, 94, 10.5), P("Jalen Green", "SG", 24, 85, 88, 33.3),
-                P("Jabari Smith Jr.", "PF", 23, 84, 88, 12.5), P("Tari Eason", "SF", 25, 83, 86, 14.0), P("Cam Whitmore", "SF", 22, 81, 87, 4.2),
-                P("Fred VanVleet", "PG", 32, 81, 81, 32.0), P("Reed Sheppard", "PG", 22, 80, 87, 10.6), P("Dillon Brooks", "SF", 30, 78, 78, 21.1),
-                P("Steven Adams", "C", 33, 76, 76, 6.0), P("Jock Landale", "C", 31, 74, 74, 8.0), P("Aaron Holiday", "PG", 30, 73, 73, 4.9)
-            ]},
-            { id: "DET", name: "Detroit Pistons", conf: "East", players: [
-                P("Cade Cunningham", "PG", 25, 92, 95, 38.6), P("Jalen Duren", "C", 22, 85, 89, 18.5), P("Jaden Ivey", "SG", 24, 84, 88, 16.0),
-                P("Ausar Thompson", "SF", 23, 83, 88, 9.8), P("Ronald Holland II", "SF", 21, 81, 88, 8.6), P("Isaiah Stewart", "C", 25, 79, 81, 15.0),
-                P("Tobias Harris", "PF", 34, 78, 78, 26.0), P("Malik Beasley", "SG", 29, 78, 78, 8.0), P("Marcus Sasser", "PG", 26, 76, 78, 3.2),
-                P("Simone Fontecchio", "SF", 30, 75, 75, 8.0), P("Paul Reed", "C", 27, 74, 75, 5.0), P("Bobi Klintman", "PF", 23, 74, 78, 2.2)
-            ]},
-            { id: "MIL", name: "Milwaukee Bucks", conf: "East", players: [
-                P("Giannis Antetokounmpo", "PF", 31, 97, 97, 54.1), P("Damian Lillard", "PG", 36, 87, 87, 54.1), P("Kyle Kuzma", "SF", 31, 81, 81, 21.5),
-                P("Bobby Portis", "PF", 31, 80, 80, 13.4), P("Gary Trent Jr.", "SG", 27, 78, 79, 8.0), P("Kevin Porter Jr.", "PG", 26, 77, 79, 4.5),
-                P("Brook Lopez", "C", 38, 76, 76, 10.0), P("AJ Green", "SG", 27, 76, 78, 4.0), P("Andre Jackson Jr.", "SF", 24, 75, 79, 2.5),
-                P("Jericho Sims", "C", 28, 74, 75, 2.5), P("Taurean Prince", "PF", 32, 74, 74, 3.0), P("Tyler Smith", "PF", 21, 74, 81, 2.4)
+                P("Karl-Anthony Towns", "C", 30, 91, 91, 57.08), P("OG Anunoby", "SF", 29, 86, 86, 42.50), P("Jalen Brunson", "PG", 30, 95, 95, 37.74),
+                P("Mikal Bridges", "SG", 30, 85, 85, 29.60), P("Josh Hart", "SF", 31, 83, 83, 20.92), P("Mitchell Robinson", "C", 28, 80, 81, 12.95),
+                P("Jose Alvarado", "PG", 28, 78, 78, 6.50), P("Miles McBride", "PG", 26, 79, 82, 4.33), P("Pacôme Dadiet", "SF", 21, 76, 83, 2.98),
+                P("Jack Kayil", "PG", 20, 75, 84, 2.30), P("Tyler Nickel", "SG", 22, 74, 80, 2.10), P("Ugonna Onyenso", "C", 22, 73, 79, 2.00)
             ]},
             { id: "PHI", name: "Philadelphia 76ers", conf: "East", players: [
-                P("Tyrese Maxey", "PG", 25, 91, 93, 37.9), P("Joel Embiid", "C", 32, 92, 92, 55.2), P("Jared McCain", "SG", 22, 84, 89, 4.8),
-                P("Paul George", "SF", 36, 83, 83, 51.6), P("Quentin Grimes", "SG", 26, 79, 81, 8.5), P("Guerschon Yabusele", "PF", 30, 79, 79, 6.5),
-                P("Kelly Oubre Jr.", "SF", 30, 79, 79, 8.3), P("Justin Edwards", "SF", 22, 76, 82, 2.5), P("Adem Bona", "C", 23, 75, 80, 2.2),
-                P("Ricky Council IV", "SG", 25, 75, 79, 2.5), P("Andre Drummond", "C", 33, 74, 74, 5.0), P("Jared Butler", "PG", 26, 74, 76, 2.5)
+                P("Joel Embiid", "C", 32, 93, 93, 58.10), P("Jaylen Brown", "SG", 29, 92, 92, 57.08), P("Tyrese Maxey", "PG", 25, 91, 93, 40.77),
+                P("VJ Edgecombe", "SG", 21, 84, 92, 10.40), P("Kelly Oubre Jr.", "SF", 30, 79, 79, 9.20), P("Labaron Philon", "PG", 20, 77, 86, 3.90),
+                P("Johni Broome", "C", 24, 77, 82, 3.10), P("Trendon Watford", "PF", 25, 76, 78, 3.50), P("Adem Bona", "C", 23, 75, 80, 2.40),
+                P("Ricky Council IV", "SG", 25, 75, 78, 2.50), P("Hunter Sallis", "SG", 23, 74, 79, 2.10), P("Eric Gordon", "SG", 37, 72, 72, 3.30)
             ]},
             { id: "MIA", name: "Miami Heat", conf: "East", players: [
-                P("Bam Adebayo", "C", 29, 89, 90, 37.1), P("Tyler Herro", "SG", 26, 88, 89, 31.0), P("Andrew Wiggins", "SF", 31, 81, 81, 28.2),
-                P("Kel'el Ware", "C", 22, 82, 87, 5.1), P("Nikola Jovic", "PF", 23, 81, 86, 5.5), P("Jaime Jaquez Jr.", "SF", 25, 80, 83, 4.2),
-                P("Davion Mitchell", "PG", 28, 77, 78, 6.5), P("Terry Rozier", "PG", 32, 77, 77, 24.9), P("Duncan Robinson", "SG", 32, 76, 76, 19.8),
-                P("Pelle Larsson", "SG", 25, 76, 79, 2.2), P("Kyle Anderson", "PF", 33, 75, 75, 9.2), P("Haywood Highsmith", "PF", 29, 75, 75, 5.4)
+                P("Giannis Antetokounmpo", "PF", 31, 97, 97, 58.46), P("Bam Adebayo", "C", 29, 89, 90, 49.80), P("Andrew Wiggins", "SF", 31, 81, 81, 30.17),
+                P("Duncan Robinson", "SG", 32, 76, 76, 19.89), P("Kasparas Jakucionis", "PG", 20, 81, 89, 6.20), P("Kel'el Ware", "C", 22, 82, 87, 5.14),
+                P("Nikola Jović", "PF", 23, 81, 86, 6.40), P("Jaime Jaquez Jr.", "SF", 25, 80, 83, 5.94), P("Ryan Conwell", "SG", 22, 75, 81, 2.40),
+                P("Pelle Larsson", "SG", 25, 76, 79, 2.30), P("Haywood Highsmith", "PF", 29, 75, 75, 5.62), P("Vladislav Goldin", "C", 25, 73, 77, 2.00)
+            ]},
+            { id: "CLE", name: "Cleveland Cavaliers", conf: "East", players: [
+                P("Donovan Mitchell", "SG", 30, 94, 94, 50.11), P("Evan Mobley", "PF", 25, 91, 94, 50.11), P("James Harden", "PG", 37, 86, 86, 30.65),
+                P("Jarrett Allen", "C", 28, 86, 86, 28.00), P("Peyton Watson", "SF", 24, 81, 85, 20.47), P("Max Strus", "SF", 30, 79, 79, 16.67),
+                P("Dennis Schröder", "PG", 33, 78, 78, 12.50), P("Keon Ellis", "SG", 26, 80, 82, 5.50), P("Jaylon Tyson", "SF", 23, 76, 81, 3.84),
+                P("Tyrese Proctor", "PG", 22, 75, 81, 2.80), P("Meleek Thomas", "SG", 20, 76, 85, 2.50), P("Luke Travers", "SF", 25, 73, 77, 2.10)
+            ]},
+            { id: "ORL", name: "Orlando Magic", conf: "East", players: [
+                P("Franz Wagner", "SF", 25, 90, 93, 41.75), P("Paolo Banchero", "PF", 23, 92, 95, 41.50), P("Desmond Bane", "SG", 28, 86, 87, 39.45),
+                P("Jalen Suggs", "PG", 25, 85, 88, 32.40), P("Wendell Carter Jr.", "C", 27, 80, 82, 18.10), P("Jonathan Isaac", "PF", 29, 79, 80, 14.50),
+                P("Anthony Black", "PG", 22, 81, 86, 10.10), P("Jase Richardson", "SG", 21, 78, 86, 4.50), P("Tristan da Silva", "SF", 25, 77, 80, 4.00),
+                P("Goga Bitadze", "C", 27, 77, 78, 7.60), P("Jett Howard", "SG", 23, 75, 81, 7.30), P("Izaiyah Nelson", "PF", 22, 73, 79, 2.10)
             ]},
             { id: "IND", name: "Indiana Pacers", conf: "East", players: [
-                P("Tyrese Haliburton", "PG", 26, 91, 93, 42.1), P("Pascal Siakam", "PF", 32, 87, 87, 45.1), P("Bennedict Mathurin", "SG", 24, 83, 87, 18.0),
-                P("Myles Turner", "C", 30, 83, 83, 25.0), P("Andrew Nembhard", "PG", 26, 82, 84, 19.5), P("Aaron Nesmith", "SF", 27, 79, 80, 11.0),
-                P("Jarace Walker", "PF", 23, 79, 85, 6.5), P("Obi Toppin", "PF", 28, 78, 79, 14.0), P("T.J. McConnell", "PG", 34, 77, 77, 10.2),
-                P("Ben Sheppard", "SG", 25, 76, 78, 3.0), P("Johnny Furphy", "SF", 21, 75, 82, 2.4), P("Thomas Bryant", "C", 29, 74, 74, 3.0)
-            ]},
-            { id: "ATL", name: "Atlanta Hawks", conf: "East", players: [
-                P("Trae Young", "PG", 28, 90, 91, 46.0), P("Jalen Johnson", "PF", 24, 89, 92, 30.0), P("Dyson Daniels", "SG", 23, 85, 88, 8.5),
-                P("Zaccharie Risacher", "SF", 21, 84, 90, 13.2), P("Onyeka Okongwu", "C", 25, 82, 85, 15.0), P("Caris LeVert", "SG", 32, 78, 78, 14.0),
-                P("Terance Mann", "SG", 30, 77, 77, 15.5), P("Georges Niang", "PF", 33, 76, 76, 8.2), P("Kobe Bufkin", "PG", 23, 76, 82, 5.4),
-                P("Clint Capela", "C", 32, 75, 75, 10.0), P("Vit Krejci", "PG", 26, 74, 76, 2.5), P("Mouhamed Gueye", "PF", 23, 73, 78, 2.1)
+                P("Tyrese Haliburton", "PG", 26, 91, 93, 48.92), P("Pascal Siakam", "PF", 32, 87, 87, 48.92), P("Andrew Nembhard", "PG", 26, 82, 84, 20.17),
+                P("Bennedict Mathurin", "SG", 24, 84, 88, 22.50), P("Obi Toppin", "PF", 28, 79, 79, 15.35), P("Aaron Nesmith", "SF", 27, 79, 80, 11.00),
+                P("T.J. McConnell", "PG", 34, 77, 77, 11.00), P("Jarace Walker", "PF", 23, 80, 85, 8.48), P("Ben Sheppard", "SG", 25, 76, 78, 5.23),
+                P("Johnny Furphy", "SF", 21, 76, 82, 2.40), P("Braden Smith", "PG", 22, 75, 81, 2.30), P("Isaiah Jackson", "C", 24, 76, 79, 5.50)
             ]},
             { id: "TOR", name: "Toronto Raptors", conf: "East", players: [
-                P("Scottie Barnes", "PF", 25, 90, 93, 38.6), P("Brandon Ingram", "SF", 29, 86, 87, 38.0), P("RJ Barrett", "SG", 26, 85, 87, 27.7),
-                P("Immanuel Quickley", "PG", 27, 84, 86, 32.5), P("Jakob Poeltl", "C", 31, 81, 81, 19.5), P("Gradey Dick", "SG", 22, 81, 86, 5.2),
-                P("Ja'Kobe Walter", "SG", 22, 79, 85, 4.0), P("Ochai Agbaji", "SF", 26, 77, 79, 6.5), P("Jonathan Mogbo", "PF", 24, 76, 80, 2.4),
-                P("Jamal Shead", "PG", 24, 76, 79, 2.2), P("Karim Lopez", "SF", 19, 77, 88, 4.2), P("Chris Boucher", "PF", 33, 73, 73, 5.0)
+                P("Kawhi Leonard", "SF", 35, 90, 90, 50.30), P("Scottie Barnes", "PF", 25, 90, 93, 41.75), P("Immanuel Quickley", "PG", 27, 84, 86, 32.50),
+                P("RJ Barrett", "SG", 26, 85, 87, 29.62), P("Jakob Poeltl", "C", 31, 81, 81, 19.50), P("Gradey Dick", "SG", 22, 81, 86, 7.13),
+                P("Collin Murray-Boyles", "PF", 21, 79, 86, 5.20), P("Allen Graves", "SF", 20, 77, 85, 4.10), P("Ja'Kobe Walter", "SG", 22, 78, 84, 3.80),
+                P("Sandro Mamukelashvili", "PF", 27, 75, 76, 3.20), P("Jonathan Mogbo", "PF", 24, 76, 80, 2.40), P("Jaden Bradley", "PG", 22, 74, 79, 2.10)
+            ]},
+            { id: "DET", name: "Detroit Pistons", conf: "East", players: [
+                P("Cade Cunningham", "PG", 25, 93, 95, 50.11), P("Jalen Duren", "C", 22, 86, 90, 40.16), P("Tobias Harris", "PF", 34, 78, 78, 26.63),
+                P("Isaiah Stewart", "C", 25, 79, 81, 15.00), P("Ausar Thompson", "SF", 23, 84, 89, 11.12), P("Ronald Holland II", "SF", 21, 81, 88, 9.05),
+                P("Simone Fontecchio", "SF", 30, 76, 76, 8.30), P("Marcus Sasser", "PG", 26, 76, 78, 5.19), P("Ebuka Okorie", "PG", 19, 77, 86, 4.30),
+                P("Paul Reed", "C", 27, 75, 76, 5.00), P("Bobi Klintman", "PF", 23, 74, 78, 2.30), P("Wendell Moore Jr.", "SG", 25, 73, 76, 2.20)
+            ]},
+            { id: "WAS", name: "Washington Wizards", conf: "East", players: [
+                P("Anthony Davis", "C", 33, 93, 93, 58.46), P("Trae Young", "PG", 28, 90, 91, 49.49), P("AJ Dybantsa", "SF", 19, 85, 97, 13.80),
+                P("Alex Sarr", "C", 21, 84, 90, 12.38), P("Bilal Coulibaly", "SF", 22, 83, 89, 14.50), P("Corey Kispert", "SF", 27, 78, 78, 13.98),
+                P("Carlton Carrington", "PG", 21, 80, 86, 4.90), P("Kyshawn George", "SG", 22, 79, 85, 3.27), P("Felix Okpara", "C", 22, 75, 81, 2.30),
+                P("Saddiq Bey", "PF", 27, 76, 77, 6.44), P("Richaun Holmes", "C", 33, 73, 73, 3.20), P("Tristan Vukčević", "C", 23, 74, 79, 2.40)
+            ]},
+            { id: "ATL", name: "Atlanta Hawks", conf: "East", players: [
+                P("Jalen Johnson", "PF", 24, 89, 92, 30.00), P("Jordan Poole", "SG", 27, 81, 82, 34.04), P("De'Andre Hunter", "SF", 28, 80, 80, 24.91),
+                P("Onyeka Okongwu", "C", 25, 82, 85, 16.10), P("Dyson Daniels", "SG", 23, 85, 88, 18.50), P("Zaccharie Risacher", "SF", 21, 84, 90, 13.82),
+                P("Asa Newell", "PF", 21, 79, 87, 5.80), P("Kingston Flemings", "PG", 19, 79, 89, 6.90), P("Zuby Ejiofor", "C", 22, 76, 83, 3.50),
+                P("Kobe Bufkin", "PG", 23, 76, 81, 6.91), P("Henri Veesaar", "C", 22, 74, 80, 2.20), P("Eli N'Diaye", "PF", 22, 73, 79, 2.00)
+            ]},
+            { id: "MIL", name: "Milwaukee Bucks", conf: "East", players: [
+                P("Damian Lillard", "PG", 36, 87, 87, 54.13), P("Tyler Herro", "SG", 26, 88, 89, 33.00), P("Myles Turner", "C", 30, 83, 83, 26.58),
+                P("Kyle Kuzma", "PF", 31, 80, 80, 20.45), P("Bobby Portis", "PF", 31, 80, 80, 14.50), P("Brayden Burries", "SG", 19, 79, 89, 6.10),
+                P("Nate Ament", "SF", 19, 78, 89, 5.20), P("Gary Trent Jr.", "SG", 27, 78, 79, 8.50), P("AJ Green", "SG", 27, 76, 78, 4.00),
+                P("Andre Jackson Jr.", "SF", 24, 75, 79, 2.80), P("Tyler Smith", "PF", 21, 74, 81, 2.40), P("Mark Sears", "PG", 24, 74, 78, 2.10)
+            ]},
+            { id: "CHA", name: "Charlotte Hornets", conf: "East", players: [
+                P("Coby White", "PG", 26, 85, 87, 26.80), P("Miles Bridges", "PF", 28, 82, 82, 22.83), P("Brandon Miller", "SF", 23, 88, 92, 15.10),
+                P("Grant Williams", "PF", 27, 76, 77, 14.27), P("Josh Green", "SG", 25, 76, 78, 14.70), P("Mark Williams", "C", 24, 81, 85, 16.00),
+                P("Tidjane Salaün", "PF", 21, 79, 86, 8.23), P("Kon Knueppel", "SG", 21, 80, 87, 6.80), P("Hannes Steinbach", "C", 19, 78, 88, 4.90),
+                P("Christian Anderson", "PG", 20, 76, 85, 3.90), P("Liam McNeeley", "SF", 21, 76, 83, 3.50), P("Ryan Kalkbrenner", "C", 24, 75, 79, 2.80)
             ]},
             { id: "CHI", name: "Chicago Bulls", conf: "East", players: [
-                P("Coby White", "PG", 26, 85, 87, 12.8), P("Josh Giddey", "PG", 24, 83, 86, 22.0), P("Matas Buzelis", "SF", 22, 83, 89, 6.1),
-                P("Caleb Wilson", "PF", 19, 82, 92, 9.5), P("Ayo Dosunmu", "SG", 26, 80, 82, 7.0), P("Nikola Vucevic", "C", 36, 78, 78, 20.0),
-                P("Patrick Williams", "PF", 25, 77, 81, 18.0), P("Kevin Huerter", "SG", 28, 76, 77, 16.8), P("Zach Collins", "C", 28, 76, 76, 16.7),
-                P("Tre Jones", "PG", 26, 76, 78, 8.0), P("Jalen Smith", "C", 26, 76, 78, 9.0), P("Lonzo Ball", "PG", 29, 75, 76, 10.0)
+                P("Josh Giddey", "PG", 24, 84, 87, 25.00), P("Nic Claxton", "C", 27, 82, 84, 23.15), P("Jaden Ivey", "SG", 24, 84, 88, 21.50),
+                P("Patrick Williams", "PF", 25, 77, 81, 18.00), P("Kevin Huerter", "SG", 28, 76, 77, 17.99), P("Caleb Wilson", "PF", 19, 83, 93, 10.60),
+                P("Jalen Smith", "C", 26, 76, 78, 9.43), P("Ayo Dosunmu", "SG", 26, 80, 82, 7.50), P("Matas Buzelis", "SF", 22, 83, 89, 5.72),
+                P("Dailyn Swain", "SF", 21, 76, 84, 4.30), P("Julian Phillips", "SF", 22, 75, 80, 2.40), P("Lachlan Olbrich", "PF", 22, 73, 78, 2.00)
             ]},
-            { id: "SAC", name: "Sacramento Kings", conf: "West", players: [
-                P("Domantas Sabonis", "C", 30, 89, 89, 43.6), P("Zach LaVine", "SG", 31, 86, 86, 46.0), P("DeMar DeRozan", "SF", 37, 83, 83, 24.5),
-                P("Malik Monk", "SG", 28, 84, 84, 18.8), P("Keegan Murray", "PF", 26, 84, 87, 24.0), P("Keon Ellis", "SG", 26, 80, 82, 5.0),
-                P("Devin Carter", "PG", 24, 79, 84, 4.9), P("Jonas Valanciunas", "C", 34, 77, 77, 9.9), P("Jake LaRavia", "PF", 25, 76, 79, 5.2),
-                P("Trey Lyles", "PF", 30, 75, 75, 8.0), P("Isaac Jones", "C", 26, 74, 77, 2.2), P("Doug McDermott", "SF", 34, 72, 72, 2.5)
+            { id: "BKN", name: "Brooklyn Nets", conf: "East", players: [
+                P("Michael Porter Jr.", "SF", 28, 84, 84, 40.81), P("Julius Randle", "PF", 31, 85, 85, 33.33), P("Cam Thomas", "SG", 25, 85, 87, 24.50),
+                P("Cameron Johnson", "SF", 30, 81, 81, 23.06), P("Mikel Brown Jr.", "PG", 19, 81, 91, 8.60), P("Egor Demin", "PG", 20, 79, 88, 5.80),
+                P("Noah Clowney", "PF", 22, 79, 85, 5.42), P("Day'Ron Sharpe", "C", 24, 77, 81, 7.50), P("Ben Saraf", "SG", 20, 77, 85, 3.60),
+                P("Danny Wolf", "C", 22, 76, 82, 3.20), P("Joshua Jefferson", "PF", 22, 75, 81, 2.80), P("Tyler Bilodeau", "PF", 22, 74, 79, 2.20)
+            ]},
+            { id: "GSW", name: "Golden State Warriors", conf: "West", players: [
+                P("Stephen Curry", "PG", 38, 93, 93, 62.59), P("Jimmy Butler", "SF", 37, 88, 88, 56.83), P("Kristaps Porzingis", "C", 31, 87, 87, 30.73),
+                P("Draymond Green", "PF", 36, 80, 80, 27.68), P("Moses Moody", "SG", 24, 79, 82, 12.50), P("Buddy Hield", "SG", 33, 77, 77, 9.69),
+                P("Brandin Podziemski", "SG", 23, 82, 86, 5.68), P("Yaxel Lendeborg", "PF", 23, 77, 84, 4.90), P("Trayce Jackson-Davis", "C", 26, 79, 82, 3.80),
+                P("Quinten Post", "C", 26, 75, 78, 2.40), P("Gui Santos", "SF", 24, 74, 77, 2.20), P("Lajae Jones", "SG", 22, 73, 78, 2.00)
+            ]},
+            { id: "DEN", name: "Denver Nuggets", conf: "West", players: [
+                P("Nikola Jokić", "C", 31, 98, 98, 59.03), P("Jamal Murray", "PG", 29, 87, 87, 50.11), P("Aaron Gordon", "PF", 31, 84, 84, 31.97),
+                P("Christian Braun", "SG", 25, 82, 85, 18.50), P("Zeke Nnaji", "PF", 25, 74, 76, 8.17), P("Julian Strawther", "SG", 24, 78, 82, 4.83),
+                P("DaRon Holmes II", "C", 24, 77, 82, 3.37), P("Russell Westbrook", "PG", 37, 75, 75, 3.30), P("Trevon Brazile", "PF", 23, 75, 81, 2.40),
+                P("Bryce Hopkins", "SF", 23, 74, 79, 2.20), P("Jalen Pickett", "PG", 27, 73, 75, 2.20), P("Spencer Jones", "SF", 25, 72, 76, 2.00)
             ]},
             { id: "PHX", name: "Phoenix Suns", conf: "West", players: [
-                P("Devin Booker", "SG", 29, 93, 93, 53.1), P("Kevin Durant", "PF", 38, 91, 91, 54.7), P("Bradley Beal", "SG", 33, 81, 81, 53.6),
-                P("Ryan Dunn", "SF", 23, 80, 85, 3.0), P("Nick Richards", "C", 28, 78, 79, 5.0), P("Grayson Allen", "SG", 31, 78, 78, 16.8),
-                P("Royce O'Neale", "SF", 33, 76, 76, 10.5), P("Koa Peat", "PF", 19, 77, 87, 3.5), P("Oso Ighodaro", "C", 24, 76, 80, 2.2),
-                P("Tyus Jones", "PG", 30, 77, 77, 6.0), P("Cody Martin", "SF", 31, 74, 74, 8.6), P("Monte Morris", "PG", 31, 73, 73, 3.0)
+                P("Devin Booker", "SG", 29, 93, 93, 57.08), P("Jalen Green", "SG", 24, 86, 89, 36.25), P("Bradley Beal", "SG", 33, 81, 81, 25.81),
+                P("Grayson Allen", "SG", 31, 78, 78, 18.13), P("Royce O'Neale", "SF", 33, 76, 76, 11.13), P("Nick Richards", "C", 28, 78, 79, 6.50),
+                P("Ryan Dunn", "SF", 23, 80, 85, 2.78), P("Koa Peat", "PF", 19, 77, 87, 3.10), P("Oso Ighodaro", "C", 24, 76, 80, 2.30),
+                P("Collin Gillespie", "PG", 27, 74, 76, 2.40), P("Monte Morris", "PG", 31, 73, 73, 3.00), P("CJ Huntley", "PF", 24, 72, 76, 2.00)
+            ]},
+            { id: "MIN", name: "Minnesota Timberwolves", conf: "West", players: [
+                P("Anthony Edwards", "SG", 25, 95, 97, 48.92), P("LaMelo Ball", "PG", 25, 90, 92, 40.77), P("Rudy Gobert", "C", 34, 85, 85, 36.50),
+                P("Jaden McDaniels", "SF", 26, 83, 86, 26.20), P("Naz Reid", "C", 27, 84, 86, 21.50), P("Donte DiVincenzo", "SG", 29, 81, 81, 12.55),
+                P("Rob Dillingham", "PG", 21, 80, 87, 6.89), P("Terrence Shannon Jr.", "SF", 26, 77, 80, 2.80), P("Joan Beringer", "C", 20, 76, 85, 3.20),
+                P("Isaiah Evans", "SG", 20, 75, 83, 2.30), P("Trey Kaufman-Renn", "PF", 23, 74, 78, 2.10), P("Leonard Miller", "PF", 22, 74, 79, 2.40)
+            ]},
+            { id: "OKC", name: "Oklahoma City Thunder", conf: "West", players: [
+                P("Chet Holmgren", "C", 24, 91, 95, 41.50), P("Jalen Williams", "SF", 25, 90, 93, 41.50), P("Shai Gilgeous-Alexander", "PG", 28, 97, 98, 40.81),
+                P("Isaiah Hartenstein", "C", 28, 83, 84, 23.15), P("Alex Caruso", "SG", 32, 82, 82, 19.55), P("Luguentz Dort", "SG", 27, 81, 82, 18.22),
+                P("Aaron Wiggins", "SF", 27, 79, 80, 8.80), P("Cason Wallace", "PG", 22, 81, 86, 7.42), P("Jared McCain", "SG", 22, 83, 88, 4.44),
+                P("Nikola Topić", "PG", 21, 79, 87, 5.40), P("Aday Mara", "C", 21, 78, 87, 4.70), P("Thomas Sorber", "C", 20, 76, 84, 3.50)
+            ]},
+            { id: "LAL", name: "Los Angeles Lakers", conf: "West", players: [
+                P("Luka Dončić", "PG", 27, 97, 98, 49.80), P("LeBron James", "SF", 41, 88, 88, 46.50), P("Austin Reaves", "SG", 28, 86, 87, 41.24),
+                P("Rui Hachimura", "PF", 28, 80, 81, 18.26), P("Jarred Vanderbilt", "PF", 27, 78, 79, 12.43), P("Dorian Finney-Smith", "PF", 33, 77, 77, 15.38),
+                P("Gabe Vincent", "PG", 30, 76, 76, 11.50), P("Dalton Knecht", "SG", 25, 80, 83, 4.21), P("Cameron Carr", "SG", 21, 76, 84, 3.40),
+                P("Jaxson Hayes", "C", 26, 75, 76, 3.00), P("Christian Koloko", "C", 26, 74, 77, 2.50), P("Bronny James", "PG", 22, 72, 77, 2.30)
+            ]},
+            { id: "HOU", name: "Houston Rockets", conf: "West", players: [
+                P("Kevin Durant", "PF", 38, 91, 91, 43.90), P("Alperen Şengün", "C", 24, 90, 93, 35.64), P("Amen Thompson", "PG", 23, 89, 94, 32.50),
+                P("Fred VanVleet", "PG", 32, 81, 81, 25.00), P("Dillon Brooks", "SF", 30, 78, 78, 19.99), P("Jabari Smith Jr.", "PF", 23, 84, 88, 22.00),
+                P("Tari Eason", "SF", 25, 83, 86, 16.50), P("Reed Sheppard", "PG", 22, 81, 87, 11.11), P("Cam Whitmore", "SF", 22, 81, 87, 5.46),
+                P("Steven Adams", "C", 33, 76, 76, 6.00), P("Bruce Thornton", "PG", 22, 75, 81, 2.40), P("Aaron Holiday", "PG", 30, 73, 73, 4.90)
+            ]},
+            { id: "SAS", name: "San Antonio Spurs", conf: "West", players: [
+                P("De'Aaron Fox", "PG", 28, 90, 90, 49.80), P("Devin Vassell", "SG", 26, 83, 85, 27.00), P("Victor Wembanyama", "C", 22, 97, 99, 16.87),
+                P("Jeremy Sochan", "PF", 23, 82, 86, 18.50), P("Keldon Johnson", "SF", 27, 79, 80, 17.50), P("Dylan Harper", "PG", 20, 84, 94, 12.10),
+                P("Stephon Castle", "SG", 21, 85, 91, 10.05), P("Carter Bryant", "SF", 21, 78, 86, 4.80), P("Jayden Quaintance", "C", 19, 78, 89, 4.00),
+                P("Tarris Reed Jr.", "C", 22, 75, 81, 3.10), P("Julian Champagnie", "SF", 25, 76, 77, 3.00), P("Ja'Kobi Gillespie", "PG", 22, 74, 79, 2.20)
+            ]},
+            { id: "SAC", name: "Sacramento Kings", conf: "West", players: [
+                P("Zach LaVine", "SG", 31, 86, 86, 48.97), P("Domantas Sabonis", "C", 30, 89, 89, 45.47), P("DeMar DeRozan", "SF", 37, 83, 83, 25.74),
+                P("Keegan Murray", "PF", 26, 84, 87, 26.50), P("Malik Monk", "SG", 28, 84, 84, 20.19), P("Jonas Valančiūnas", "C", 34, 77, 77, 10.40),
+                P("Darius Acuff Jr.", "PG", 19, 80, 90, 7.50), P("Devin Carter", "PG", 24, 79, 84, 5.16), P("Nique Clifford", "SF", 24, 76, 81, 3.40),
+                P("Alex Karaban", "PF", 23, 76, 82, 3.00), P("Maxime Raynaud", "C", 23, 75, 81, 2.50), P("Emanuel Sharp", "SG", 22, 74, 79, 2.10)
             ]},
             { id: "NOP", name: "New Orleans Pelicans", conf: "West", players: [
-                P("Zion Williamson", "PF", 26, 90, 92, 39.4), P("Trey Murphy III", "SF", 26, 87, 89, 25.0), P("Dejounte Murray", "PG", 30, 84, 84, 30.8),
-                P("Herbert Jones", "SF", 28, 83, 84, 13.9), P("Tre Johnson", "SG", 20, 82, 91, 8.8), P("Yves Missi", "C", 22, 81, 86, 4.2),
-                P("CJ McCollum", "SG", 35, 79, 79, 30.6), P("Jordan Hawkins", "SG", 24, 78, 82, 4.7), P("Jose Alvarado", "PG", 28, 77, 77, 4.5),
-                P("Kelly Olynyk", "C", 35, 75, 75, 13.4), P("Bruce Brown", "SG", 30, 75, 75, 10.0), P("Karlo Matkovic", "C", 25, 74, 77, 2.2)
+                P("Zion Williamson", "PF", 26, 90, 92, 42.17), P("Dejounte Murray", "PG", 30, 84, 84, 32.78), P("Trey Murphy III", "SF", 26, 87, 89, 27.00),
+                P("CJ McCollum", "SG", 35, 79, 79, 24.00), P("Herbert Jones", "SF", 28, 83, 84, 14.90), P("Jordan Hawkins", "SG", 24, 78, 82, 7.02),
+                P("Yves Missi", "C", 22, 81, 86, 3.51), P("Karlo Matković", "C", 25, 75, 78, 2.40), P("Jaron Pierre Jr.", "SG", 23, 74, 79, 2.10),
+                P("Hunter Dickinson", "C", 25, 74, 77, 2.10), P("Trey Alexander", "SG", 23, 74, 78, 2.10), P("Bruce Brown", "SG", 30, 75, 75, 8.50)
             ]},
             { id: "POR", name: "Portland Trail Blazers", conf: "West", players: [
-                P("Shaedon Sharpe", "SG", 23, 86, 90, 20.0), P("Scoot Henderson", "PG", 22, 84, 89, 11.5), P("Deni Avdija", "SF", 25, 84, 86, 13.1),
-                P("Donovan Clingan", "C", 22, 83, 88, 8.2), P("Anfernee Simons", "SG", 27, 83, 85, 27.6), P("Toumani Camara", "PF", 26, 81, 84, 2.8),
-                P("Deandre Ayton", "C", 28, 80, 81, 35.5), P("Jerami Grant", "PF", 32, 79, 79, 32.0), P("Khaman Maluach", "C", 20, 79, 89, 6.2),
-                P("Robert Williams III", "C", 29, 78, 79, 13.2), P("Kris Murray", "SF", 26, 75, 78, 3.1), P("Rayan Rupert", "SG", 22, 75, 81, 2.4)
+                P("Ja Morant", "PG", 27, 92, 93, 42.17), P("Deandre Ayton", "C", 28, 80, 81, 32.00), P("Anfernee Simons", "SG", 27, 83, 85, 27.68),
+                P("Shaedon Sharpe", "SG", 23, 86, 90, 24.50), P("Deni Avdija", "SF", 25, 84, 86, 13.13), P("Scoot Henderson", "PG", 22, 84, 89, 13.58),
+                P("Robert Williams III", "C", 29, 78, 79, 13.29), P("Donovan Clingan", "C", 22, 83, 88, 7.51), P("Yang Hansen", "C", 21, 76, 85, 3.80),
+                P("Toumani Camara", "PF", 26, 81, 84, 2.41), P("Kris Murray", "SF", 26, 75, 78, 5.31), P("Rayan Rupert", "SG", 22, 75, 81, 2.40)
+            ]},
+            { id: "DAL", name: "Dallas Mavericks", conf: "West", players: [
+                P("Kyrie Irving", "PG", 34, 90, 90, 39.49), P("Klay Thompson", "SG", 36, 78, 78, 23.06), P("Daniel Gafford", "C", 28, 81, 82, 18.50),
+                P("P.J. Washington", "PF", 28, 82, 83, 16.50), P("Cooper Flagg", "PF", 19, 88, 98, 14.20), P("Naji Marshall", "SF", 28, 78, 79, 9.43),
+                P("Max Christie", "SG", 23, 80, 85, 8.00), P("Dereck Lively II", "C", 22, 85, 90, 7.23), P("Morez Johnson Jr.", "PF", 20, 78, 87, 6.40),
+                P("Jaden Hardy", "SG", 24, 76, 80, 6.00), P("Sergio de Larrea", "PG", 20, 76, 85, 3.30), P("Tobi Lawal", "PF", 22, 74, 80, 2.10)
             ]},
             { id: "LAC", name: "Los Angeles Clippers", conf: "West", players: [
-                P("Kawhi Leonard", "SF", 35, 89, 89, 50.0), P("James Harden", "PG", 37, 85, 85, 35.0), P("Ivica Zubac", "C", 29, 85, 85, 19.5),
-                P("Norman Powell", "SG", 33, 83, 83, 20.4), P("Bogdan Bogdanovic", "SG", 34, 78, 78, 16.0), P("Derrick Jones Jr.", "SF", 29, 78, 78, 10.0),
-                P("Kris Dunn", "PG", 32, 76, 76, 5.4), P("Ben Simmons", "PG", 30, 75, 75, 4.0), P("Amir Coffey", "SF", 29, 75, 75, 4.0),
-                P("Nicolas Batum", "PF", 37, 74, 74, 4.9), P("Kobe Brown", "PF", 26, 74, 76, 2.6), P("Jordan Miller", "SF", 26, 74, 77, 2.2)
+                P("Darius Garland", "PG", 26, 88, 89, 42.17), P("Brandon Ingram", "SF", 29, 86, 87, 40.00), P("Norman Powell", "SG", 33, 82, 82, 20.48),
+                P("Ivica Zubac", "C", 29, 85, 85, 19.55), P("Bogdan Bogdanović", "SG", 34, 78, 78, 16.02), P("Terance Mann", "SG", 30, 77, 77, 15.50),
+                P("Derrick Jones Jr.", "SF", 29, 78, 78, 10.48), P("Keaton Wagler", "SG", 19, 80, 90, 9.20), P("Kris Dunn", "PG", 32, 76, 76, 5.40),
+                P("Baba Miller", "SF", 22, 75, 82, 2.40), P("Narcisse Ngoy", "C", 21, 74, 82, 2.10), P("Kobe Brown", "PF", 26, 74, 76, 2.60)
+            ]},
+            { id: "UTA", name: "Utah Jazz", conf: "West", players: [
+                P("Jaren Jackson Jr.", "PF", 27, 89, 90, 49.00), P("Lauri Markkanen", "PF", 29, 87, 88, 46.11), P("Collin Sexton", "SG", 27, 81, 82, 19.20),
+                P("Darryn Peterson", "PG", 19, 84, 96, 12.40), P("Walker Kessler", "C", 25, 82, 85, 14.50), P("Lonzo Ball", "PG", 29, 76, 76, 10.00),
+                P("Ace Bailey", "SF", 20, 83, 93, 10.80), P("Taylor Hendricks", "PF", 22, 79, 85, 7.80), P("Keyonte George", "PG", 22, 82, 87, 6.56),
+                P("Cody Williams", "SF", 21, 78, 85, 6.02), P("Walter Clayton Jr.", "PG", 23, 76, 81, 3.20), P("Kyle Filipowski", "C", 22, 77, 82, 3.00)
+            ]},
+            { id: "MEM", name: "Memphis Grizzlies", conf: "West", players: [
+                P("Jerami Grant", "PF", 32, 80, 80, 34.21), P("John Collins", "PF", 29, 79, 79, 26.58), P("Marcus Smart", "PG", 32, 78, 78, 21.58),
+                P("Brandon Clarke", "PF", 30, 77, 77, 12.50), P("Cameron Boozer", "PF", 19, 84, 95, 11.10), P("Santi Aldama", "PF", 25, 79, 82, 11.50),
+                P("Zach Edey", "C", 24, 82, 86, 6.32), P("Karim Lopez", "SF", 19, 78, 88, 3.90), P("GG Jackson", "SF", 21, 80, 86, 3.50),
+                P("Jaylen Wells", "SF", 23, 80, 84, 2.50), P("Vince Williams Jr.", "SG", 26, 78, 80, 2.49), P("Scotty Pippen Jr.", "PG", 25, 78, 80, 2.40)
             ]}
         ];
 
         // AGENTS LIBRES DISPONIBLES
         const initialFreeAgents = [
-            P("Kasparas Jakucionis", "PG", 20, 79, 88, 5.5), P("Egor Demin", "PG", 20, 78, 87, 5.0),
-            P("Kon Knueppel", "SG", 21, 78, 85, 4.8), P("Malcolm Brogdon", "PG", 33, 77, 77, 6.5),
-            P("Lonnie Walker IV", "SG", 27, 76, 78, 3.5), P("Christian Wood", "PF", 31, 76, 76, 3.2),
-            P("Dennis Smith Jr.", "PG", 28, 75, 76, 2.5), P("Markelle Fultz", "PG", 28, 75, 77, 3.0),
-            P("Talen Horton-Tucker", "SG", 25, 74, 76, 2.5), P("Oshae Brissett", "PF", 28, 74, 75, 2.2),
-            P("Bismack Biyombo", "C", 34, 73, 73, 2.0), P("Jae Crowder", "PF", 36, 72, 72, 2.0)
+            P("Jonathan Kuminga", "PF", 24, 84, 88, 22.0), P("Khris Middleton", "SF", 35, 78, 78, 12.5),
+            P("D'Angelo Russell", "PG", 30, 79, 79, 11.0), P("Brook Lopez", "C", 38, 76, 76, 8.0),
+            P("Jusuf Nurkić", "C", 32, 77, 77, 9.5), P("Caris LeVert", "SG", 32, 78, 78, 10.5),
+            P("Terry Rozier", "PG", 32, 77, 77, 9.0), P("Clint Capela", "C", 32, 76, 76, 8.0),
+            P("Tyus Jones", "PG", 30, 77, 77, 6.5), P("Malcolm Brogdon", "PG", 33, 76, 76, 5.5),
+            P("Kelly Olynyk", "C", 35, 75, 75, 5.0), P("Chris Paul", "PG", 41, 75, 75, 3.3)
         ];
 
-        // PROBABILITÉS OFFICIELLES DE LA LOTERIE NBA (14 ÉQUIPES)
         const lotteryOdds = [14.0, 14.0, 14.0, 12.5, 10.5, 9.0, 7.5, 6.0, 4.5, 3.0, 2.0, 1.5, 1.0, 0.5];
 
-        // ÉTAT GLOBAL DU JEU
         let state = {
+            version: "bref-2026-27-v2",
             userTeamId: "BOS",
             mode: "Contender",
             tactic: "Pace & Space",
             seasonYear: 2026,
-            phase: "REGULAR", // REGULAR, PLAYIN, PLAYOFFS, LOTTERY, DRAFT
+            phase: "REGULAR",
             activeDraftYear: 2027,
             activeConf: "East",
             teams: [],
@@ -755,19 +747,21 @@
             draftOrder: [],
             currentDraftPickIdx: 0,
             championsHistory: [
-                { year: "2025-26", champ: "Oklahoma City Thunder", mvp: "Shai Gilgeous-Alexander" },
-                { year: "2024-25", champ: "Boston Celtics", mvp: "Jayson Tatum" }
+                { year: "2025-26", champ: "New York Knicks", mvp: "Jalen Brunson (Reg. MVP: SGA)" },
+                { year: "2024-25", champ: "Boston Celtics", mvp: "Jayson Tatum" },
+                { year: "2023-24", champ: "Boston Celtics", mvp: "Jaylen Brown" }
             ],
             aiOffers: []
         };
 
-        // INITIALISATION PAGE D'ACCUEIL
         window.onload = () => {
             const select = document.getElementById('select-team');
             rawTeams.forEach(t => {
-                select.innerHTML += `<option value="${t.id}">${t.name} (${t.conf} • OVR ${calcRawOVR(t)})</option>`;
+                const cap = t.players.reduce((s, p) => s + p.salary, 0).toFixed(1);
+                select.innerHTML += `<option value="${t.id}">${t.name} (${t.conf} • OVR ${calcRawOVR(t)} • $${cap}M)</option>`;
             });
-            if (localStorage.getItem('nba_gm_27_save')) {
+            const savedRaw = localStorage.getItem('nba_gm_27_bref_save');
+            if (savedRaw) {
                 document.getElementById('btn-continue-save').style.display = 'inline-flex';
             }
         };
@@ -784,19 +778,19 @@
         }
 
         function saveGame() {
-            try { localStorage.setItem('nba_gm_27_save', JSON.stringify(state)); } catch(e) {}
+            try { localStorage.setItem('nba_gm_27_bref_save', JSON.stringify(state)); } catch(e) {}
         }
 
         function resetCareer() {
-            if (confirm("Voulez-vous vraiment réinitialiser votre carrière et revenir à l'accueil ?")) {
-                localStorage.removeItem('nba_gm_27_save');
+            if (confirm("Réinitialiser la carrière et recharger les effectifs Basketball-Reference 2026-27 ?")) {
+                localStorage.removeItem('nba_gm_27_bref_save');
                 location.reload();
             }
         }
 
         function startGame(loadFromSave) {
-            if (loadFromSave && localStorage.getItem('nba_gm_27_save')) {
-                state = JSON.parse(localStorage.getItem('nba_gm_27_save'));
+            if (loadFromSave && localStorage.getItem('nba_gm_27_bref_save')) {
+                state = JSON.parse(localStorage.getItem('nba_gm_27_bref_save'));
             } else {
                 state.userTeamId = document.getElementById('select-team').value;
                 state.mockDrafts = JSON.parse(JSON.stringify(defaultMockDrafts));
@@ -816,14 +810,13 @@
             initTradeUI();
             updateAllUI();
             saveGame();
-            log(`Carrière active avec les ${getUserTeam().name} (${getUserTeam().players.length} joueurs sous contrat).`);
+            log(`Carrière lancée avec les ${getUserTeam().name} (Masse salariale B-Ref : $${calcPayroll(getUserTeam()).toFixed(1)}M).`);
         }
 
         function getUserTeam() {
             return state.teams.find(t => t.id === state.userTeamId);
         }
 
-        // CALCUL OVR D'ÉQUIPE (AVEC BONUS TACTIQUE)
         function calcTeamOVR(team) {
             if (!team.players.length) return 72;
             const sorted = [...team.players].sort((a,b) => b.ovr - a.ovr);
@@ -847,16 +840,16 @@
 
         function getPlayerSeasonAverages(p, idx) {
             const factor = idx < 5 ? 1.0 : (idx === 5 ? 0.78 : 0.45);
-            const ppg = ((p.ovr - 64) * 0.88 * factor).toFixed(1);
-            const rpg = ((p.pos === 'C' || p.pos === 'PF' ? 8.8 : 4.2) * (p.ovr / 84) * factor).toFixed(1);
-            const apg = ((p.pos === 'PG' ? 7.6 : (p.pos === 'SG' || p.pos === 'SF' ? 4.1 : 2.5)) * (p.ovr / 84) * factor).toFixed(1);
+            const ppg = ((p.ovr - 64) * 0.9 * factor).toFixed(1);
+            const rpg = ((p.pos === 'C' || p.pos === 'PF' ? 8.9 : 4.3) * (p.ovr / 84) * factor).toFixed(1);
+            const apg = ((p.pos === 'PG' ? 7.8 : (p.pos === 'SG' || p.pos === 'SF' ? 4.2 : 2.6)) * (p.ovr / 84) * factor).toFixed(1);
             return `${ppg}p • ${rpg}r • ${apg}a`;
         }
 
         function changeTactic() {
             state.tactic = document.getElementById('tactic-select').value;
             document.getElementById('ui-coach-style').innerText = `Tactique : ${state.tactic}`;
-            log(`📋 Changement tactique : Le coach adopte le système "${state.tactic}".`);
+            log(`📋 Système tactique mis à jour : "${state.tactic}".`);
             updateAllUI();
         }
 
@@ -865,7 +858,6 @@
             const ovr = calcTeamOVR(myTeam);
             const payroll = calcPayroll(myTeam);
 
-            // Rang dans la conférence
             const confList = state.teams.filter(t => t.conf === myTeam.conf).sort((a,b) => b.w - a.w || a.l - b.l);
             const seed = confList.findIndex(t => t.id === myTeam.id) + 1;
 
@@ -875,22 +867,21 @@
             document.getElementById('dash-record').innerText = `${myTeam.w}-${myTeam.l}`;
             document.getElementById('dash-seed').innerText = `#${seed} ${myTeam.conf}`;
             document.getElementById('dash-ovr').innerText = ovr;
-            document.getElementById('dash-cap').innerText = `$${payroll.toFixed(0)}M`;
+            document.getElementById('dash-cap').innerText = `$${payroll.toFixed(1)}M`;
 
-            // Rotation 5 Majeur + 6e Homme
             const sorted = [...myTeam.players].sort((a,b) => b.ovr - a.ovr);
             const rotHtml = sorted.slice(0, 6).map((p, i) =>
-                `${i < 5 ? '<span style="color:var(--accent)">★</span>' : '<span style="color:#60a5fa">6e</span>'} <strong>${p.name}</strong> (${p.pos} • ${p.ovr})`
+                `${i < 5 ? '<span style="color:var(--accent)">★</span>' : '<span style="color:#60a5fa">6e</span>'} <strong>${p.name}</strong> (${p.pos} • ${p.ovr} • $${p.salary.toFixed(1)}M)`
             ).join(' &nbsp;|&nbsp; ');
             document.getElementById('dash-rotation').innerHTML = rotHtml;
 
-            // Statut Financier CBA 2026-27
+            // Plafonds officiels Basketball-Reference 2026-27 ($164.96M Cap / $209.01M 1er Apron / $221.68M 2e Apron)
             const finEl = document.getElementById('fin-status-text');
-            if (payroll > 207.8) { finEl.innerText = `2e Apron Dépassé ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--danger)"; }
-            else if (payroll > 187.9) { finEl.innerText = `Luxury Tax Payer ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--accent)"; }
-            else { finEl.innerText = `Conforme Sous la Taxe ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--success)"; }
+            if (payroll > 221.68) { finEl.innerText = `2e Apron Dépassé ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--danger)"; }
+            else if (payroll > 209.01) { finEl.innerText = `1er Apron Dépassé ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--accent)"; }
+            else if (payroll > 164.96) { finEl.innerText = `Au-dessus du Cap ($${payroll.toFixed(1)}M)`; finEl.style.color = "#60a5fa"; }
+            else { finEl.innerText = `Sous le Salary Cap ($${payroll.toFixed(1)}M)`; finEl.style.color = "var(--success)"; }
 
-            // Notifications visuelles sur le dock
             document.getElementById('dot-playoffs').style.display = (state.phase === 'PLAYIN' || state.phase === 'PLAYOFFS') ? 'block' : 'none';
             document.getElementById('dot-draft').style.display = (state.phase === 'LOTTERY' || state.phase === 'DRAFT') ? 'block' : 'none';
 
@@ -903,7 +894,6 @@
             saveGame();
         }
 
-        // NAVIGATION PRINCIPALE (DOCK)
         function switchView(viewName, idx) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.dock-btn').forEach(n => n.classList.remove('active'));
@@ -933,11 +923,10 @@
             for (let g = 0; g < count; g++) {
                 if (myTeam.w + myTeam.l >= 82) {
                     state.phase = "PLAYIN";
-                    log("🏁 Les 82 matchs de saison régulière sont terminés ! Cliquez sur 'Playoffs' pour lancer le Play-In et les Playoffs.");
+                    log("🏁 Fin des 82 matchs ! Cliquez sur 'Playoffs' pour disputer le Play-In et les Playoffs.");
                     break;
                 }
 
-                // Simuler une journée pour toutes les équipes
                 const shuffled = [...state.teams].sort(() => Math.random() - 0.5);
                 for (let i = 0; i < shuffled.length; i += 2) {
                     const t1 = shuffled[i];
@@ -952,7 +941,6 @@
 
                     if (s1 > s2) { t1.w++; t2.l++; } else { t1.l++; t2.w++; }
 
-                    // Mise à jour du Scoreboard si c'est le match du joueur
                     if (t1.id === myTeam.id || t2.id === myTeam.id) {
                         const isT1 = t1.id === myTeam.id;
                         const myScore = isT1 ? s1 : s2;
@@ -975,7 +963,6 @@
                 }
             }
 
-            // S'assurer que si l'utilisateur a fini ses 82 matchs, toutes les équipes finissent aussi à 82 matchs
             if (myTeam.w + myTeam.l >= 82) {
                 state.teams.forEach(t => {
                     while (t.w + t.l < 82) {
@@ -985,15 +972,13 @@
                 state.phase = "PLAYIN";
             }
 
-            if (count > 1) log(`⏩ Simulation de ${count} matchs terminée. Bilan actuel : ${myTeam.w}V - ${myTeam.l}D.`);
+            if (count > 1) log(`⏩ Simulation de ${count} matchs terminée. Bilan : ${myTeam.w}V - ${myTeam.l}D.`);
             updateAllUI();
         }
 
         function goToPlayoffs() {
             const myTeam = getUserTeam();
-            if (myTeam.w + myTeam.l < 82) {
-                simRegularGames(82);
-            }
+            if (myTeam.w + myTeam.l < 82) simRegularGames(82);
             switchView('league', 4);
             const poTab = document.querySelectorAll('#view-league .sub-tab')[1];
             switchLeagueTab('playoffs', poTab);
@@ -1008,7 +993,7 @@
         }
 
         function simSinglePlayoffGame(t1, t2) {
-            const o1 = calcTeamOVR(t1) + 1.5; // Avantage terrain léger
+            const o1 = calcTeamOVR(t1) + 1.5;
             const o2 = calcTeamOVR(t2);
             let s1 = Math.floor(96 + (o1 - 76) * 1.2 + Math.random() * 20);
             let s2 = Math.floor(96 + (o2 - 76) * 1.2 + Math.random() * 20);
@@ -1023,7 +1008,6 @@
             const east = getConfSeeds('East');
             const west = getConfSeeds('West');
 
-            // Simulation automatique du Tournoi Play-In (Places 7 à 10)
             const resolvePlayIn = (seeds) => {
                 const s7 = seeds[6], s8 = seeds[7], s9 = seeds[8], s10 = seeds[9];
                 const seed7Winner = simSinglePlayoffGame(s7, s8);
@@ -1083,7 +1067,6 @@
                 playOneStep();
             }
 
-            // Vérifier si toutes les séries du tour sont terminées
             if (po.series.every(s => s.winner)) {
                 const winners = po.series.map(s => s.winner);
                 if (po.round === 1) {
@@ -1170,7 +1153,7 @@
         }
 
         // ==========================================
-        // VRAIE LOTERIE NBA (14 ÉQUIPES) & DRAFT LIVE
+        // LOTERIE NBA & DRAFT LIVE
         // ==========================================
         function switchDraftSubTab(sub, el) {
             document.querySelectorAll('#view-draft > .sub-tabs .sub-tab').forEach(t => t.classList.remove('active'));
@@ -1189,7 +1172,6 @@
             const draftYr = state.seasonYear + 1;
             const east = getConfSeeds('East');
             const west = getConfSeeds('West');
-            // Les 14 équipes non-qualifiées (rangs 9 à 15 de chaque conférence)
             const nonPlayoff = [...east.slice(8), ...west.slice(8)].sort((a,b) => a.w - b.w || b.l - a.l);
             state.lotteryOrder = nonPlayoff.map((t, i) => ({
                 slot: i + 1,
@@ -1205,7 +1187,6 @@
             const pool = [...state.lotteryOrder];
             const top4Winners = [];
 
-            // Tirage pondéré des 4 premiers choix avec les vraies probabilités NBA
             for (let p = 0; p < 4; p++) {
                 const totalWeight = pool.reduce((sum, item) => sum + item.odds, 0);
                 let rand = Math.random() * totalWeight;
@@ -1225,7 +1206,6 @@
 
             state.lotteryOrder = finalLottery14;
 
-            // Construire l'ordre complet des 30 choix du 1er tour
             const east = getConfSeeds('East').slice(0, 8);
             const west = getConfSeeds('West').slice(0, 8);
             const playoff16 = [...east, ...west].sort((a,b) => a.w - b.w).map((t, idx) => ({
@@ -1255,9 +1235,8 @@
 
         function mockDraftsExists(yr) {
             if (!state.mockDrafts[yr] || state.mockDrafts[yr].length < 5) {
-                // Générer des prospects internationaux et NCAA si l'année dépasse 2029
-                const fn = ["Jaylen", "Malik", "Zoran", "Kylian", "Darius", "Cam", "Elijah", "Moussa", "Luka", "devon", "Tidjane", "Jaxon"];
-                const ln = ["diallo", "Vukcevic", "Mercer", "Howard", "Traoré", "Petrovic", "Robinson", "Kamara", "Brogdon", "Miller"];
+                const fn = ["Jaylen", "Malik", "Zoran", "Kylian", "Darius", "Cam", "Elijah", "Moussa", "Luka", "Devon", "Tidjane", "Jaxon"];
+                const ln = ["Diallo", "Vukčević", "Mercer", "Howard", "Traoré", "Petrović", "Robinson", "Kamara", "Brogdon", "Miller"];
                 const posList = ["PG", "SG", "SF", "PF", "C"];
                 state.mockDrafts[yr] = Array.from({length: 30}, (_, i) => ({
                     name: `${fn[i % fn.length]} ${ln[(i*3) % ln.length]}`,
@@ -1266,7 +1245,7 @@
                     age: 19,
                     ovr: Math.max(71, 82 - Math.floor(i * 0.4)),
                     pot: Math.max(80, 96 - Math.floor(i * 0.5)),
-                    salary: Math.max(2.4, +(12.0 - i * 0.32).toFixed(1))
+                    salary: Math.max(2.5, +(13.5 - i * 0.35).toFixed(1))
                 }));
             }
             return yr;
@@ -1306,7 +1285,6 @@
                 ? `🎟️ Vos choix en ${state.activeDraftYear} (${myYearPicks.length}) : ${myYearPicks.map(p => p.label).join(', ')}`
                 : `⚠️ Aucun choix possédé en ${state.activeDraftYear} (acquérez-en via Transferts).`;
 
-            // Console Live Draft
             const liveBox = document.getElementById('live-draft-console');
             if (state.phase === "DRAFT" && state.draftOrder.length > 0 && state.currentDraftPickIdx < state.draftOrder.length) {
                 liveBox.style.display = 'block';
@@ -1314,7 +1292,7 @@
                 document.getElementById('draft-clock-pick').innerText = `Choix #${currentSlot.slot} / 30`;
                 const isUserTurn = currentSlot.ownerTeam.id === state.userTeamId;
                 document.getElementById('draft-on-the-clock').innerHTML = isUserTurn
-                    ? `🟢 <span style="color:var(--success)">C'EST VOTRE TOUR !</span> Sélectionnez un prospect dans la liste ci-dessous avec le choix #${currentSlot.slot} (${currentSlot.origTeam.id}).`
+                    ? `🟢 <span style="color:var(--success)">C'EST VOTRE TOUR !</span> Sélectionnez votre rookie dans la liste ci-dessous avec le choix #${currentSlot.slot} (${currentSlot.origTeam.id}).`
                     : `⏳ En cours : <strong>${currentSlot.ownerTeam.name}</strong> est à l'horloge (via ${currentSlot.origTeam.id}).`;
             } else {
                 liveBox.style.display = 'none';
@@ -1353,7 +1331,6 @@
             const prospect = pool.shift();
             slot.ownerTeam.players.push({ ...prospect });
 
-            // Supprimer le pick utilisé du portefeuille
             const pkIdx = slot.ownerTeam.picks.findIndex(pk => pk.year === draftYr && pk.origTeam === slot.origTeam.id && pk.round === 1);
             if (pkIdx > -1) slot.ownerTeam.picks.splice(pkIdx, 1);
 
@@ -1401,7 +1378,6 @@
         }
 
         function finishDraftAndStartNewSeason() {
-            // Progression intersaison des joueurs
             state.teams.forEach(t => {
                 t.players.forEach(p => {
                     p.age++;
@@ -1421,7 +1397,7 @@
             state.draftOrder = [];
             state.activeDraftYear = mockDraftsExists(state.seasonYear + 1);
 
-            log(`🚀 NOUVELLE SAISON ${state.seasonYear}-${state.seasonYear+1} ! Les jeunes ont progressé et le calendrier de 82 matchs reprend.`);
+            log(`🚀 NOUVELLE SAISON ${state.seasonYear}-${state.seasonYear+1} ! Les jeunes joueurs ont progressé.`);
             alert(`La Draft est terminée ! La saison ${state.seasonYear}-${state.seasonYear+1} commence.`);
             updateAllUI();
             switchView('dashboard', 0);
@@ -1452,7 +1428,7 @@
                         <td><span class="ovr-badge">${p.ovr}</span></td>
                         <td><span class="pot-badge">${p.pot}</span></td>
                         <td style="font-size:0.7rem; color:var(--text-secondary);">${getPlayerSeasonAverages(p, idx)}</td>
-                        <td>$${p.salary.toFixed(1)}M</td>
+                        <td>$${p.salary.toFixed(2)}M</td>
                     </tr>`;
             });
 
@@ -1508,7 +1484,7 @@
             const oppSelect = document.getElementById('trade-opp-team');
             oppSelect.innerHTML = '';
             state.teams.filter(t => t.id !== myTeam.id).forEach(t => {
-                oppSelect.innerHTML += `<option value="${t.id}">${t.name} (OVR ${calcTeamOVR(t)})</option>`;
+                oppSelect.innerHTML += `<option value="${t.id}">${t.name} (OVR ${calcTeamOVR(t)} • $${calcPayroll(t).toFixed(1)}M)</option>`;
             });
 
             const finderTeamSelect = document.getElementById('finder-team');
@@ -1533,7 +1509,7 @@
                 myDiv.innerHTML += `
                     <label class="asset-row">
                         <span><input type="checkbox" class="my-p-cb" value="${idx}" onchange="evaluateManualTrade()"> <strong>${p.name}</strong> (${p.pos} • ${p.ovr} OVR)</span>
-                        <span>$${p.salary.toFixed(1)}M</span>
+                        <span>$${p.salary.toFixed(2)}M</span>
                     </label>`;
             });
             myTeam.picks.forEach((pk, idx) => {
@@ -1550,7 +1526,7 @@
                 oppDiv.innerHTML += `
                     <label class="asset-row">
                         <span><input type="checkbox" class="opp-p-cb" value="${idx}" onchange="evaluateManualTrade()"> <strong>${p.name}</strong> (${p.pos} • ${p.ovr} OVR)</span>
-                        <span>$${p.salary.toFixed(1)}M</span>
+                        <span>$${p.salary.toFixed(2)}M</span>
                     </label>`;
             });
             oppTeam.picks.forEach((pk, idx) => {
@@ -1602,7 +1578,7 @@
             const aiAccepts = (myVal >= oppVal - 3) || state.mode === 'Sandbox';
 
             box.innerHTML = `
-                <div class="flex-between"><span>Salaire Sortant : <strong>$${mySal.toFixed(1)}M</strong></span><span>Entrant : <strong>$${oppSal.toFixed(1)}M</strong></span></div>
+                <div class="flex-between"><span>Salaire Sortant : <strong>$${mySal.toFixed(2)}M</strong></span><span>Entrant : <strong>$${oppSal.toFixed(2)}M</strong></span></div>
                 <div class="flex-between"><span>Valeur Offerte : <strong>${myVal} pts</strong></span><span>Demandée : <strong>${oppVal} pts</strong></span></div>
                 <div class="flex-between"><span>Règle CBA (125%) :</span> <strong style="color:${cbaValid ? 'var(--success)' : 'var(--danger)'}">${cbaValid ? '✅ Légal' : '❌ Écart salarial > 125%'}</strong></div>
                 <div class="flex-between"><span>Intérêt IA (${sel.oppTeam.name}) :</span> <strong style="color:${aiAccepts ? 'var(--success)' : 'var(--danger)'}">${aiAccepts ? '🟢 Offre acceptée' : '🔴 Offre insuffisante'}</strong></div>
@@ -1647,7 +1623,7 @@
             const pSelect = document.getElementById('finder-player');
             pSelect.innerHTML = '';
             team.players.sort((a,b) => b.ovr - a.ovr).forEach((p, idx) => {
-                pSelect.innerHTML += `<option value="${idx}">${p.name} (${p.pos} • ${p.ovr} OVR / ${p.pot} POT • $${p.salary.toFixed(1)}M)</option>`;
+                pSelect.innerHTML += `<option value="${idx}">${p.name} (${p.pos} • ${p.ovr} OVR / ${p.pot} POT • $${p.salary.toFixed(2)}M)</option>`;
             });
             document.getElementById('ai-offers-container').innerHTML = '';
         }
@@ -1668,7 +1644,7 @@
                 const otherTeams = state.teams.filter(t => t.id !== myTeam.id).sort(() => Math.random() - 0.5);
                 for (let opp of otherTeams) {
                     if (state.aiOffers.length >= 4) break;
-                    const matchPlayers = opp.players.filter(p => Math.abs(p.salary - selectedPlayer.salary) <= selectedPlayer.salary * 0.3 + 3.5);
+                    const matchPlayers = opp.players.filter(p => Math.abs(p.salary - selectedPlayer.salary) <= selectedPlayer.salary * 0.25 + 2.5);
                     if (!matchPlayers.length) continue;
                     const oppP = matchPlayers[Math.floor(Math.random() * matchPlayers.length)];
                     const diff = targetVal - calcPlayerTradeValue(oppP);
@@ -1706,13 +1682,13 @@
             }
 
             if (!state.aiOffers.length) {
-                container.innerHTML = `<div class="offer-item">Aucune offre directe trouvée. Utilisez la Trade Machine manuelle.</div>`;
+                container.innerHTML = `<div class="offer-item">Aucune offre directe à salaire égal trouvée. Utilisez la Trade Machine manuelle pour combiner plusieurs contrats.</div>`;
                 return;
             }
 
             state.aiOffers.forEach((off, idx) => {
-                const giveStr = [...off.givePlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR)`), ...off.givePicks.map(pk => `<span class="pick-tag">🎟️ ${pk.label}</span>`)].join(' + ');
-                const getStr = [...off.getPlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR)`), ...off.getPicks.map(pk => `<span class="pick-tag">🎟️ ${pk.label}</span>`)].join(' + ');
+                const giveStr = [...off.givePlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR, $${p.salary.toFixed(1)}M)`), ...off.givePicks.map(pk => `<span class="pick-tag">🎟️ ${pk.label}</span>`)].join(' + ');
+                const getStr = [...off.getPlayers.map(p => `<strong>${p.name}</strong> (${p.ovr} OVR, $${p.salary.toFixed(1)}M)`), ...off.getPicks.map(pk => `<span class="pick-tag">🎟️ ${pk.label}</span>`)].join(' + ');
 
                 container.innerHTML += `
                     <div class="offer-item">
@@ -1803,13 +1779,13 @@
 
             document.getElementById('awards-container').innerHTML = `
                 <div>🏆 <strong>Kia NBA MVP :</strong> ${mvp.name} (${mvp.teamName}) • ${(mvp.ovr - 65).toFixed(1)} PTS, 7.8 REB, 6.4 AST</div>
-                <div>🛡️ <strong>Kia Defensive Player (DPOY) :</strong> ${dpoy.name} (${dpoy.teamName}) • 11.4 REB, 2.8 BLK</div>
+                <div>🛡️ <strong>Kia Defensive Player (DPOY) :</strong> ${dpoy.name} (${dpoy.teamName}) • 11.8 REB, 3.1 BLK</div>
                 <div>🌟 <strong>Kia Rookie of the Year (ROY) :</strong> ${roy.name} (${roy.teamName}) • ${roy.ovr} OVR</div>
                 <div>📋 <strong>Coach of the Year (COY) :</strong> Head Coach ${coyTeam.name} (${coyTeam.w}V - ${coyTeam.l}D)</div>
             `;
 
             document.getElementById('champions-history').innerHTML = state.championsHistory.map(h =>
-                `<div style="padding:5px 0; border-bottom:1px solid var(--border-subtle);">💍 <strong>${h.year}</strong> : ${h.champ} (Finals MVP : ${h.mvp})</div>`
+                `<div style="padding:5px 0; border-bottom:1px solid var(--border-subtle);">💍 <strong>${h.year}</strong> : ${h.champ} (MVP : ${h.mvp})</div>`
             ).join('');
         }
 
