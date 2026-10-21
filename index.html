@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoops Manager: Association Edition</title>
+    <style>
+        :root {
+            --primary: #1d428a;
+            --secondary: #c8102e;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #222222;
+            --text-light: #666666;
+            --border: #e0e0e0;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 75px; }
+        header { background: var(--primary); color: white; padding: 15px; text-align: center; font-size: 1.15rem; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .container { padding: 12px; max-width: 600px; margin: 0 auto; }
+        .card { background: var(--card-bg); border-radius: 10px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        h2 { font-size: 1.05rem; margin-bottom: 10px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 8px; font-size: 0.95rem; }
+        button:active { opacity: 0.8; }
+        button.secondary { background: var(--secondary); }
+        .nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; border-top: 1px solid var(--border); padding: 8px 0; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); z-index: 100; }
+        .nav-item { text-align: center; font-size: 0.7rem; color: var(--text-light); cursor: pointer; flex: 1; }
+        .nav-item.active { color: var(--primary); font-weight: bold; }
+        .nav-item div { font-size: 1.2rem; margin-bottom: 2px; }
+        .view { display: none; }
+        .view.active { display: block; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 6px; }
+        th, td { padding: 7px 6px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: #f8f9fa; color: var(--text-light); }
+        .flex-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.9rem; }
+        .badge { background: #e9ecef; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 8px; }
+        .stat-box { background: #f8f9fa; padding: 10px; border-radius: 6px; text-align: center; }
+        .stat-box span { display: block; font-size: 1.1rem; font-weight: bold; color: var(--primary); margin-top: 2px; }
+        .log-box { background: #1e1e1e; color: #00ffcc; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.75rem; height: 130px; overflow-y: auto; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <header id="header-title">Hoops Manager: Boston Celtics</header>
+
+    <div class="container">
+        <!-- TABLEAU DE BORD -->
+        <div id="view-dashboard" class="view active">
+            <div class="card">
+                <h2><span>Tableau de Bord</span><span class="badge">Saison 2026-27</span></h2>
+                <div class="flex-row"><span>Franchise :</span> <strong id="dash-team">Boston Celtics</strong></div>
+                <div class="flex-row"><span>Bilan :</span> <strong id="dash-record">0 - 0</strong></div>
+                <div class="flex-row"><span>Masse Salariale :</span> <strong id="dash-payroll">$142.0M</strong></div>
+                <div class="flex-row"><span>Cap / Tax :</span> <strong>$141.0M / $171.0M</strong></div>
+                <button onclick="simMatch()">Simuler le Match Suivant</button>
+            </div>
+            <div class="card">
+                <h2>Indicateurs de Performance</h2>
+                <div class="stat-grid">
+                    <div class="stat-box">Note Globale <span id="stat-ovr">89</span></div>
+                    <div class="stat-box">Moral du Vestiaire <span id="stat-morale">94%</span></div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Journal des Activités</h2>
+                <div id="activity-log" class="log-box">> Bienvenue General Manager ! La saison régulière est prête à démarrer.</div>
+            </div>
+        </div>
+
+        <!-- EFFECTIF -->
+        <div id="view-squad" class="view">
+            <div class="card">
+                <h2>Effectif & Contrats actuels</h2>
+                <table id="roster-table">
+                    <thead>
+                        <tr><th>Joueur</th><th>Pos</th><th>Âge</th><th>OVR</th><th>Salaire</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CLASSEMENT -->
+        <div id="view-standings" class="view">
+            <div class="card">
+                <h2>Conférence Est - Classement</h2>
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Équipe</th><th>V</th><th>D</th><th>PCT</th></tr>
+                    </thead>
+                    <tbody id="standings-table"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FINANCES & CBA -->
+        <div id="view-finances" class="view">
+            <div class="card">
+                <h2>Règles Salariales & CBA</h2>
+                <div class="flex-row"><span>Salary Cap :</span> <strong>$141,000,000</strong></div>
+                <div class="flex-row"><span>Luxury Tax :</span> <strong>$171,000,000</strong></div>
+                <div class="flex-row"><span>1er Apron :</span> <strong>$178,000,000</strong></div>
+                <div class="flex-row"><span>Total Masse Salariale :</span> <strong id="fin-payroll">$142,000,000</strong></div>
+                <div class="flex-row"><span>Statut Financier :</span> <span id="fin-badge" class="badge badge-success">Conforme (Sous la Luxury Tax)</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav-bar">
+        <div class="nav-item active" onclick="switchView('dashboard')"><div>📊</div>Dashboard</div>
+        <div class="nav-item" onclick="switchView('squad')"><div>🏀</div>Effectif</div>
+        <div class="nav-item" onclick="switchView('standings')"><div>🏆</div>Classement</div>
+        <div class="nav-item" onclick="switchView('finances')"><div>💷</div>Finances</div>
+    </div>
+
+    <script>
+        const state = {
+            team: "Boston Celtics",
+            wins: 0,
+            losses: 0,
+            roster: [
+                { name: "J. Tatum", pos: "SF", age: 28, ovr: 94, salary: 32.6 },
+                { name: "J. Brown", pos: "SG", age: 29, ovr: 91, salary: 31.8 },
+                { name: "K. Porzingis", pos: "C", age: 30, ovr: 88, salary: 36.0 },
+                { name: "J. Holiday", pos: "PG", age: 35, ovr: 85, salary: 30.0 },
+                { name: "D. White", pos: "SG", age: 31, ovr: 84, salary: 19.0 },
+                { name: "A. Horford", pos: "C", age: 40, ovr: 78, salary: 9.5 },
+                { name: "P. Pritchard", pos: "PG", age: 28, ovr: 78, salary: 6.7 },
+                { name: "S. Hauser", pos: "SF", age: 28, ovr: 76, salary: 2.2 }
+            ],
+            standings: [
+                { rank: 1, team: "Boston Celtics", w: 0, l: 0 },
+                { rank: 2, team: "New York Knicks", w: 0, l: 0 },
+                { rank: 3, team: "Milwaukee Bucks", w: 0, l: 0 },
+                { rank: 4, team: "Philadelphia 76ers", w: 0, l: 0 },
+                { rank: 5, team: "Miami Heat", w: 0, l: 0 },
+                { rank: 6, team: "Cleveland Cavaliers", w: 0, l: 0 }
+            ]
+        };
+
+        function switchView(viewName) {
+            const views = document.querySelectorAll('.view');
+            views.forEach(v => v.classList.remove('active'));
+            
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(n => n.classList.remove('active'));
+            
+            document.getElementById('view-' + viewName).classList.add('active');
+            
+            if(viewName === 'dashboard') navItems[0].classList.add('active');
+            if(viewName === 'squad') {
+                navItems[1].classList.add('active');
+                renderRoster();
+            }
+            if(viewName === 'standings') {
+                navItems[2].classList.add('active');
+                renderStandings();
+            }
+            if(viewName === 'finances') {
+                navItems[3].classList.add('active');
+                renderFinances();
+            }
+        }
+
+        function renderRoster() {
+            const tbody = document.querySelector('#roster-table tbody');
+            tbody.innerHTML = '';
+            state.roster.forEach(p => {
+                tbody.innerHTML += `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.age}</td><td><strong>${p.ovr}</strong></td><td>$${p.salary.toFixed(1)}M</td></tr>`;
+            });
+        }
+
+        function renderStandings() {
+            const tbody = document.getElementById('standings-table');
+            tbody.innerHTML = '';
+            state.standings.sort((a,b) => b.w - a.w || a.l - b.l).forEach((s, idx) => {
+                s.rank = idx + 1;
+                let total = s.w + s.l;
+                let pct = total > 0 ? (s.w / total).toFixed(3) : ".000";
+                tbody.innerHTML += `<tr><td>${s.rank}</td><td>${s.team}</td><td>${s.w}</td><td>${s.l}</td><td>${pct}</td></tr>`;
+            });
+        }
+
+        function renderFinances() {
+            let totalPayroll = state.roster.reduce((sum, p) => sum + p.salary, 0);
+            document.getElementById('fin-payroll').innerText = `$${totalPayroll.toFixed(1)}M`;
+            document.getElementById('dash-payroll').innerText = `$${totalPayroll.toFixed(1)}M`;
+            
+            let badge = document.getElementById('fin-badge');
+            if(totalPayroll > 171.0) {
+                badge.className = "badge badge-danger";
+                badge.innerText = "Luxury Tax Dépassée !";
+            } else {
+                badge.className = "badge badge-success";
+                badge.innerText = "Conforme (Sous la Luxury Tax)";
+            }
+        }
+
+        function logMessage(msg) {
+            const box = document.getElementById('activity-log');
+            box.innerHTML += `<br>> ${msg}`;
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function simMatch() {
+            const opponents = ["Los Angeles Lakers", "Golden State Warriors", "Denver Nuggets", "Miami Heat", "Dallas Mavericks", "Phoenix Suns", "New York Knicks"];
+            const opp = opponents[Math.floor(Math.random() * opponents.length)];
+            
+            let ourScore = Math.floor(100 + Math.random() * 20);
+            let oppScore = Math.floor(95 + Math.random() * 22);
+
+            let won = ourScore > oppScore;
+            if (won) {
+                state.wins++;
+                state.standings[0].w++;
+                logMessage(`Victoire face aux ${opp} (${ourScore}-${oppScore}). Superbe match !`);
+            } else {
+                state.losses++;
+                state.standings[0].l++;
+                logMessage(`Défaite serrée contre les ${opp} (${ourScore}-${oppScore}).`);
+            }
+
+            state.standings.forEach(s => {
+                if(s.team !== state.team) {
+                    if(Math.random() > 0.48) s.w++; else s.l++;
+                }
+            });
+
+            document.getElementById('dash-record').innerText = `${state.wins} - ${state.losses}`;
+            renderStandings();
+        }
+
+        renderFinances();
+    </script>
+</body>
+</html>
